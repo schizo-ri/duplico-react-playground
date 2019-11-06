@@ -23,27 +23,23 @@
 
 .alert-info {
   color: var(--cyan-pale);
-  background-color: var(--cyan);
-  border-bottom: 1px solid var(--cyan-light);
+  background: linear-gradient(to bottom, var(--cyan-light) 0%, var(--cyan-dark) 100%);
 }
 
 .alert-warning {
   color: var(--yellow-pale);
-  background-color: var(--yellow-dark);
-  border-bottom: 1px solid var(--yellow-light);
+  background: linear-gradient(to bottom, var(--yellow-light) 0%, var(--yellow-dark) 100%);
 }
 
 .alert-danger,
 .alert-error {
   color: var(--red-pale);
-  background-color: var(--red);
-  border-bottom: 1px solid var(--red-light);
+  background: linear-gradient(to bottom, var(--red-light) 0%, var(--red-dark) 100%);
 }
 
 .alert-success {
   color: var(--teal-pale);
-  background-color: var(--teal);
-  border-bottom: 1px solid var(--teal-light);
+  background: linear-gradient(to bottom, var(--teal-light) 0%, var(--teal-dark) 100%);
 }
 
 .alert-msg {

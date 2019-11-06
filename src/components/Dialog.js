@@ -17,7 +17,7 @@ const reducer = (state, action) => {
       return { ...state, dialogCss: 'fade-out', bodyCss: 'pull-above' }
     case 'close':
       // kad zatvorimo postavljamo css za sljedece pojavljivanje
-      document.getElementById('body').classList.remove('dialog-open')
+      document.getElementById('root').classList.remove('dialog-open')
       return {
         ...state,
         show: false,
@@ -26,7 +26,7 @@ const reducer = (state, action) => {
         content: null
       }
     case 'show':
-      document.getElementById('body').classList.add('dialog-open')
+      document.getElementById('root').classList.add('dialog-open')
       return {
         ...state,
         content: action.payload || state.content,
@@ -83,7 +83,7 @@ const Dialog = () => {
     state.show &&
     createPortal(
       <div className={`dialog ${state.dialogCss}`}>
-        <article className={`dialog-body card ${state.bodyCss}`}>
+        <article className={`dialog-body ${state.bodyCss}`}>
           {state.content}
         </article>
       </div>,

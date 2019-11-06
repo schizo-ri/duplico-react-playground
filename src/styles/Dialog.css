@@ -12,14 +12,11 @@
   align-items: baseline;
   background-color: var(--backdrop);
   z-index: 1050;
+  overflow-y: auto;
 }
 
 .dialog-open {
   overflow: hidden;
-}
-
-.dialog-open .dialog {
-  overflow-y: auto;
 }
 
 .dialog-body {
@@ -28,10 +25,11 @@
   flex-direction: column;
   pointer-events: auto;
   background-clip: padding-box;
-  background-color: var(--white);
+  background-color: var(--light);
   outline: 0;
   opacity: 1;
   box-shadow: 0 16px 24px 8px var(--backdrop);
+  border-radius: var(--radius);
   width: 100vw;
 }
 

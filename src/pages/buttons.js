@@ -9,8 +9,11 @@ const Buttons = () => {
         <h2>Standard</h2>
         <p />
         <Button>default</Button>
-        <Button addClass="ml-2 brand">brand color</Button>
-        <Button addClass="ml-2 danger">red color</Button>
+        <Button addClass="ml-2 brand">brand</Button>
+        <Button addClass="ml-2 danger">danger</Button>
+        <Button addClass="ml-2 success">success</Button>
+        <Button addClass="ml-2 info">info</Button>
+        <Button addClass="ml-2 warning">warning</Button>
         <Button addClass="ml-2" disabled>
           disabled
         </Button>
@@ -23,8 +26,11 @@ const Buttons = () => {
           descriptive when using these.
         </p>
         <Button addClass="btn-empty">default</Button>
-        <Button addClass="btn-empty ml-2 brand">brand color</Button>
-        <Button addClass="btn-empty ml-2 danger">red color</Button>
+        <Button addClass="btn-empty ml-2 brand">brand</Button>
+        <Button addClass="btn-empty ml-2 danger">danger</Button>
+        <Button addClass="btn-empty ml-2 success">success</Button>
+        <Button addClass="btn-empty ml-2 info">info</Button>
+        <Button addClass="btn-empty ml-2 warning">warning</Button>
         <Button addClass="btn-empty ml-2" disabled>
           disabled
         </Button>
@@ -40,8 +46,8 @@ const Buttons = () => {
           seamlessly. Although I'm not sure about the use case and a11y.
         </p>
         <Button addClass="btn-text">default</Button>
-        <Button addClass="btn-text ml-2 brand">brand color</Button>
-        <Button addClass="btn-text ml-2 danger">red color</Button>
+        <Button addClass="btn-text ml-2 brand">brand</Button>
+        <Button addClass="btn-text ml-2 danger">danger</Button>
         <Button addClass="btn-text ml-2" disabled>
           disabled
         </Button>
@@ -64,7 +70,7 @@ const Buttons = () => {
             <Button addClass="btn-empty">Alpha</Button>
             <Button addClass="btn-empty">Red Green Blue Alpha</Button>
           </Dropdown>
-          <Dropdown id="dd-demo" className="btn" text="Positioning">
+          <Dropdown id="dd-demo" className="btn info" text="Positioning">
             <ul className="list-unstyled p-2">
               <li>Red</li>
               <li>Green</li>

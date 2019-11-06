@@ -46,7 +46,7 @@
   --brand-light: var(--blue-light);
   --brand-dark: var(--blue-dark);
 
-  --backdrop: hsla(15, 1%, 18%, 0.5);
+  --backdrop: hsla(15, 1%, 18%, 0.75);
 
   --weight-light: 300;
   --weight-normal: 400;

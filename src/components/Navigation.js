@@ -1,53 +1,60 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import '../styles/Navigation.css'
-import '../styles/Button.css'
+import React, { useState, useLayoutEffect } from "react";
+import { Link } from "react-router-dom";
+import { Dropdown } from "../components/Button";
+import "../styles/Navigation.css";
+import "../styles/Button.css";
 
-const Nav = () => {
+const Nav = props => {
+  const [fit, setFit] = useState(true);
+
+  useLayoutEffect(function menuFit() {
+    function calculateFit() {
+      // 100 is an estimation, there should be a better way
+      NAV_ITEMS.length * 100 >= window.innerWidth
+        ? setFit(false)
+        : setFit(true);
+      return;
+    }
+    calculateFit()
+    window.addEventListener("resize", calculateFit);
+    return () => window.removeEventListener("resize", calculateFit);
+  }, []);
+
   return (
     <nav className="navbar">
-      <ul className="navlist grow">
-        <li className="nav-collapse">
-          <button className="nav-link btn-empty white" type="button">Menu</button>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link btn-empty white" to="/">
-            Home
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link btn-empty white" to="/typography">
-            Typography
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link btn-empty white" to="/alerts">
-            Alerts
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link btn-empty white" to="/buttons">
-            Buttons
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link btn-empty white" to="/dialogs">
-            Dialogs
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link btn-empty white" to="/forms">
-            Forms
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link btn-empty white" to="/navigations">
-            Navigations
-          </Link>
-        </li>
-      </ul>
+      {fit ? (
+        <ul className="navlist">
+          <NavItems collapsed={fit} />
+        </ul>
+      ) : (
+        <Dropdown id="nav-collapse" className="btn-empty white" text="Menu">
+          <NavItems collapsed={fit} />
+        </Dropdown>
+      )}
     </nav>
-  )
-}
+  );
+};
 
-export default Nav
+const NAV_ITEMS = [
+  ["Home", "/"],
+  ["Typography", "typography"],
+  ["Buttons", "buttons"],
+  ["Forms", "forms"],
+  ["Navigations", "navigations"],
+  ["Alerts", "alerts"],
+  ["Dialogs", "dialogs"]
+];
+
+const NavItems = props => {
+  const linkClass = props.collapsed ? "btn-empty white" : "btn-empty";
+
+  return NAV_ITEMS.map(([label, route]) => (
+    <li key={label} className="nav-item">
+      <Link className={linkClass} to={route}>
+        {label}
+      </Link>
+    </li>
+  ));
+};
+
+export default Nav;

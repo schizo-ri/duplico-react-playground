@@ -64,7 +64,7 @@ const Dropdown = props => {
   );
 
   const listClass = [
-    !show.visible && "d-none",
+    !show.visible ? "d-none" : '',
     show.position,
     "dropdown-menu pop-in"
   ].join(" ");
@@ -73,7 +73,7 @@ const Dropdown = props => {
     <div className="dropdown">
       <button
         id={props.id}
-        className={[!props.text && 'menu-dots', 'dropdown-button', props.className].join(' ')}
+        className={[!props.text ? 'menu-dots' : '', 'dropdown-button', props.className].join(' ')}
         type="button"
         aria-haspopup="true"
         aria-expanded={show.visible && "true"}

@@ -1,0 +1,304 @@
+:root {
+  --black: hsl(15, 1%, 18%);
+  --color: var(--black);
+  --gray5: hsl(15, 1%, 32%);
+  --dark: var(--gray5);
+  --gray4: hsl(15, 1%, 47%);
+  --gray3: hsl(15, 1%, 68%);
+  --gray2: hsl(15, 1%, 83%);
+  --gray1: hsl(15, 1%, 98%);
+  --light: var(--gray1);
+  --cold: hsl(204, 15%, 94%);
+  --cold-dark: hsl(204, 15%, 90%);
+  --lightsmoke: hsl(204, 15%, 98%);
+  --white: #fff;
+
+  --brand: hsl(15, 88%, 65%);
+  --brand-pale: hsl(15, 88%, 96%);
+  --brand-light: hsl(15, 88%, 72%);
+  --brand-dark: hsl(15, 88%, 58%);
+
+  --blue: hsl(204, 100%, 37%);
+  --blue-pale: hsl(204, 100%, 95%);
+  --blue-light: hsl(204, 100%, 44%);
+  --blue-dark: hsl(240, 33%, 1%);
+  --red: hsl(1, 76%, 54%);
+  --red-pale: hsl(1, 56%, 96%);
+  --red-light: hsl(1, 76%, 64%);
+  --red-dark: hsl(1, 76%, 44%);
+  --green: hsl(142, 76%, 44%);
+  --yellow: hsl(40, 96%, 64%);
+  --yellow-pale: hsl(40, 56%, 96%);
+  --yellow-light: hsl(40, 96%, 74%);
+  --yellow-dark: hsl(40, 96%, 54%);
+  --indigo: hsl(263, 90%, 51%);
+  --purple: hsl(261, 51%, 51%);
+  --cyan: hsl(188, 78%, 41%);
+  --cyan-pale: hsl(188, 38%, 94%);
+  --cyan-light: hsl(188, 78%, 51%);
+  --cyan-dark: hsl(188, 78%, 31%);
+  --teal: hsl(162, 73%, 46%);
+  --teal-pale: hsl(162, 33%, 92%);
+  --teal-light: hsl(162, 73%, 56%);
+  --teal-dark: hsl(162, 73%, 36%);
+
+  --backdrop: hsla(15, 1%, 18%, 0.75);
+
+  --weight-light: 300;
+  --weight-normal: 400;
+  --weight-bold: 500;
+
+  --radius: 0.25rem;
+  --spacer: 0.25rem;
+
+  --font: Dosis, sans-serif;
+  /* --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Fira Sans",
+    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol"; */
+  --font-mono: 'Fira Code', SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  display: inherit;
+  --size: 16px;
+  --gap: var(--size);
+  font-family: var(--font);
+  font-size: var(--size);
+  font-stretch: 100%;
+  color: var(--color);
+  background-color: var(--white);
+  font-weight: var(--weight-normal);
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: var(--weight-normal);
+}
+
+h1 {
+  font-size: calc(var(--size) * 2.5);
+}
+h2 {
+  font-size: calc(var(--size) * 2);
+}
+h3 {
+  font-size: calc(var(--size) * 1.5);
+}
+h4 {
+  font-size: calc(var(--size) * 1.25);
+}
+h5 {
+  font-size: calc(var(--size) * 1);
+}
+h6 {
+  font-size: calc(var(--size) * 0.75);
+}
+
+.red,
+.danger {
+  color: var(--red);
+}
+.green,
+.success,
+.teal {
+  color: var(--teal);
+}
+.brand,
+.primary {
+  color: var(--brand);
+}
+
+.btn,
+.btn-empty {
+  border: none;
+  border-radius: var(--radius);
+  outline: none;
+  padding: 0.3rem 1.5rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: var(--weight-bold);
+}
+.btn {
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+}
+/* same for all but cancel */
+.btn:hover:not([disabled]),
+.btn:focus:not([disabled]),
+.btn:active:not([disabled]) {
+  border: 0;
+  outline: 0;
+  color: var(--white);
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
+}
+.btn:hover:not([disabled]).cancel,
+.btn:focus:not([disabled]).cancel,
+.btn:active:not([disabled]).cancel {
+  color: var(--black) !important;
+}
+.btn.brand {
+  background: linear-gradient(
+    to bottom,
+    var(--brand) 0%,
+    var(--brand-dark) 100%
+  );
+  color: var(--brand-pale);
+}
+.btn.cancel {
+  background: linear-gradient(to bottom, var(--cold) 0%, var(--cold-dark) 100%);
+  color: var(--gray5);
+}
+.btn.danger {
+  background: linear-gradient(to bottom, var(--red-light) 0%, var(--red) 100%);
+  color: var(--red-pale);
+}
+.btn[disabled] {
+  cursor: not-allowed !important;
+  background: none;
+  color: var(--gray3);
+}
+
+.btn-empty {
+  background: transparent !important;
+  box-shadow: none !important;
+  color: var(--gray5);
+}
+.btn-empty.brand {
+  color: var(--brand);
+}
+.btn-empty.danger {
+  color: var(--red);
+}
+.btn-empty:hover,
+.btn-empty:active,
+.btn-empty:focus {
+  color: var(--black);
+}
+.btn-empty:hover.brand,
+.btn-empty:active.brand,
+.btn-empty:focus.brand {
+  color: var(--brand-dark);
+}
+
+.btn-empty[disabled] {
+  cursor: not-allowed !important;
+  box-shadow: none;
+}
+.btn-empty:hover:not([disabled]).danger,
+.btn-empty:focus:not([disabled]).danger,
+.btn-empty:active:not([disabled]).danger {
+  color: var(--red-dark);
+}
+
+.btn-empty:focus:not([disabled]),
+.btn-empty:active:not([disabled]) {
+  outline: 1px dotted;
+}
+
+.card {
+  margin: 1rem;
+  background-color: var(--white);
+  border-radius: var(--radius);
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.outline-light {
+  border: 1px solid var(--light);
+}
+.outline-dark {
+  border: 1px solid var(--dark);
+}
+.card-header {
+  border-radius: var(--radius) var(--radius) 0 0;
+  padding: 1rem;
+  border-bottom: 1px solid var(--cold);
+}
+.header-dark {
+  color: var(--light);
+  background-color: var(--dark);
+}
+.card-section, .card-h-body {
+  padding: .5rem 1rem;
+}
+.card-section:not(:last-child) {
+  border-bottom: 1px solid var(--cold);
+}
+
+.card-h {
+  display: grid;
+  grid-template-columns: 6rem auto;
+  grid-template-areas: 
+    "logo title"
+    "logo body";
+  width: 100%;
+  align-items: center;
+}
+.card-h-title {
+  grid-area: title;
+  display: flex;
+  justify-content: space-between;
+  padding: .5rem 1rem;
+  border-bottom: 1px solid var(--cold);
+}
+.card-h-logo {
+  grid-area: logo;
+  display: flex;
+  justify-content: center;
+  /* width: 100%; */
+  height: 100%;
+  background: linear-gradient(135deg, var(--cold) 50%, var(--light) 50%);
+}
+.card-h-body {
+  grid-area: body;
+}
+.fake-card-logo {
+  background-image: url(https://duplico.qri.hr/img/logo-fcc30.png);
+  background-repeat: no-repeat;
+  width: 5rem;
+  height: 2.5rem;
+  /* background-color: var(--gray2); */
+  /* opacity: .5; */
+  align-self: center;
+}
+.dl {
+  margin-bottom: 0;
+}
+.dl > dt {
+  font-weight: var(--weight-normal);
+}
+.dl > dd {
+  font-size: 0.9rem;
+  color: var(--dark);
+}
+.dl-title {
+  font-style: oblique;
+  font-size: 1.2rem;
+  border-bottom: 1px solid var(--cold);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+.dl-compact {
+  margin-bottom: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 1.5rem;
+  grid-column-gap: 1rem;
+  align-items: baseline;
+}
+.dl-compact > dt {
+  font-weight: var(--weight-normal);
+}
+.dl-compact > dd {
+  font-size: 0.9rem;
+  color: var(--dark);
+}

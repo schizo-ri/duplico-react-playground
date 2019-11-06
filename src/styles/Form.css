@@ -1,0 +1,100 @@
+
+.input {
+  position: relative;
+  border: 0;
+  border-radius: 0;
+  width: 100%;
+  text-overflow: ellipsis;
+  padding: 0 0.5rem;
+  color: var(--dark);
+  background-color: var(--cold);
+  border-bottom: 2px solid var(--gray3);
+  border-bottom-left-radius: var(--radius);
+  border-bottom-right-radius: var(--radius);
+}
+
+.input-empty {
+  min-width: 0;
+  border-bottom: 2px solid transparent;
+}
+
+.input::placeholder {
+  color: var(--gray3);
+  font-size: 0.8rem;
+}
+.input:focus {
+  border: 0;
+  outline: 0;
+  box-shadow: none;
+  border-bottom: 2px solid var(--brand);
+  transition: border 0.25s;
+}
+.input:focus + .input-label {
+  color: var(--brand);
+  transition: color 0.25s;
+}
+.input-wrap {
+  display: flex;
+  flex-direction: column-reverse;
+  opacity: .75;
+  border-radius: var(--radius);
+  margin-bottom: .5rem;
+}
+.input-label {
+  background-color: var(--cold);
+  padding: 0 .25rem 0 .25rem;
+  margin: 0;
+}
+.input-note {
+  font-size: 0.8rem;
+  color: var(--gray4);
+  padding: 0.25rem;
+  font-style: oblique;
+}
+.input-tt:not(:last-child) {
+  margin-right: .5rem;
+}
+.input-tt input[type="checkbox"], .input-tt input[type="radio"] {
+  height: 1px;
+  width: 1px;
+  visibility: hidden;
+}
+.input-tt label {
+  cursor: pointer;
+  padding: 0.25rem 0.75rem;
+  background-color: var(--cold);
+  border-radius: 1rem;
+}
+.input-tt label::before {
+  content: '\2715';
+  margin-right: .25rem;
+}
+.input-tt input:checked + label {
+  color: var(--white);
+  background-color: var(--blue);
+}
+.input-tt input:checked + label::before {
+  content: '\2713';
+}
+.react-datetime-picker,
+.react-date-picker {
+  display: block !important;
+}
+.react-datetime-picker__wrapper,
+.react-date-picker__wrapper {
+  border: 0 !important;
+}
+.react-datetime-picker input,
+.react-date-picker input {
+  border: 0;
+  outline: 0;
+  box-shadow: none;
+}
+
+.react-datetime-picker input:focus,
+.react-date-picker input:focus,
+.react-datetime-picker input:active,
+.react-date-picker input:active {
+  outline: 0;
+  box-shadow: none;
+}

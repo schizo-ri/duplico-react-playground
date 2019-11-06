@@ -1,0 +1,67 @@
+
+/* FLEX TABLE */
+.ftcolumn-controls {
+  margin-left: .5rem;
+}
+
+.ftcolumn-controls svg {
+  height: .75rem;
+}
+
+.fthead {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* position: sticky; */
+  /* top: 0; */
+  /* background-color: var(--white); */
+}
+
+.ftbody {
+  display: flex;
+  flex-flow: column;
+}
+
+.ftrow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--light);
+}
+
+.ftcol {
+  text-align: center;
+  flex: 1;
+}
+
+[role="columnheader"] {
+  cursor: pointer;
+  padding: 1rem 0;
+  border-bottom: 2px solid var(--light);
+}
+
+[role="columnheader"][aria-sort="asc"],
+[role="columnheader"][aria-sort="desc"] {
+  border-bottom: 2px solid var(--brand);
+}
+
+[aria-sort="none"] svg path {
+  fill: var(--gray4);
+}
+
+[aria-sort="asc"] .caret-up svg path {
+  fill: var(--brand);
+}
+
+[aria-sort="asc"] .caret-down svg path {
+  fill: var(--gray4);
+}
+
+[aria-sort="desc"] .caret-down svg path {
+  fill: var(--brand);
+}
+
+[aria-sort="desc"] .caret-up svg path {
+  fill: var(--gray4);
+}

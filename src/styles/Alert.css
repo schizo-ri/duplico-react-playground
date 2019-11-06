@@ -1,0 +1,64 @@
+#alert-root {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 2000;
+}
+
+.alert {
+  padding: 1rem;
+  width: 100vw;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  will-change: transform;
+  box-shadow: var(--box-shadow-lg);
+  /* default */
+  color: var(--dark);
+  background-color: var(--cold);
+  border-bottom: 1px solid var(--cold-light);
+}
+
+.alert-info {
+  color: var(--cyan-pale);
+  background-color: var(--cyan);
+  border-bottom: 1px solid var(--cyan-light);
+}
+
+.alert-warning {
+  color: var(--yellow-pale);
+  background-color: var(--yellow-dark);
+  border-bottom: 1px solid var(--yellow-light);
+}
+
+.alert-danger,
+.alert-error {
+  color: var(--red-pale);
+  background-color: var(--red);
+  border-bottom: 1px solid var(--red-light);
+}
+
+.alert-success {
+  color: var(--teal-pale);
+  background-color: var(--teal);
+  border-bottom: 1px solid var(--teal-light);
+}
+
+.alert-msg {
+  align-self: flex-start;
+  font-size: 1rem;
+  min-width: 0;
+}
+
+.alert-close-msg {
+  color: white;
+  font-size: 0.75rem;
+  font-style: oblique;
+  opacity: 0.75;
+  /* align-self: flex-end; */
+  position: absolute;
+  bottom: 0.25rem;
+  right: .5rem;
+}

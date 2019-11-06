@@ -1,0 +1,49 @@
+.dialog {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: baseline;
+  background-color: var(--backdrop);
+  z-index: 1050;
+}
+
+.dialog-open {
+  overflow: hidden;
+}
+
+.dialog-open .dialog {
+  overflow-y: auto;
+}
+
+.dialog-body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  pointer-events: auto;
+  background-clip: padding-box;
+  background-color: var(--white);
+  outline: 0;
+  opacity: 1;
+  box-shadow: 0 16px 24px 8px var(--backdrop);
+  width: 100vw;
+}
+
+@media only screen and (max-width: 519px) {
+  .dialog-body {
+    border-radius: 0;
+  }
+}
+
+@media only screen and (min-width: 520px) {
+  .dialog-body {
+    margin: var(--gap);
+    width: 24rem;
+  }
+}

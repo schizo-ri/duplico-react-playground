@@ -1,19 +1,27 @@
-import React from "react";
-import "../styles/Form.css";
+import React from 'react'
+import '../styles/Form.css'
+
+const ToggleTokens = ({ type, name, children, ...props }) => {
+  return (
+    <div {...props}>
+      {children.map(c => (
+        <ToggleToken key={c[0]} id={c[0]} name={name} type={type}>
+          {c[1]}
+        </ToggleToken>
+      ))}
+    </div>
+  )
+}
 
 const ToggleToken = props => (
-  <div className={["input-tt", props.className].join(" ")}>
-    <input
-      id={props.id}
-      type={props.type || "checkbox"}
-      name={`${props.name || props.id}`}
-    />
+  <div className={['input-tt', props.className].join(' ')}>
+    <input id={props.id} type={props.type || 'checkbox'} name={`${props.name || props.id}`} />
     <label htmlFor={`${props.id}`}>{props.children}</label>
   </div>
-);
+)
 // spread props?
 const Input = props => {
-  const { label, note, children, ...inputProps } = { ...props };
+  const { label, note, children, ...inputProps } = { ...props }
   return (
     <div className="input-wrap">
       {note && <span className="input-note">{note}</span>}
@@ -22,10 +30,10 @@ const Input = props => {
         {label}
       </label>
     </div>
-  );
-};
+  )
+}
 const Select = props => {
-  const { label, note, children, ...inputProps } = { ...props };
+  const { label, note, children, ...inputProps } = { ...props }
   return (
     <div className="input-wrap">
       {note && <span className="input-note">{note}</span>}
@@ -36,7 +44,7 @@ const Select = props => {
         {label}
       </label>
     </div>
-  );
-};
+  )
+}
 
-export { ToggleToken, Input, Select };
+export { ToggleToken, ToggleTokens, Input, Select }

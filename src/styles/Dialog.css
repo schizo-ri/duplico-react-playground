@@ -13,6 +13,7 @@
   background-color: var(--backdrop);
   z-index: 1050;
   overflow-y: auto;
+  will-change: opacity;
 }
 
 .dialog-open {
@@ -31,6 +32,7 @@
   box-shadow: 0 16px 24px 8px var(--backdrop);
   border-radius: var(--radius);
   width: 100vw;
+  will-change: transform;
 }
 
 @media only screen and (max-width: 519px) {

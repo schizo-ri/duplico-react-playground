@@ -1,15 +1,15 @@
-import React from 'react'
+import React, { Suspense, lazy } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Navigation from './Navigation'
 import NotFound from './NotFound'
 // pages
-import Home from '../pages/home'
-import Typography from '../pages/typography'
-import Alerts from '../pages/alerts'
-import Buttons from '../pages/buttons'
-import Dialogs from '../pages/dialogs'
-import Forms from '../pages/forms'
-import Navigations from '../pages/navigations'
+const Home = lazy(() => import('../pages/home'))
+const Typography = lazy(() => import('../pages/typography'))
+const Buttons = lazy(() => import('../pages/buttons'))
+const Forms = lazy(() => import('../pages/forms'))
+const Navigations = lazy(() => import('../pages/navigations'))
+const Offscreen = lazy(() => import('../pages/offscreen'))
+const Tables = lazy(() => import('../pages/tables'))
 
 const App = () => {
   return (
@@ -20,21 +20,25 @@ const App = () => {
 }
 
 const Authenticated = () => {
-  return <>
-    <Navigation />
-    <main className="main">
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/typography" component={Typography} />
-        <Route exact path="/alerts" component={Alerts} />
-        <Route exact path="/buttons" component={Buttons} />
-        <Route exact path="/dialogs" component={Dialogs} />
-        <Route exact path="/forms" component={Forms} />
-        <Route exact path="/navigations" component={Navigations} />
-        <Route render={() => <NotFound />} />
-      </Switch>
-    </main>
-  </>
+  return (
+    <>
+      <Navigation />
+      <main className="main">
+        <Suspense fallback={<p>...loading</p>}>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/typography" component={Typography} />
+            <Route exact path="/buttons" component={Buttons} />
+            <Route exact path="/forms" component={Forms} />
+            <Route exact path="/navigations" component={Navigations} />
+            <Route exact path="/offscreen" component={Offscreen} />
+            <Route exact path="/tables" component={Tables} />
+            <Route render={() => <NotFound />} />
+          </Switch>
+        </Suspense>
+      </main>
+    </>
+  )
 }
 
 export default App

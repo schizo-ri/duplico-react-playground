@@ -52,7 +52,7 @@
   color: white;
   font-size: 0.75rem;
   font-style: oblique;
-  opacity: 0.75;
+  /* opacity: 0.75; */
   /* align-self: flex-end; */
   position: absolute;
   bottom: 0.25rem;

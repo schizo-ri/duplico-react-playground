@@ -1,5 +1,6 @@
 import React, { useEffect, useContext, useReducer } from 'react'
 import { createPortal } from 'react-dom'
+import { delay } from '../utils'
 import '../styles/Dialog.css'
 
 const DialogContext = React.createContext()
@@ -8,7 +9,7 @@ const initialState = {
   show: false,
   dialogCss: 'fade-in',
   bodyCss: 'drop-from-above',
-  content: null
+  content: null,
 }
 
 const reducer = (state, action) => {
@@ -23,14 +24,14 @@ const reducer = (state, action) => {
         show: false,
         dialogCss: initialState.dialogCss,
         bodyCss: initialState.bodyCss,
-        content: null
+        content: null,
       }
     case 'show':
       document.getElementById('root').classList.add('dialog-open')
       return {
         ...state,
         content: action.payload || state.content,
-        show: true
+        show: true,
       }
     case 'content':
       return { ...state, content: action.payload }
@@ -43,11 +44,7 @@ function DialogContextProvider(props) {
   const [state, dispatch] = useReducer(reducer, initialState)
   const value = { state, dispatch }
 
-  return (
-    <DialogContext.Provider value={value}>
-      {props.children}
-    </DialogContext.Provider>
-  )
+  return <DialogContext.Provider value={value}>{props.children}</DialogContext.Provider>
 }
 
 const Dialog = () => {
@@ -55,9 +52,10 @@ const Dialog = () => {
 
   useEffect(
     function backdropClose(e) {
-      const handleClose = () => {
+      const handleClose = async () => {
         dispatch({ type: 'css' })
-        return setTimeout(() => dispatch({ type: 'close' }), 300)
+        await delay(300)
+        dispatch({ type: 'close' })
       }
 
       function handleBackdropClose(e) {
@@ -68,12 +66,12 @@ const Dialog = () => {
       }
       document.addEventListener('mouseup', handleBackdropClose, {
         passive: true,
-        capture: false
+        capture: false,
       })
       return () =>
         document.removeEventListener('mouseup', handleBackdropClose, {
           passive: true,
-          capture: false
+          capture: false,
         })
     },
     [dispatch]
@@ -83,13 +81,17 @@ const Dialog = () => {
     state.show &&
     createPortal(
       <div className={`dialog ${state.dialogCss}`}>
-        <article className={`dialog-body ${state.bodyCss}`}>
-          {state.content}
-        </article>
+        <article className={`dialog-body ${state.bodyCss}`}>{state.content}</article>
       </div>,
       document.getElementById('dialog-root')
     )
   )
 }
 
-export { Dialog, DialogContext, DialogContextProvider }
+const closeDialog = async Dialog => {
+  Dialog.dispatch({ type: 'css' })
+  await delay(300)
+  Dialog.dispatch({ type: 'close' })
+}
+
+export { Dialog, closeDialog, DialogContext, DialogContextProvider }

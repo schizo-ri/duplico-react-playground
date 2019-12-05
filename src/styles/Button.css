@@ -26,17 +26,14 @@
   font-weight: var(--weight-normal);
 }
 .btn {
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--box-shadow);
 }
 .btn.brand {
-  background: linear-gradient(
-    to bottom,
-    var(--brand-light) 0%,
-    var(--brand) 100%
-  );
+  background: linear-gradient(to bottom, var(--brand-light) 0%, var(--brand) 100%);
   color: var(--brand-pale);
 }
-.btn.danger {
+.btn.danger,
+.btn.error {
   background: linear-gradient(to bottom, var(--red-light) 0%, var(--red) 100%);
   color: var(--red-pale);
 }
@@ -58,14 +55,19 @@
   color: var(--gray3);
 }
 .btn:hover:not([disabled]),
-.btn:focus:not([disabled]),
+.btn:focus:not([disabled]) {
+  border: 0;
+  outline: 0;
+  box-shadow: var(--box-shadow-lg);
+}
 .btn:active:not([disabled]) {
   border: 0;
   outline: 0;
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--box-shadow-sm);
 }
 .btn.brand:hover:not([disabled]),
 .btn.danger:hover:not([disabled]),
+.btn.error:hover:not([disabled]),
 .btn.success:hover:not([disabled]),
 .btn.info:hover:not([disabled]),
 .btn.warning:hover:not([disabled]) {
@@ -81,6 +83,8 @@
   color: var(--brand);
 }
 .btn-empty.danger,
+.btn-empty.error,
+.btn-text.error,
 .btn-text.danger {
   color: var(--red);
 }
@@ -104,6 +108,7 @@
 .btn-text[disabled] {
   cursor: not-allowed !important;
   box-shadow: none;
+  color: var(--gray4);
 }
 .btn-empty:not([disabled]):hover,
 .btn-text:not([disabled]):hover {
@@ -119,8 +124,8 @@
 }
 
 .menu-dots {
-  padding: 0.3rem;
-  color: var(--gray5);
+  /* padding: 0.3rem; */
+  color: var(--gray4);
 }
 .menu-dots::after {
   content: '\22EE';
@@ -128,7 +133,7 @@
 
 .menu-dots:hover,
 .menu-dots:focus,
-.menu-dots:focus {
+.menu-dots:active {
   color: var(--black);
 }
 /* -------- */
@@ -142,31 +147,35 @@
   content: '\22EE';
 }
 
-.dropdown-menu {
+.dropdown-menu,
+.context-menu {
   display: flex;
   flex-direction: column;
-  position: absolute;
   margin: 0;
   width: max-content;
   background-color: var(--white);
   z-index: 1010;
   box-shadow: var(--box-shadow-lg);
+  will-change: transform;
 }
+.dropdown-menu {
+  position: absolute;
+}
+.context-menu {
+  position: fixed;
+}
+
 .dropdown-menu.bottom-right {
-  /* text-align: right; */
   right: 0;
 }
 .dropdown-menu.bottom-left {
-  /* text-align: left; */
   left: 0;
 }
 .dropdown-menu.top-left {
-  /* text-align: left; */
   left: 0;
   bottom: calc(var(--size) * 1.5 + 0.6rem);
 }
 .dropdown-menu.top-right {
-  /* text-align: right; */
   right: 0;
   bottom: calc(var(--size) * 1.5 + 0.6rem);
 }

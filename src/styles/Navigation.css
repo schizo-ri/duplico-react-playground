@@ -27,16 +27,9 @@
 .nav-item svg {
   height: 1.5rem;
 }
-
-/* @media only screen and (min-width: 768px) {
-  .nav-item {
-    display: block;
-  }
-} */
 /*--------------------------------------*/
 /* #TABS */
 /*--------------------------------------*/
-
 .tabs {
   margin: 0.5rem 0;
   display: flex;

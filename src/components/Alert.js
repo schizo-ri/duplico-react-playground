@@ -19,13 +19,13 @@ const reducer = (state, action) => {
   switch (action.type) {
     case 'css':
       return { ...state, css: 'pull-short' }
-    case 'show':
+    case 'hide':
       return { ...state, show: false, css: 'drop-short' }
     case 'timer':
       return { ...state, timer: action.payload }
     case 'content':
       return { ...state, content: action.payload }
-    case 'set':
+    case 'show':
       return {
         ...state,
         content: action.payload,
@@ -40,11 +40,7 @@ function AlertContextProvider(props) {
   const [state, dispatch] = useReducer(reducer, initialState)
   const value = { state, dispatch }
 
-  return (
-    <AlertContext.Provider value={value}>
-      {props.children}
-    </AlertContext.Provider>
-  )
+  return <AlertContext.Provider value={value}>{props.children}</AlertContext.Provider>
 }
 
 const AlertContextConsumer = AlertContext.Consumer
@@ -54,7 +50,7 @@ const AlertBox = () => {
 
   const removeAlert = () => {
     dispatch({ type: 'css' })
-    setTimeout(() => dispatch({ type: 'show' }), 500)
+    setTimeout(() => dispatch({ type: 'hide' }), 500)
   }
 
   const colors = {
@@ -67,15 +63,9 @@ const AlertBox = () => {
   return (
     state.show &&
     createPortal(
-      <div
-        className={`alert ${state.css} ${colors[state.content.type]}`}
-        role="alert"
-        onClick={removeAlert}
-      >
+      <div className={`alert ${state.css} ${colors[state.content.type]}`} role="alert" onClick={removeAlert}>
         <div className="alert-msg">
-          <span>
-            {state.content.title}{' '}
-          </span>
+          <span>{state.content.title} </span>
           {state.content.msg}
         </div>
         <span className="alert-close-msg">click to close</span>

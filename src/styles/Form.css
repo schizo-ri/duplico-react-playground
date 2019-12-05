@@ -1,4 +1,3 @@
-
 .input {
   position: relative;
   border: 0;
@@ -19,7 +18,7 @@
 }
 
 .input::placeholder {
-  color: var(--gray3);
+  color: var(--gray4);
   font-size: 0.8rem;
 }
 .input:focus {
@@ -36,13 +35,13 @@
 .input-wrap {
   display: flex;
   flex-direction: column-reverse;
-  opacity: .75;
+  opacity: 0.75;
   border-radius: var(--radius);
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 .input-label {
   background-color: var(--cold);
-  padding: 0 .25rem 0 .25rem;
+  padding: 0 0.25rem 0 0.25rem;
   margin: 0;
 }
 .input-note {
@@ -52,9 +51,10 @@
   font-style: oblique;
 }
 .input-tt:not(:last-child) {
-  margin-right: .5rem;
+  margin-right: 0.5rem;
 }
-.input-tt input[type="checkbox"], .input-tt input[type="radio"] {
+.input-tt input[type='checkbox'],
+.input-tt input[type='radio'] {
   height: 1px;
   width: 1px;
   visibility: hidden;
@@ -67,7 +67,7 @@
 }
 .input-tt label::before {
   content: '\2715';
-  margin-right: .25rem;
+  margin-right: 0.25rem;
 }
 .input-tt input:checked + label {
   color: var(--white);
@@ -76,7 +76,7 @@
 .input-tt input:checked + label::before {
   content: '\2713';
 }
-.react-datetime-picker,
+/* .react-datetime-picker,
 .react-date-picker {
   display: block !important;
 }
@@ -97,4 +97,8 @@
 .react-date-picker input:active {
   outline: 0;
   box-shadow: none;
+} */
+
+input[type='file'] {
+  padding: 0;
 }

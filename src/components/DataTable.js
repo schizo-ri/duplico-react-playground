@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer, useContext } from 'react'
 import shortid from 'shortid'
-import { formCollection, dumbArrayCompare, cloneDeep, _arradd, _arrdel } from '../utils'
+import { formCollection, dumbArrayCompare, cloneDeep, _arradd, _arrdel, _arrrep } from '../utils'
 import { DialogContext, closeDialog } from '../components/Dialog'
 import { Input } from '../components/Form'
 import { Button, Dropdown } from '../components/Button'
@@ -9,6 +9,7 @@ import { AlertContext } from '../components/Alert'
 
 // dodati i opciju da se sakrije odredjena kolumna, recimo id
 // dodati mogucnost da se head dobije iz json keyeva, da korisnik ne mora odvajati
+// navigacija tipkovnicom
 const initialState = {
   head: [],
   data: [],
@@ -108,28 +109,20 @@ const DataTable = ({ data, editable, savecb }) => {
   }
 
   const handleAddRow = (idx, pos = 'bellow') => e => {
+    // clear filter so row can be shown in the table
     dispatch({ type: 'filter', payload: '' })
+    // create row based on head length
     const row = Array.from(state.head, _ => '...')
-    // const curr = cloneDeep(state.data)
+    // real index based on position we are adding
     const posIdx = pos === 'bellow' ? idx + 1 : idx
-    updateRowKeys(posIdx)('add')
+    // save current state for undo
     updateUndo({ idx: posIdx, action: 'del', loc: 'row' })
-    // !undoed &&
-    //   dispatch({
-    //     type: 'undo',
-    //     payload: {
-    //       cb: handleDeleteRow,
-    //       data: [posIdx, 'yes'],
-    //       redo: { cb: handleAddRow, data: [idx, pos, data, 'yes'] },
-    //     },
-    //   })
-    // if (idx === -1) {
-    //   dispatch({ type: 'data', payload: [...curr, row] })
-    // } else {
-    // curr.splice(posIdx, 0, row)
+    // add key before changing data
+    updateRowKeys(posIdx)('add')
+    // commit new state
     dispatch({ type: 'data', payload: _arradd(state.data, posIdx, row) })
-    // }
 
+    // change page if neccessary. row can appear on different page
     const startIdx = (state.page - 1) * state.perPage
     const stopIdx = startIdx + state.perPage - 1
 
@@ -142,22 +135,13 @@ const DataTable = ({ data, editable, savecb }) => {
   }
 
   const handleAddCol = (idx, pos = 'right') => e => {
+    // real index based on position we are adding
     const posIdx = pos === 'right' ? idx + 1 : idx
+    // save current state for undo
     updateUndo({ idx: posIdx, action: 'del', loc: 'col' })
-    // const data = cloneDeep(state.data)
-    // for (const [ridx, row] of data.entries()) {
-    //   cells ? row.splice(posIdx, 0, cells[ridx]) : row.splice(posIdx, 0, '...')
-    // }
+    // add key before changing data
     updateColKeys(posIdx)('add')
-    // !undoed &&
-    //   dispatch({
-    //     type: 'undo',
-    //     payload: {
-    //       cb: handleDeleteCol,
-    //       data: [posIdx, 'yes'],
-    //       redo: { cb: handleAddCol, data: [idx, pos, title, cells, 'yes'] },
-    //     },
-    //   })
+    // commit new state
     dispatch({
       type: 'init',
       payload: {
@@ -168,6 +152,7 @@ const DataTable = ({ data, editable, savecb }) => {
   }
 
   const handleDeleteRow = idx => e => {
+    // don't allow deleting last row. we could allow this but than should add table global actions
     if (state.data.length === 1) {
       Alert.dispatch({
         type: 'show',
@@ -175,21 +160,16 @@ const DataTable = ({ data, editable, savecb }) => {
       })
       return
     }
+    // save current state for undo
     updateUndo({ idx, action: 'add', loc: 'row' })
+    // delete unneccessary key before changing data
     updateRowKeys(idx)('del')
-    // !undoed &&
-    //   dispatch({
-    //     type: 'undo',
-    //     payload: {
-    //       cb: handleAddRow,
-    //       data: [idx - 1, 'bellow', deleted, 'yes'],
-    //       redo: { cb: handleDeleteRow, data: [idx, 'yes'] },
-    //     },
-    //   })
+    // commit new state
     dispatch({ type: 'data', payload: _arrdel(state.data, idx) })
   }
 
   const handleDeleteCol = idx => e => {
+    // don't allow deleting last column. we could allow this but than should add table global actions
     if (state.head.length === 1) {
       Alert.dispatch({
         type: 'show',
@@ -197,65 +177,47 @@ const DataTable = ({ data, editable, savecb }) => {
       })
       return
     }
+    // save current state for undo
     updateUndo({ idx, action: 'add', loc: 'col' })
+    // delete unneccessary key before changing data
     updateColKeys(idx)('del')
-    // !undoed &&
-    //   dispatch({
-    //     type: 'undo',
-    //     payload: {
-    //       cb: handleAddCol,
-    //       data: [idx - 1, 'right', deletedHead, deletedCells, 'yes'],
-    //       redo: { cb: handleDeleteCol, data: [idx, 'yes'] },
-    //     },
-    //   })
+    // commit new state
     dispatch({
       type: 'init',
       payload: { head: _arrdel(state.head, idx), data: state.data.map(row => _arrdel(row, idx)) },
     })
   }
 
-  // undo could be something like:
-  // {
-  //   type: 'del',
-  //   resource: 'row',
-  //   idx: 3,
-  //   data: [],
-  // }
-  // or callback and args:
-  // dispatch({
-  //   type: 'undo',
-  //   payload: {
-  //     cb: handleAddCol,
-  //     args: [idx, pos, null],
-  //   },
-  // })
-  // or call undo dispatch from handle with all data needed
-  // and hande that data in applyUndo and applyRedo
-  // special undo for cell change, we don't want to spam it so do undo only on focus/blur
   const updateUndo = key => {
+    // if undo first step exists
     if (state.undo.length !== 0) {
+      // check if data is same, so there are no same states in steps
       if (dumbArrayCompare(state.undo[0].data)(state.data) && dumbArrayCompare(state.undo[0].head)(state.head)) {
         return
       }
     }
-    // const curr = [...state.undo]
-    // curr.unshift({ head: [...state.head], data: cloneDeep(state.data) })
-    // const data = curr.slice(0, 10)
-
-    dispatch({ type: 'undo', payload: { head: [...state.head], data: cloneDeep(state.data), key } })
+    // update undo with current state
+    dispatch({
+      type: 'undo',
+      payload: { head: [...state.head], data: cloneDeep(state.data), key: key.idx ? key : null },
+    })
   }
 
   const applyUndo = e => {
+    // nothing to undo
     if (!state.undo[0]) {
       return
     }
+    // LIFO
     const target = state.undo[0]
-    // move current state to redo list
+    // move current state to redo list. when we undo state, we want to able to redo it
     dispatch({ type: 'redo', payload: { head: [...state.head], data: cloneDeep(state.data), key: target.key } })
     // add/del missing key
-    target.key.loc === 'col'
-      ? updateColKeys(target.key.idx)(target.key.action)
-      : updateRowKeys(target.key.idx)(target.key.action)
+    if (target.key) {
+      target.key.loc === 'col'
+        ? updateColKeys(target.key.idx)(target.key.action)
+        : updateRowKeys(target.key.idx)(target.key.action)
+    }
     // apply undo state
     dispatch({ type: 'init', payload: { head: target.head, data: target.data } })
     // remove applyed undo from undo list
@@ -263,25 +225,31 @@ const DataTable = ({ data, editable, savecb }) => {
   }
 
   const applyRedo = e => {
+    // nothing to redo
     if (!state.redo[0]) {
       return
     }
+    // LIFO
     const target = state.redo[0]
     // move current state to undo list
     dispatch({ type: 'undo', payload: { head: [...state.head], data: cloneDeep(state.data), key: target.key } })
     // add/del missing key
-    target.key.loc === 'col'
-      ? updateColKeys(target.key.idx)(target.key.action === 'add' ? 'del' : 'add')
-      : updateRowKeys(target.key.idx)(target.key.action === 'add' ? 'del' : 'add')
+    if (target.key) {
+      target.key.loc === 'col'
+        ? updateColKeys(target.key.idx)(target.key.action === 'add' ? 'del' : 'add')
+        : updateRowKeys(target.key.idx)(target.key.action === 'add' ? 'del' : 'add')
+    }
     // apply redo state
     dispatch({ type: 'init', payload: { head: target.head, data: target.data } })
-    // // remove applyed redo from redo list
+    // remove applyed redo from redo list
     dispatch({ type: 'redoApplyed' })
   }
-
+  // sort by name clicking on table header
   const handleSort = col => e => {
     const direction = state.sort === 'desc' ? 'asc' : 'desc'
+    // update sort state
     dispatch({ type: 'sort', payload: direction })
+    // sort actual state data
     const sorted = state.data.sort((r1, r2) => {
       const col1 = r1[col]
       const col2 = r2[col]
@@ -296,26 +264,29 @@ const DataTable = ({ data, editable, savecb }) => {
       }
       return 0
     })
+    // commit sorted data
     dispatch({ type: 'data', payload: sorted })
   }
-
+  // on commiting title change form in dialog
   const handeTitleChange = idx => e => {
     e.preventDefault()
+    // value to change to
     const { column } = formCollection(e.target)
+    // have to have some value
     if (!column) {
       Alert.dispatch({ type: 'show', payload: { msg: <p>Please enter some name</p>, type: 'warning' } })
       return
     }
-    const data = [...state.head]
-    data.splice(idx, 1, column)
-    dispatch({ type: 'head', payload: data })
+    // commit replaced
+    dispatch({ type: 'head', payload: _arrrep(state.head, idx, column) })
+    // close dialog
     closeDialog(Dialog)
   }
-
+  // just show dialog with form
   const handleRenameHeaderDialog = idx => e => {
     Dialog.dispatch({ type: 'show', payload: <RenameHeaderDialog onSubmit={handeTitleChange(idx)} /> })
   }
-
+  // context menu for header
   const handleHeaderMenu = idx => e => {
     e.preventDefault()
     ContextMenu.dispatch({
@@ -342,22 +313,21 @@ const DataTable = ({ data, editable, savecb }) => {
       },
     })
   }
-
+  // filter cell values
   const handleSearchFilter = e => {
     dispatch({ type: 'filter', payload: e.target.value })
   }
-
+  // handle pagination
   const handlePageFlip = page => e => {
     dispatch({ type: 'page', payload: page })
   }
-
+  // handle number of rows shown per page
   const handlePerPageChange = e => {
     dispatch({ type: 'perPage', payload: Number(e.target.value) })
   }
-
+  // handle prop callback for saving data. callback is defined in component prop. we pass state data as argument
   const handleSave = () => savecb.call(null, [{ head: state.head, data: state.data }])
 
-  // srediti keys, ne valja ovako
   return (
     <section>
       <div className="flex aic">
@@ -369,7 +339,6 @@ const DataTable = ({ data, editable, savecb }) => {
             title="Undo"
             aria-label="Undo"
             {...{ [state.undo.length === 0 ? 'disabled' : 'rel']: 'disabled' }}
-            // disabled={state.undo.length === 0 ? 'true' : 'false'}
             onClick={applyUndo}
           >
             {String.fromCharCode(8634)}
@@ -413,24 +382,6 @@ const DataTable = ({ data, editable, savecb }) => {
           </tr>
         </thead>
         <tbody>
-          {/* {
-            <Rows
-              data={state.data
-                .filter(r =>
-                  r
-                    .join('')
-                    .toUpperCase()
-                    .includes(state.filter.toUpperCase())
-                )
-                .slice(state.perPage * state.page - state.perPage, state.perPage * state.page)}
-              paged={state.perPage * state.page - state.perPage}
-              add={handleAddRow}
-              del={handleDeleteRow}
-              keys={state.keys}
-              onChange={handleCellChange}
-              onFocus={updateUndo}
-            />
-          } */}
           {state.data
             .filter(r =>
               r
@@ -440,7 +391,9 @@ const DataTable = ({ data, editable, savecb }) => {
             )
             .slice(state.perPage * state.page - state.perPage, state.perPage * state.page)
             .map((row, ridx) => {
+              // adjust index value considering page slices
               const idxPageDiff = ridx + state.perPage * state.page - state.perPage
+              // actual row key
               const baseKey = state.rowKeys[idxPageDiff]
               return (
                 <tr key={baseKey}>
@@ -457,9 +410,6 @@ const DataTable = ({ data, editable, savecb }) => {
                       </Button>
                     </Dropdown>
                   </td>
-                  {/* if I use c for creating key, the component will always rerender as we use it for the value of the input as well */}
-                  {/* we shouldn't use idx also as*/}
-                  {/* napravi array keyeva i za kolumne. svaka celija ce onda imati kombinaciju retka i kolumne za key */}
                   {row.map((c, cidx) => (
                     <td key={`${baseKey}${state.colKeys[cidx]}`} className="dt-cell">
                       {editable && typeof c !== 'object' ? (
@@ -467,7 +417,7 @@ const DataTable = ({ data, editable, savecb }) => {
                           className="dt-input"
                           value={c}
                           onChange={handleCellChange(idxPageDiff)(cidx)}
-                          // onFocus={updateUndo}
+                          onFocus={updateUndo}
                         />
                       ) : (
                         c
@@ -514,51 +464,6 @@ const DataTable = ({ data, editable, savecb }) => {
     </section>
   )
 }
-
-// const Column = ({ data, onChange, onFocus }) => (
-//   <td className="dt-cell">
-//     {onChange ? <input className="dt-input" value={data} onChange={onChange} onFocus={onFocus} /> : c}
-//   </td>
-// )
-
-// const Columns = ({ rkey, data, onChange, onFocus }) =>
-//   data.map((c, idx) => <Column key={`${rkey}${btoa(c)}`} data={c} onChange={onChange(idx)} onFocus={onFocus} />)
-
-// const Row = ({ key, data, dropdown, onChange, onFocus }) => (
-//   <tr>
-//     <td className="handle">{dropdown}</td>
-//     {<Columns rkey={key} data={data} onChange={onChange} onFocus={onFocus} />}
-//   </tr>
-// )
-
-// const Rows = ({ data, keys, paged, add, del, onChange, onFocus }) =>
-//   data.map((row, idx) => {
-//     return (
-//       <Row
-//         data={row}
-//         dropdown={<Handle rkey={keys[Number(idx) + Number(paged)]} add={add(idx)} del={del(idx)} />}
-//         key={keys[Number(idx) + Number(paged)]}
-//         onChange={onChange(idx)}
-//         onFocus={onFocus}
-//       />
-//     )
-//   })
-
-// const Handle = ({ rkey, add, del }) => {
-//   return (
-//     <Dropdown id={`manage-row-${rkey}`} key={`manage-row-${rkey}`} className="btn-text">
-//       <Button addClass="btn-empty" onClick={add('above')}>
-//         Add above
-//       </Button>
-//       <Button addClass="btn-empty" onClick={add('bellow')}>
-//         Add bellow
-//       </Button>
-//       <Button addClass="btn-empty danger" onClick={del}>
-//         Delete
-//       </Button>
-//     </Dropdown>
-//   )
-// }
 
 const RenameHeaderDialog = props => (
   <form id="change-column-title" className="p-3" onSubmit={props.onSubmit}>

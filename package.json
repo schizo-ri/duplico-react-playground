@@ -9,7 +9,8 @@
     "react-dom": "latest",
     "react-router-dom": "latest",
     "react-scripts": "latest",
-    "shortid": "latest"
+    "shortid": "latest",
+    "react-transition-group": "latest"
   },
   "devDependencies": {
     "typescript": "latest"

@@ -8,8 +8,13 @@ import { ContextMenuContext } from '../components/ContextMenu'
 import { AlertContext } from '../components/Alert'
 
 // dodati i opciju da se sakrije odredjena kolumna, recimo id
+// - zapravo bi u slucaju da ne postoji id mi mogli umetati nase keyeve na poziciju 0
+// - if (!idPosition) row = [shortid, ...data.row]
+// - render <Row key={data[0]} />
+
 // dodati mogucnost da se head dobije iz json keyeva, da korisnik ne mora odvajati
 // navigacija tipkovnicom
+
 const initialState = {
   head: [],
   data: [],
@@ -204,7 +209,7 @@ const DataTable = ({ data, editable, savecb }) => {
   }
 
   const applyUndo = e => {
-    // nothing to undo
+    // nothing to undo?
     if (!state.undo[0]) {
       return
     }
@@ -225,7 +230,7 @@ const DataTable = ({ data, editable, savecb }) => {
   }
 
   const applyRedo = e => {
-    // nothing to redo
+    // nothing to redo?
     if (!state.redo[0]) {
       return
     }
@@ -332,31 +337,33 @@ const DataTable = ({ data, editable, savecb }) => {
     <section>
       <div className="flex aic">
         {/* undo/redo */}
-        <div className="flex">
-          <button
-            className="btn-empty"
-            type="button"
-            title="Undo"
-            aria-label="Undo"
-            {...{ [state.undo.length === 0 ? 'disabled' : 'rel']: 'disabled' }}
-            onClick={applyUndo}
-          >
-            {String.fromCharCode(8634)}
-          </button>
-          <button
-            className="btn-empty"
-            type="button"
-            title="Redo"
-            aria-label="Redo"
-            {...{ [state.redo.length === 0 ? 'disabled' : 'rel']: 'disabled' }}
-            onClick={applyRedo}
-          >
-            {String.fromCharCode(8635)}
-          </button>
-          <button className="btn-empty info" type="button" onClick={handleSave}>
-            Save
-          </button>
-        </div>
+        {editable && (
+          <div className="flex">
+            <button
+              className="btn-empty"
+              type="button"
+              title="Undo"
+              aria-label="Undo"
+              {...{ [state.undo.length === 0 ? 'disabled' : 'rel']: 'disabled' }}
+              onClick={applyUndo}
+            >
+              {String.fromCharCode(8634)}
+            </button>
+            <button
+              className="btn-empty"
+              type="button"
+              title="Redo"
+              aria-label="Redo"
+              {...{ [state.redo.length === 0 ? 'disabled' : 'rel']: 'disabled' }}
+              onClick={applyRedo}
+            >
+              {String.fromCharCode(8635)}
+            </button>
+            <button className="btn-empty info" type="button" onClick={handleSave}>
+              Save
+            </button>
+          </div>
+        )}
         {/* search */}
         <div className="flex aic ml-auto my-2 mr-2">
           <label htmlFor="search-table" className="pr-2">
@@ -368,13 +375,13 @@ const DataTable = ({ data, editable, savecb }) => {
       <table className="table dt-table">
         <thead>
           <tr>
-            <th className="handle" />
+            {editable && <th className="handle" />}
             {state.head.map((c, idx) => (
               <th
                 key={state.colKeys[idx]}
                 className="dt-headings"
                 onClick={handleSort(idx)}
-                onContextMenu={handleHeaderMenu(idx)}
+                onContextMenu={editable ? handleHeaderMenu(idx) : undefined}
               >
                 {c}
               </th>
@@ -397,19 +404,21 @@ const DataTable = ({ data, editable, savecb }) => {
               const baseKey = state.rowKeys[idxPageDiff]
               return (
                 <tr key={baseKey}>
-                  <td key={`handle-${baseKey}`} className="handle">
-                    <Dropdown id={`manage-row-${baseKey}`} key={`manage-row-${baseKey}`} className="btn-text">
-                      <Button addClass="btn-empty" onClick={handleAddRow(idxPageDiff, 'above')}>
-                        Add above
-                      </Button>
-                      <Button addClass="btn-empty" onClick={handleAddRow(idxPageDiff, 'bellow')}>
-                        Add bellow
-                      </Button>
-                      <Button addClass="btn-empty danger" onClick={handleDeleteRow(idxPageDiff)}>
-                        Delete
-                      </Button>
-                    </Dropdown>
-                  </td>
+                  {editable && (
+                    <td key={`handle-${baseKey}`} className="handle">
+                      <Dropdown id={`manage-row-${baseKey}`} key={`manage-row-${baseKey}`} className="btn-text">
+                        <Button addClass="btn-empty" onClick={handleAddRow(idxPageDiff, 'above')}>
+                          Add above
+                        </Button>
+                        <Button addClass="btn-empty" onClick={handleAddRow(idxPageDiff, 'bellow')}>
+                          Add bellow
+                        </Button>
+                        <Button addClass="btn-empty danger" onClick={handleDeleteRow(idxPageDiff)}>
+                          Delete
+                        </Button>
+                      </Dropdown>
+                    </td>
+                  )}
                   {row.map((c, cidx) => (
                     <td key={`${baseKey}${state.colKeys[cidx]}`} className="dt-cell">
                       {editable && typeof c !== 'object' ? (

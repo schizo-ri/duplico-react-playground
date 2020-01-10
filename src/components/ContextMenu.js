@@ -53,28 +53,19 @@ function ContextMenuContextProvider(props) {
 const ContextMenu = () => {
   const { state, dispatch } = useContext(ContextMenuContext)
 
-  useEffect(() => {
-    function handleBackdropClose(e) {
-      dispatch({ type: 'hide' })
-    }
-    document.addEventListener('click', handleBackdropClose, {
-      passive: true,
-      capture: false,
-    })
-    return () =>
-      document.removeEventListener('click', handleBackdropClose, {
-        passive: true,
-        capture: false,
-      })
-  }, [dispatch])
+  function handleBackdropClose(e) {
+    dispatch({ type: 'hide' })
+  }
 
   const listClass = [state.className, 'context-menu pop-in'].join(' ')
 
   return (
     state.target &&
     createPortal(
-      <div className={listClass} x-placement={state.className} style={state.style}>
-        {state.content}
+      <div className="backdrop" onClick={handleBackdropClose}>
+        <div className={listClass} x-placement={state.className} style={state.style}>
+          {state.content}
+        </div>
       </div>,
       document.getElementById('contextmenu-root')
     )

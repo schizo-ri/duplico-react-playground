@@ -16,17 +16,19 @@ const Home = () => (
       <ul>
         <li>a11Y</li>
         <li>Trim unused CSS and add more utility classes</li>
-        <li>Basic table</li>
-        <li>File upload button</li>
+        <li>Integrated Input warnings (like notes)</li>
+        <li>Elements inside Inputs like 'show password'</li>
+        <li>Switches alongside toggles maybe</li>
+        <li>Light/dark theme detect and switch</li>
       </ul>
     </div>
     <h3>Cards</h3>
     <div
       style={{
         display: 'grid',
-        'grid-template-columns': 'repeat(auto-fill, var(--width-mobile))',
-        'grid-gap': 'var(--gap)',
-        'align-items': 'start',
+        gridTemplateColumns: 'repeat(auto-fill, var(--width-mobile))',
+        gridGap: 'var(--gap)',
+        alignItems: 'start',
       }}
     >
       <div className="shadow-lg bg-white mb-3">

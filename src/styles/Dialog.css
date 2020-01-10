@@ -15,11 +15,9 @@
   overflow-y: auto;
   will-change: opacity;
 }
-
 .dialog-open {
   overflow: hidden;
 }
-
 .dialog-body {
   position: relative;
   display: flex;
@@ -34,13 +32,16 @@
   width: 100vw;
   will-change: transform;
 }
-
+.dialog-close {
+  position: fixed;
+  right: 0;
+  top: 0;
+}
 @media only screen and (max-width: 519px) {
   .dialog-body {
     border-radius: 0;
   }
 }
-
 @media only screen and (min-width: 520px) {
   .dialog-body {
     margin: var(--gap);

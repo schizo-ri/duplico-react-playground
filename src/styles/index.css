@@ -51,6 +51,9 @@
   --weight-lite: 300;
   --weight-normal: 400;
   --weight-bold: 500;
+  --weight-bolder: bold;
+
+  --small: 0.75rem;
 
   --radius: 4px;
   --spacer: 0.25rem;
@@ -540,6 +543,16 @@ input[type='date']::-webkit-clear-button {
   user-select: none;
 }
 
+.backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+}
 /* .icon-label {
   margin-bottom: 0 !important;
   display: flex;
@@ -549,6 +562,12 @@ input[type='date']::-webkit-clear-button {
   height: 1rem;
   width: auto;
 } */
+.hr1 {
+  border: 0;
+  height: 1px;
+  background: var(--gray4);
+  background-image: linear-gradient(to right, var(--gray1), var(--gray3), var(--gray1));
+}
 
 .table {
   width: 100%;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 
 const Button = props => {
   const { children, addClass, ...bp } = { ...props }
@@ -11,6 +11,7 @@ const Button = props => {
 
 const Dropdown = props => {
   const [show, setShow] = useState({ position: '', visible: false })
+  const childrenContainer = useRef(null)
 
   const toggle = e => {
     !show.visible
@@ -23,37 +24,44 @@ const Dropdown = props => {
 
   const calculatePosition = target => {
     const positions = target.getBoundingClientRect()
-    const countChildren =
-      target.nextElementSibling.children.length !== 1
-        ? target.nextElementSibling.childElementCount
-        : target.nextElementSibling.children[0].childElementCount
+    const countChildren = childrenContainer.current.children.length
+    // target.nextElementSibling.children.length !== 1
+    // ? target.nextElementSibling.childElementCount
+    // : target.nextElementSibling.children[0].childElementCount
 
     const y = window.innerHeight - positions.bottom < countChildren * 35 ? 'top' : 'bottom'
     const x = positions.left < window.innerWidth / 2 ? 'left' : 'right'
     return [y, x].join('-')
   }
 
-  useEffect(
-    function backdropClose() {
-      function handleBackdropClose(e) {
-        // if (!e.target.closest(".dropdown-menu") && e.target.id !== props.id) {
-        if (e.target.nodeName !== 'INPUT') {
-          setShow({ ...show, visible: false })
-        }
-        return
-      }
-      document.addEventListener('mouseup', handleBackdropClose, {
-        passive: true,
-        capture: false,
-      })
-      return () =>
-        document.removeEventListener('mouseup', handleBackdropClose, {
-          passive: true,
-          capture: false,
-        })
-    },
-    [props.id, show]
-  )
+  function handleBackdropClose(e) {
+    // if (!e.target.closest(".dropdown-menu") && e.target.id !== props.id) {
+    if (e.target.nodeName !== 'INPUT') {
+      setShow({ ...show, visible: false })
+    }
+    return
+  }
+  // useEffect(
+  //   function backdropClose() {
+  //     function handleBackdropClose(e) {
+  //       // if (!e.target.closest(".dropdown-menu") && e.target.id !== props.id) {
+  //       if (e.target.nodeName !== 'INPUT') {
+  //         setShow({ ...show, visible: false })
+  //       }
+  //       return
+  //     }
+  //     document.addEventListener('mouseup', handleBackdropClose, {
+  //       passive: true,
+  //       capture: false,
+  //     })
+  //     return () =>
+  //       document.removeEventListener('mouseup', handleBackdropClose, {
+  //         passive: true,
+  //         capture: false,
+  //       })
+  //   },
+  //   [props.id, show]
+  // )
 
   const listClass = [!show.visible ? 'd-none' : '', show.position, 'dropdown-menu pop-in'].join(' ')
 
@@ -69,7 +77,14 @@ const Dropdown = props => {
       >
         {props.text || ''}
       </button>
-      <div className={listClass} aria-labelledby={props.id} x-placement="bottom-end">
+      {show.visible && <div className="backdrop" onClick={handleBackdropClose} />}
+      <div
+        ref={childrenContainer}
+        className={listClass}
+        aria-labelledby={props.id}
+        x-placement={show.position}
+        onClick={handleBackdropClose}
+      >
         {props.children}
       </div>
     </div>

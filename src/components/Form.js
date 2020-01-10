@@ -20,13 +20,13 @@ const ToggleToken = props => (
   </div>
 )
 // spread props?
-const Input = props => {
-  const { label, note, children, ...inputProps } = { ...props }
+const Input = ({ label, note, children, ref, wrapClass, inputClass, labelClass, noteClass, ...inputProps }) => {
+  // const { label, note, children, ref, wrapClass, inputClass, labelClass, ...inputProps } = { ...props }
   return (
-    <div className="input-wrap">
-      {note && <span className="input-note">{note}</span>}
-      <input className="input" type="text" {...inputProps} />
-      <label htmlFor={inputProps.name || inputProps.id} className="input-label">
+    <div className={`input-wrap ${wrapClass || ''}`}>
+      {note && <span className={`input-note ${noteClass || ''}`}>{note}</span>}
+      <input className={`input ${inputClass || ''}`} type="text" {...inputProps} />
+      <label htmlFor={inputProps.name || inputProps.id} className={`input-label ${labelClass || ''}`}>
         {label}
       </label>
     </div>

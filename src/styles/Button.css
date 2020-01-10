@@ -54,15 +54,17 @@
   background: none;
   color: var(--gray3);
 }
-.btn:hover:not([disabled]),
-.btn:focus:not([disabled]) {
+.btn:hover:not([disabled]) {
   border: 0;
   outline: 0;
-  box-shadow: var(--box-shadow-lg);
+  /* box-shadow: var(--box-shadow-lg); */
+}
+.btn:focus:not([disabled]) {
+  outline: 1px dotted var(--gray2);
 }
 .btn:active:not([disabled]) {
   border: 0;
-  outline: 0;
+  outline: 1px dotted var(--gray2);
   box-shadow: var(--box-shadow-sm);
 }
 .btn.brand:hover:not([disabled]),

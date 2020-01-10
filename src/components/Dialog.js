@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useReducer } from 'react'
+import React, { useContext, useReducer } from 'react'
 import { createPortal } from 'react-dom'
 import { delay } from '../utils'
 import '../styles/Dialog.css'
@@ -50,37 +50,24 @@ function DialogContextProvider(props) {
 const Dialog = () => {
   const { state, dispatch } = useContext(DialogContext)
 
-  useEffect(
-    function backdropClose(e) {
-      const handleClose = async () => {
-        dispatch({ type: 'css' })
-        await delay(300)
-        dispatch({ type: 'close' })
-      }
-
-      function handleBackdropClose(e) {
-        if (!e.target.classList.contains('dialog')) {
-          return
-        }
-        handleClose(e)
-      }
-      document.addEventListener('mouseup', handleBackdropClose, {
-        passive: true,
-        capture: false,
-      })
-      return () =>
-        document.removeEventListener('mouseup', handleBackdropClose, {
-          passive: true,
-          capture: false,
-        })
-    },
-    [dispatch]
-  )
+  const handleClose = async e => {
+    if (!e.target.classList.contains('dialog')) {
+      return
+    }
+    dispatch({ type: 'css' })
+    await delay(300)
+    dispatch({ type: 'close' })
+  }
 
   return (
     state.show &&
     createPortal(
-      <div className={`dialog ${state.dialogCss}`}>
+      <div className={`dialog ${state.dialogCss}`} onClick={handleClose}>
+        {/* <div className="dialog-close">
+          <button type="button" className="btn-empty danger double p-2" onClick={handleClose}>
+            {String.fromCharCode(10007)}
+          </button>
+        </div> */}
         <article className={`dialog-body ${state.bodyCss}`}>{state.content}</article>
       </div>,
       document.getElementById('dialog-root')

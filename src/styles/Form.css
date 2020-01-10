@@ -17,9 +17,32 @@
   border-bottom: 2px solid transparent;
 }
 
+.invalid * {
+  color: var(--red) !important;
+  background-color: var(--red-pale) !important;
+  border-color: var(--red) !important;
+}
+
+.valid * {
+  animation-name: animate-valid;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes animate-valid {
+  0%,
+  100% {
+  }
+  50% {
+    color: var(--teal);
+    background-color: var(--teal-pale);
+    border-color: var(--teal);
+  }
+}
+
 .input::placeholder {
   color: var(--gray4);
-  font-size: 0.8rem;
+  font-size: var(--small);
 }
 .input:focus {
   border: 0;

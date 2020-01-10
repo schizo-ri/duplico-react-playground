@@ -3,6 +3,7 @@ import { DialogContext } from '../components/Dialog'
 import { AlertContext } from '../components/Alert'
 import { Button } from '../components/Button'
 import { delay } from '../utils'
+import RegistrationForm from '../components/EgRegister'
 
 const Dialogs = () => {
   const Dialog = useContext(DialogContext)
@@ -45,6 +46,10 @@ const Dialogs = () => {
       </Button>
       <h3 className="mt-3">Long content</h3>
       <Button onClick={handleDialog(<BigComponent />)}>Long</Button>
+      <h3 className="mt-3">Registration</h3>
+      <Button addClass="success" onClick={handleDialog(<RegistrationForm />)}>
+        Registration
+      </Button>
     </div>
   )
 }

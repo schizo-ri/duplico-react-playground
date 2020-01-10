@@ -100,6 +100,9 @@
 .circle {
   border-radius: 50%;
 }
+.double {
+  font-size: 2rem;
+}
 .ls1 {
   letter-spacing: 1px;
 }

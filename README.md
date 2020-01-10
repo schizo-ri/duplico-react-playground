@@ -2,4 +2,6 @@
 
 Just some components for practice.
 
-Feel free to fork/copy but things will breake and change
+Don't rely on this repo but feel free to fork/copy because things will breake and change
+
+- add multistep dialog

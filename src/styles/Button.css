@@ -26,28 +26,44 @@
   font-weight: var(--weight-normal);
 }
 .btn {
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow-sm);
 }
 .btn.brand {
   background: linear-gradient(to bottom, var(--brand-light) 0%, var(--brand) 100%);
   color: var(--brand-pale);
+}
+.btn.brand:active:not([disabled]) {
+  background: linear-gradient(to bottom, var(--brand) 0%, var(--brand-light) 100%);
 }
 .btn.danger,
 .btn.error {
   background: linear-gradient(to bottom, var(--red-light) 0%, var(--red) 100%);
   color: var(--red-pale);
 }
+.btn.danger:active:not([disabled]),
+.btn.error:active:not([disabled]) {
+  background: linear-gradient(to bottom, var(--red) 0%, var(--red-light) 100%);
+}
 .btn.success {
   background: linear-gradient(to bottom, var(--teal-light) 0%, var(--teal) 100%);
   color: var(--teal-pale);
+}
+.btn.success:active:not([disabled]) {
+  background: linear-gradient(to bottom, var(--teal) 0%, var(--teal-light) 100%);
 }
 .btn.info {
   background: linear-gradient(to bottom, var(--cyan-light) 0%, var(--cyan) 100%);
   color: var(--cyan-pale);
 }
+.btn.info:active:not([disabled]) {
+  background: linear-gradient(to bottom, var(--cyan) 0%, var(--cyan-light) 100%);
+}
 .btn.warning {
   background: linear-gradient(to bottom, var(--yellow-light) 0%, var(--yellow) 100%);
   color: var(--yellow-pale);
+}
+.btn.warning:active:not([disabled]) {
+  background: linear-gradient(to bottom, var(--yellow) 0%, var(--yellow-light) 100%);
 }
 .btn[disabled] {
   cursor: not-allowed !important;
@@ -65,7 +81,8 @@
 .btn:active:not([disabled]) {
   border: 0;
   outline: 1px dotted var(--gray2);
-  box-shadow: var(--box-shadow-sm);
+  box-shadow: none;
+  /* box-shadow: var(--box-shadow-sm); */
 }
 .btn.brand:hover:not([disabled]),
 .btn.danger:hover:not([disabled]),

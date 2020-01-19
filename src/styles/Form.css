@@ -76,8 +76,8 @@
 .input-tt:not(:last-child) {
   margin-right: 0.5rem;
 }
-.input-tt input[type='checkbox'],
-.input-tt input[type='radio'] {
+.input-tt input[type="checkbox"],
+.input-tt input[type="radio"] {
   height: 1px;
   width: 1px;
   visibility: hidden;
@@ -85,19 +85,29 @@
 .input-tt label {
   cursor: pointer;
   padding: 0.25rem 0.75rem;
-  background-color: var(--cold);
+  /* background-color: var(--cold); */
+  background: linear-gradient(to bottom, var(--white) 0%, var(--cold) 100%);
+  box-shadow: var(--box-shadow-sm);
   border-radius: 1rem;
 }
 .input-tt label::before {
-  content: '\2715';
+  content: "\2715";
   margin-right: 0.25rem;
+  color: var(--gray4);
 }
 .input-tt input:checked + label {
   color: var(--white);
-  background-color: var(--blue);
+  /* background-color: var(--blue); */
+  background: linear-gradient(
+    to bottom,
+    var(--brand) 0%,
+    var(--brand-light) 100%
+  );
+  box-shadow: var(--box-shadow-inset-cue);
 }
 .input-tt input:checked + label::before {
-  content: '\2713';
+  content: "\2713";
+  color: var(--white);
 }
 /* .react-datetime-picker,
 .react-date-picker {
@@ -122,6 +132,59 @@
   box-shadow: none;
 } */
 
-input[type='file'] {
+input[type="file"] {
   padding: 0;
+}
+
+.switch {
+  --width: 3rem;
+  --gaps: 2px;
+  --notchDistance: calc(var(--gaps) * 2);
+  --notchSize: calc(
+    calc((var(--size) * var(--line-height)) - var(--notchDistance))
+  );
+}
+.switch-input {
+  height: 1px;
+  width: 1px;
+  visibility: hidden;
+}
+
+.switch-label {
+  cursor: pointer;
+  text-indent: -9999px;
+  width: var(--width);
+  height: calc(var(--size) * var(--line-height));
+  background: linear-gradient(to bottom, var(--gray3) 0%, var(--gray2) 100%);
+  box-shadow: var(--box-shadow-inset-cue);
+  display: block;
+  border-radius: 1rem;
+  position: relative;
+}
+
+.switch-label:after {
+  content: "";
+  position: absolute;
+  top: var(--gaps);
+  left: var(--gaps);
+  width: var(--notchSize);
+  height: var(--notchSize);
+  background: radial-gradient(circle, var(--white) 0%, var(--cold) 100%);
+  box-shadow: var(--box-shadow-sm);
+  border-radius: 50%;
+  transition: 250ms ease-in-out;
+}
+
+.switch-input:checked + .switch-label {
+  background: linear-gradient(
+    to bottom,
+    var(--brand) 0%,
+    var(--brand-light) 100%
+  );
+}
+
+.switch-input:checked + .switch-label:after {
+  transform: translateX(
+    calc(var(--width) - var(--notchSize) - var(--notchDistance))
+  );
 }

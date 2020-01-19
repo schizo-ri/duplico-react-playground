@@ -5,6 +5,11 @@
   margin-bottom: 1rem;
   z-index: 1;
 }
+.steppers-vertical {
+  flex-direction: column;
+  /* justify-content: flex-start; */
+  margin-right: var(--gap);
+}
 .steppers::before {
   content: '';
   position: absolute;
@@ -14,6 +19,13 @@
   background: var(--brand);
   background-image: linear-gradient(to right, var(--brand-pale), var(--brand), var(--brand-pale));
   width: 100%;
+}
+.steppers-vertical::before {
+  top: 0;
+  left: 50%;
+  height: 100%;
+  width: 2px;
+  background-image: linear-gradient(to bottom, var(--brand-pale), var(--brand), var(--brand-pale));
 }
 .step-btn {
   /* font-family: var(--font-mono); */

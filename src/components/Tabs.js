@@ -1,38 +1,32 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import shortid from 'shortid'
 // import { Transition, TransitionGroup, CSSTransition } from 'react-transition-group'
 import '../styles/Transitions.css'
 // import { Button } from './Button'
 
-// necemo tabove vec samo stepove. ustvari ovo moze biti skup tab kompnenti
-// cini se da se i stepovi prikazuju i skrivaju css-om
-const Stepper = ({ children, initalStep = 0, onSubmit, pageBlockers, preventSkip }) => {
+// slider bi ustvari bio fora
+const Stepper = ({ children, initalStep = 0, onSubmit, pageBlockers, preventSkip, vertical }) => {
   const [idx, setIdx] = useState(initalStep)
-  const [ids, setIds] = useState([])
-  // const [allowNext, setAllowNext] = useState(!preventSkip)
-
-  useEffect(() => {
-    const ids = children.reduce((agg, c) => {
-      if (c.id) {
-        return [...agg, c.id]
-      }
-      return [...agg, shortid.generate()]
-    }, [])
-    setIds(ids)
-  }, [children])
+  const [ids, setIds] = useState(Array.from(Array(children.length), _ => shortid.generate()))
+  const [preventAccidentalSubmit, setPreventAccidentalSubmit] = useState(true)
 
   const handleTabSwitch = page => {
+    setPreventAccidentalSubmit(true)
     const blocker = pageBlockers && pageBlockers[idx]
-    if (blocker && blocker.call(null)) {
+    if (blocker && blocker.call(null, idx)) {
       return
+    }
+    if (onSubmit && page + 1 === children.length) {
+      setTimeout(() => setPreventAccidentalSubmit(false), 3000)
     }
     setIdx(page)
   }
 
+  const steppersDirection = vertical ? 'steppers steppers-vertical' : 'steppers'
   return (
     Boolean(ids.length) && (
-      <>
-        <div className="steppers" role="tablist">
+      <div style={vertical ? { display: 'flex', flexDirection: 'columns' } : {}}>
+        <nav className={steppersDirection} role="tablist">
           {ids.map((id, stepIdx) => (
             <button
               id={`${id}-tab`}
@@ -47,7 +41,7 @@ const Stepper = ({ children, initalStep = 0, onSubmit, pageBlockers, preventSkip
               {children[stepIdx]['props']['label'] || stepIdx + 1}
             </button>
           ))}
-        </div>
+        </nav>
         <form className="tabpanel-container" onSubmit={onSubmit}>
           {children.map((child, childIdx) => (
             <div
@@ -57,7 +51,6 @@ const Stepper = ({ children, initalStep = 0, onSubmit, pageBlockers, preventSkip
               role="tabpanel"
               aria-labelledby={`${ids[childIdx]}-tab`}
               className={['tabpanel', 'fade-in', childIdx !== idx ? 'd-none' : ''].join(' ')}
-              // className="tabpanel"
             >
               {child}
             </div>
@@ -74,10 +67,14 @@ const Stepper = ({ children, initalStep = 0, onSubmit, pageBlockers, preventSkip
                 Next
               </button>
             )}
-            {onSubmit && idx + 1 === children.length && <button className="btn">Submit</button>}
+            {onSubmit && idx + 1 === children.length && (
+              <button type="submit" className="btn brand" disabled={preventAccidentalSubmit}>
+                Submit
+              </button>
+            )}
           </div>
         </form>
-      </>
+      </div>
     )
   )
 }

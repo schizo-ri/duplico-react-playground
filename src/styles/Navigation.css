@@ -1,7 +1,7 @@
 .navbar {
   position: sticky;
   top: 0;
-  background: linear-gradient( to bottom, var(--brand-light) 0%, var(--brand) 100% );
+  background: linear-gradient(to bottom, var(--brand) 0%, var(--brand3) 100%);
   font-size: inherit;
   z-index: 1000;
   height: min-content;
@@ -22,7 +22,7 @@
   margin: 0;
 }
 .nav-item .btn-empty {
-  padding: 0 .5rem;
+  padding: 0 0.5rem;
 }
 .nav-item svg {
   height: 1.5rem;
@@ -36,14 +36,14 @@
   flex-direction: row;
   align-items: flex-start;
   overflow: visible;
-  border-bottom: 1px solid var(--gray2);
+  border-bottom: 1px solid var(--gray);
 }
 
 .tab-btn {
   color: inherit;
   background-color: transparent;
   font-size: 1rem;
-  padding: .5rem 1.5rem;
+  padding: 0.5rem 1.5rem;
   border: 0;
   box-sizing: border-box;
   outline: 0;
@@ -58,7 +58,7 @@
 .tab-btn:focus,
 .tab-btn:active {
   outline: 0;
-  border-bottom: 3px solid var(--brand-light);
+  border-bottom: 3px solid var(--brand);
 }
 .tab-btn.active {
   outline: 0;
@@ -67,4 +67,71 @@
 
 .tab-btn.active {
   color: var(--brand);
+}
+
+.steppers {
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+  margin-bottom: 1rem;
+  z-index: 1;
+}
+.steppers-vertical {
+  flex-direction: column;
+  /* justify-content: flex-start; */
+  margin-right: var(--gap);
+}
+.steppers::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  border: 0;
+  height: 2px;
+  background: var(--brand);
+  background-image: linear-gradient(
+    to right,
+    var(--white),
+    var(--brand),
+    var(--white)
+  );
+  width: 100%;
+}
+.steppers-vertical::before {
+  top: 0;
+  left: 50%;
+  height: 100%;
+  width: 2px;
+  background-image: linear-gradient(
+    to bottom,
+    var(--white),
+    var(--brand),
+    var(--white)
+  );
+}
+.step-btn {
+  /* font-family: var(--font-mono); */
+  font-weight: var(--weight-bold);
+  text-transform: lowercase;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0.5rem;
+  margin: 0;
+  border: 1px solid var(--brand);
+  border-radius: 1rem;
+  /* border-style: dotted; */
+  color: var(--brand);
+  background-color: var(--white);
+  cursor: pointer;
+  z-index: 2;
+}
+.step-btn:disabled,
+.step-btn[disabled] {
+  border: 1px solid var(--brand);
+  color: var(--brand);
+  cursor: not-allowed;
+}
+.step-active {
+  border: 1px solid transparent;
+  color: var(--white);
+  background-color: var(--brand);
 }

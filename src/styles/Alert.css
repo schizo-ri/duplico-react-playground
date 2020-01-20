@@ -16,30 +16,30 @@
   will-change: transform;
   box-shadow: var(--box-shadow-lg);
   /* default */
-  color: var(--dark);
-  background-color: var(--cold);
-  border-bottom: 1px solid var(--cold-light);
+  color: var(--black);
+  background-color: var(--gray1);
+  border-bottom: 1px solid hsla(0, 0%, 100%, 0.2);
 }
 
 .alert-info {
-  color: var(--cyan-pale);
-  background: linear-gradient(to bottom, var(--cyan-light) 0%, var(--cyan-dark) 100%);
+  color: var(--cold-fixed-white);
+  background: linear-gradient(to bottom, var(--cyan3) 0%, var(--cyan) 100%);
 }
 
 .alert-warning {
-  color: var(--yellow-pale);
-  background: linear-gradient(to bottom, var(--yellow-light) 0%, var(--yellow-dark) 100%);
+  color: var(--warm-fixed-white);
+  background: linear-gradient(to bottom, var(--yellow3) 0%, var(--yellow) 100%);
 }
 
 .alert-danger,
 .alert-error {
-  color: var(--red-pale);
-  background: linear-gradient(to bottom, var(--red-light) 0%, var(--red-dark) 100%);
+  color: var(--warm-fixed-white);
+  background: linear-gradient(to bottom, var(--red3) 0%, var(--red) 100%);
 }
 
 .alert-success {
-  color: var(--teal-pale);
-  background: linear-gradient(to bottom, var(--teal-light) 0%, var(--teal-dark) 100%);
+  color: var(--cold-fixed-white);
+  background: linear-gradient(to bottom, var(--teal3) 0%, var(--teal) 100%);
 }
 
 .alert-msg {
@@ -49,12 +49,10 @@
 }
 
 .alert-close-msg {
-  color: white;
+  /* color: var(--white); */
   font-size: 0.75rem;
   font-style: oblique;
-  /* opacity: 0.75; */
-  /* align-self: flex-end; */
   position: absolute;
   bottom: 0.25rem;
-  right: .5rem;
+  right: 0.5rem;
 }

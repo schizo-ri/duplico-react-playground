@@ -15,7 +15,7 @@ const Home = () => (
       goal for this pages. I don't even like general solutions for grids and
       responsivness, they are never enough. Just KISS people!
     </p>
-    <div className="shadow-lg bg-white mb-3 rounded p-2 mw-mobile">
+    <div className="shadow-lg bg-light mb-3 rounded p-2 mw-mobile">
       <h3>Things to do</h3>
       <ul>
         <li>a11Y</li>
@@ -36,7 +36,7 @@ const Home = () => (
       }}
     >
       <div className="shadow-lg bg-white mb-3">
-        <div className="bd-cold p-3">
+        <div className="p-3">
           <h3>This is a card</h3>
           <section>
             Card styling can be done with utility classes. No need to bloat your
@@ -44,13 +44,13 @@ const Home = () => (
             instead.
           </section>
         </div>
-        <div className="bg-cold flex py-2">
+        <div className="bg-light rounded-bottom flex py-2">
           <Button className="btn-empty info ml-auto">Card action</Button>
         </div>
       </div>
       <div className="shadow-lg bg-white mb-3">
         <img
-          className="block w-100"
+          className="block w-100 rounded-top"
           src="images/corny_sauna.jpg"
           alt="Profile."
         />
@@ -61,12 +61,12 @@ const Home = () => (
             image or something else. I'm just rambling to fill with text.
           </section>
         </div>
-        <div className="bg-cold flex py-2">
+        <div className="rounded-bottom flex py-2">
           <Button className="btn-empty danger ml-auto">Card action</Button>
         </div>
       </div>
       <div className="shadow-lg bg-white mb-3">
-        <div className="bd-cold p-3">
+        <div className="p-3">
           <header className="flex aic">
             <div className="crop crop-sm">
               <img
@@ -86,24 +86,22 @@ const Home = () => (
         </div>
       </div>
       <div className="shadow-lg bg-white mb-3">
-        <div className="bd-cold p-3">
-          <header className="flex aic">
-            <ProfilePicUpload pic={false} id="user-1" />
-            <h3 className="ml-3">Person Left</h3>
-            <Button addClass="btn-empty ml-auto menu-dots" />
-          </header>
-          <section className="mt-2">
-            This is a card with the profile pic upload option. This is just for
-            demonstartion, usally you don't put it directly on a card like this.
-          </section>
-        </div>
+        <header className="flex aic bg-light rounded-top">
+          <ProfilePicUpload pic={false} id="user-1" />
+          <h3 className="ml-3">Person Left</h3>
+          <Button addClass="btn-empty ml-auto menu-dots" />
+        </header>
+        <section className="mt-2 p-3">
+          This is a card with the profile pic upload option. This is just for
+          demonstartion, usally you don't put it directly on a card like this.
+        </section>
       </div>
     </div>
     <section className="my-3">
       <h3>Table</h3>
-      <div className="shadow-lg bg-white mb-3 rounded">
-        <table className="table">
-          <thead className="bg-cold">
+      <div className="mb-3 rounded">
+        <table className="table shadow-lg bg-white">
+          <thead className="bg-light">
             <tr>
               <th scope="col">#</th>
               <th scope="col">First</th>
@@ -206,20 +204,20 @@ const Home = () => (
           <p
             style={{
               backgroundColor: "var(--warm-white)",
-              color: "var(--warm-gray5)"
+              color: "var(--warm-gray4)"
             }}
             className="p-3 m-0"
           >
-            bg warm-white, c warm-gray5
+            bg warm-white, c warm-gray4
           </p>
           <p
             style={{
               backgroundColor: "var(--warm-gray1)",
-              color: "var(--warm-gray5)"
+              color: "var(--warm-gray4)"
             }}
             className="p-3 m-0"
           >
-            bg warm-gray1, c warm-gray5
+            bg warm-gray1, c warm-gray4
           </p>
           <p
             style={{
@@ -524,7 +522,7 @@ const Home = () => (
             }}
             className="p-3 m-0"
           >
-            bg yellow4, c yellow1
+            bg yellow-black, c yellow1
           </p>
         </div>
         <div className="max-w-mobile">
@@ -589,7 +587,7 @@ const Home = () => (
             }}
             className="p-3 m-0"
           >
-            bg orange4, c orange1
+            bg orange-black, c orange1
           </p>
         </div>
         <div className="max-w-mobile">

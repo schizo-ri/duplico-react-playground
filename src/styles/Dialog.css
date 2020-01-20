@@ -24,7 +24,7 @@
   flex-direction: column;
   pointer-events: auto;
   background-clip: padding-box;
-  background-color: var(--light);
+  background-color: var(--white);
   outline: 0;
   opacity: 1;
   box-shadow: 0 16px 24px 8px var(--backdrop);

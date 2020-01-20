@@ -1,11 +1,38 @@
-.bg-dark {
-  background-color: var(--dark);
+.bg-black {
+  background-color: var(--black);
 }
-.bg-cold {
-  background-color: var(--cold);
+.bg-dark {
+  background-color: var(--gray4);
+}
+.bg-light {
+  background-color: var(--gray1);
 }
 .bg-white {
   background-color: var(--white);
+}
+.bg-blue {
+  background-color: var(--blue);
+  color: var(--fixed-white);
+}
+.bg-cyan {
+  background-color: var(--cyan);
+  color: var(--fixed-white);
+}
+.bg-teal {
+  background-color: var(--teal);
+  color: var(--fixed-white);
+}
+.bg-yellow {
+  background-color: var(--yellow);
+  color: var(--fixed-white);
+}
+.bg-orange {
+  background-color: var(--orange);
+  color: var(--fixed-white);
+}
+.bg-red {
+  background-color: var(--red);
+  color: var(--fixed-white);
 }
 .shadow-sm {
   box-shadow: var(--box-shadow-sm);
@@ -18,9 +45,6 @@
 }
 .c-red {
   color: var(--red);
-}
-.c-green {
-  color: var(--green);
 }
 .c-blue {
   color: var(--blue);
@@ -44,58 +68,64 @@
   color: var(--white);
 }
 .c-dark {
-  color: var(--dark);
-}
-.muted {
   color: var(--gray4);
 }
+.muted {
+  color: var(--gray3);
+}
 .bd-dark {
-  border: 1px solid var(--dark);
+  border: 1px solid var(--gray4);
 }
 .bdt-dark {
-  border-top: 1px solid var(--dark);
+  border-top: 1px solid var(--gray4);
 }
 .bdr-dark {
-  border-right: 1px solid var(--dark);
+  border-right: 1px solid var(--gray4);
 }
 .bdb-dark {
-  border-bottom: 1px solid var(--dark);
+  border-bottom: 1px solid var(--gray4);
 }
 .bdl-dark {
-  border-left: 1px solid var(--dark);
+  border-left: 1px solid var(--gray4);
 }
-.bd-cold {
-  border: 1px solid var(--cold);
+.bd-light {
+  border: 1px solid var(--gray1);
 }
-.bdt-cold {
-  border-top: 1px solid var(--cold);
+.bdt-light {
+  border-top: 1px solid var(--gray1);
 }
-.bdr-cold {
-  border-right: 1px solid var(--cold);
+.bdr-light {
+  border-right: 1px solid var(--gray1);
 }
-.bdb-cold {
-  border-bottom: 1px solid var(--cold);
+.bdb-light {
+  border-bottom: 1px solid var(--gray1);
 }
-.bdl-cold {
-  border-left: 1px solid var(--cold);
+.bdl-light {
+  border-left: 1px solid var(--gray1);
 }
 .bd-gray {
-  border: 1px solid var(--gray2);
+  border: 1px solid var(--gray);
 }
 .bdt-gray {
-  border-top: 1px solid var(--gray2);
+  border-top: 1px solid var(--gray);
 }
 .bdr-gray {
-  border-right: 1px solid var(--gray2);
+  border-right: 1px solid var(--gray);
 }
 .bdb-gray {
-  border-bottom: 1px solid var(--gray2);
+  border-bottom: 1px solid var(--gray);
 }
 .bdl-gray {
-  border-left: 1px solid var(--gray2);
+  border-left: 1px solid var(--gray);
 }
 .rounded {
   border-radius: var(--radius);
+}
+.rounded-top {
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+.rounded-bottom {
+  border-radius: 0 0 var(--radius) var(--radius);
 }
 .circle {
   border-radius: 50%;

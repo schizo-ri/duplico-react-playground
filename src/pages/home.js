@@ -141,20 +141,20 @@ const Home = () => (
           <p
             style={{
               backgroundColor: "var(--cold-white)",
-              color: "var(--cold-gray5)"
+              color: "var(--cold-gray4)"
             }}
             className="p-3 m-0"
           >
-            bg cold-white, c cold-gray5
+            bg cold-white, c cold-gray4
           </p>
           <p
             style={{
               backgroundColor: "var(--cold-gray1)",
-              color: "var(--cold-gray5)"
+              color: "var(--cold-gray4)"
             }}
             className="p-3 m-0"
           >
-            bg cold-gray1, c cold-gray5
+            bg cold-gray1, c cold-gray4
           </p>
           <p
             style={{
@@ -164,6 +164,15 @@ const Home = () => (
             className="p-3 m-0"
           >
             bg cold-gray2, c cold-black
+          </p>
+          <p
+            style={{
+              backgroundColor: "var(--cold-gray)",
+              color: "var(--cold-black)"
+            }}
+            className="p-3 m-0"
+          >
+            bg cold-gray, c cold-black
           </p>
           <p
             style={{
@@ -223,6 +232,15 @@ const Home = () => (
           </p>
           <p
             style={{
+              backgroundColor: "var(--warm-gray)",
+              color: "var(--warm-black)"
+            }}
+            className="p-3 m-0"
+          >
+            bg warm-gray, c warm-black
+          </p>
+          <p
+            style={{
               backgroundColor: "var(--warm-gray3)",
               color: "var(--warm-white)"
             }}
@@ -252,151 +270,178 @@ const Home = () => (
         <div className="max-w-mobile">
           <p
             style={{
-              backgroundColor: "var(--blue1)",
-              color: "var(--blue5)"
+              backgroundColor: "var(--blue-white)",
+              color: "var(--blue4)"
             }}
             className="p-3 m-0"
           >
-            bg blue1, c blue5
+            bg blue-white, c blue4
+          </p>
+          <p
+            style={{
+              backgroundColor: "var(--blue1)",
+              color: "var(--blue-black)"
+            }}
+            className="p-3 m-0"
+          >
+            bg blue1, c blue-black
           </p>
           <p
             style={{
               backgroundColor: "var(--blue2)",
-              color: "var(--cold-black)"
+              color: "var(--blue-black)"
             }}
             className="p-3 m-0"
           >
-            bg blue2, c cold-black
+            bg blue2, c blue-black
           </p>
           <p
             style={{
               backgroundColor: "var(--blue)",
-              color: "var(--cold-white)"
+              color: "var(--blue-white)"
             }}
             className="p-3 m-0"
           >
-            bg blue, c cold-white
+            bg blue, c blue-white
           </p>
           <p
             style={{
               backgroundColor: "var(--blue3)",
-              color: "var(--cold-white)"
+              color: "var(--blue-white)"
             }}
             className="p-3 m-0"
           >
-            bg blue3, c cold-white
+            bg blue3, c blue-white
           </p>
           <p
             style={{
               backgroundColor: "var(--blue4)",
+              color: "var(--blue-white)"
+            }}
+            className="p-3 m-0"
+          >
+            bg blue4, c blue-white
+          </p>
+          <p
+            style={{
+              backgroundColor: "var(--blue-black)",
               color: "var(--blue1)"
             }}
             className="p-3 m-0"
           >
-            bg blue4, c blue1
-          </p>
-          <p
-            style={{
-              backgroundColor: "transparent",
-              color: "transparent"
-            }}
-            className="p-3 m-0"
-          >
-            transparent
+            bg blue-black, c blue1
           </p>
         </div>
         <div className="max-w-mobile">
           <p
             style={{
-              backgroundColor: "var(--cyan1)",
-              color: "var(--cyan5)"
+              backgroundColor: "var(--cyan-white)",
+              color: "var(--cyan4)"
             }}
             className="p-3 m-0"
           >
-            bg cyan1, c cyan5
+            bg cyan-white, c cyan4
+          </p>
+          <p
+            style={{
+              backgroundColor: "var(--cyan1)",
+              color: "var(--cyan-black)"
+            }}
+            className="p-3 m-0"
+          >
+            bg cyan1, c cyan-black
           </p>
           <p
             style={{
               backgroundColor: "var(--cyan2)",
-              color: "var(--cold-black)"
+              color: "var(--cyan-black)"
             }}
             className="p-3 m-0"
           >
-            bg cyan2, c cold-black
+            bg cyan2, c cyan-black
           </p>
           <p
             style={{
               backgroundColor: "var(--cyan)",
-              color: "var(--cold-white)"
+              color: "var(--cyan-white)"
             }}
             className="p-3 m-0"
           >
-            bg cyan, c cold-white
+            bg cyan, c cyan-white
           </p>
           <p
             style={{
               backgroundColor: "var(--cyan3)",
-              color: "var(--cold-white)"
+              color: "var(--cyan-white)"
             }}
             className="p-3 m-0"
           >
-            bg cyan3, c cold-white
+            bg cyan3, c cyan-white
           </p>
           <p
             style={{
               backgroundColor: "var(--cyan4)",
+              color: "var(--cyan-white)"
+            }}
+            className="p-3 m-0"
+          >
+            bg cyan4, c cyan-white
+          </p>
+          <p
+            style={{
+              backgroundColor: "var(--cyan-black)",
               color: "var(--cyan1)"
             }}
             className="p-3 m-0"
           >
-            bg cyan4, c cyan1
-          </p>
-          <p
-            style={{
-              backgroundColor: "transparent",
-              color: "transparent"
-            }}
-            className="p-3 m-0"
-          >
-            transparent
+            bg cyan-black, c cyan1
           </p>
         </div>
         <div className="max-w-mobile">
           <p
             style={{
-              backgroundColor: "var(--teal1)",
-              color: "var(--teal5)"
+              backgroundColor: "var(--teal-white)",
+              color: "var(--teal4)"
             }}
             className="p-3 m-0"
           >
-            bg teal1, c teal5
+            bg teal-white, c teal4
+          </p>
+          <p
+            style={{
+              backgroundColor: "var(--teal1)",
+              color: "var(--teal-black)"
+            }}
+            className="p-3 m-0"
+          >
+            bg teal1, c teal-black
           </p>
           <p
             style={{
               backgroundColor: "var(--teal2)",
-              color: "var(--cold-black)"
+              color: "var(--teal-black)"
             }}
             className="p-3 m-0"
           >
-            bg teal2, c cold-black
+            bg teal2, c teal-black
           </p>
           <p
             style={{
               backgroundColor: "var(--teal)",
-              color: "var(--cold-white)"
+              color: "var(--teal-white)"
             }}
             className="p-3 m-0"
           >
-            bg teal, c cold-white
+            bg teal, c teal-white
           </p>
           <p
             style={{
               backgroundColor: "var(--teal3)",
-              color: "var(--cold-white)"
+              color: "var(--teal-white)"
             }}
             className="p-3 m-0"
           >
-            bg teal3, c cold-white
+            bg teal3, c teal-white
           </p>
           <p
             style={{
@@ -409,106 +454,124 @@ const Home = () => (
           </p>
           <p
             style={{
-              backgroundColor: "transparent",
-              color: "transparent"
+              backgroundColor: "var(--teal-black)",
+              color: "var(--teal1)"
             }}
             className="p-3 m-0"
           >
-            transparent
+            bg teal-black, c teal1
           </p>
         </div>
         <div className="max-w-mobile">
           <p
             style={{
-              backgroundColor: "var(--yellow1)",
-              color: "var(--yellow5)"
+              backgroundColor: "var(--yellow-white)",
+              color: "var(--yellow4)"
             }}
             className="p-3 m-0"
           >
-            bg yellow1, c yellow5
+            bg yellow-white, c yellow4
+          </p>
+          <p
+            style={{
+              backgroundColor: "var(--yellow1)",
+              color: "var(--yellow-black)"
+            }}
+            className="p-3 m-0"
+          >
+            bg yellow1, c yellow-black
           </p>
           <p
             style={{
               backgroundColor: "var(--yellow2)",
-              color: "var(--cold-black)"
+              color: "var(--yellow-black)"
             }}
             className="p-3 m-0"
           >
-            bg yellow2, c cold-black
+            bg yellow2, c yellow-black
           </p>
           <p
             style={{
               backgroundColor: "var(--yellow)",
-              color: "var(--cold-white)"
+              color: "var(--yellow-white)"
             }}
             className="p-3 m-0"
           >
-            bg yellow, c cold-white
+            bg yellow, c yellow-white
           </p>
           <p
             style={{
               backgroundColor: "var(--yellow3)",
-              color: "var(--cold-white)"
+              color: "var(--yellow-white)"
             }}
             className="p-3 m-0"
           >
-            bg yellow3, c cold-white
+            bg yellow3, c yellow-white
           </p>
           <p
             style={{
               backgroundColor: "var(--yellow4)",
+              color: "var(--yellow-white)"
+            }}
+            className="p-3 m-0"
+          >
+            bg yellow4, c yellow-white
+          </p>
+          <p
+            style={{
+              backgroundColor: "var(--yellow-black)",
               color: "var(--yellow1)"
             }}
             className="p-3 m-0"
           >
             bg yellow4, c yellow1
           </p>
-          <p
-            style={{
-              backgroundColor: "transparent",
-              color: "transparent"
-            }}
-            className="p-3 m-0"
-          >
-            transparent
-          </p>
         </div>
         <div className="max-w-mobile">
           <p
             style={{
-              backgroundColor: "var(--orange1)",
-              color: "var(--orange5)"
+              backgroundColor: "var(--orange-white)",
+              color: "var(--orange4)"
             }}
             className="p-3 m-0"
           >
-            bg orange1, c orange5
+            bg orange-white, c orange4
+          </p>
+          <p
+            style={{
+              backgroundColor: "var(--orange1)",
+              color: "var(--orange-black)"
+            }}
+            className="p-3 m-0"
+          >
+            bg orange1, c orange-black
           </p>
           <p
             style={{
               backgroundColor: "var(--orange2)",
-              color: "var(--cold-black)"
+              color: "var(--orange-black)"
             }}
             className="p-3 m-0"
           >
-            bg orange2, c cold-black
+            bg orange2, c orange-black
           </p>
           <p
             style={{
               backgroundColor: "var(--orange)",
-              color: "var(--cold-white)"
+              color: "var(--orange-white)"
             }}
             className="p-3 m-0"
           >
-            bg orange, c cold-white
+            bg orange, c orange-white
           </p>
           <p
             style={{
               backgroundColor: "var(--orange3)",
-              color: "var(--cold-white)"
+              color: "var(--orange-white)"
             }}
             className="p-3 m-0"
           >
-            bg orange3, c cold-white
+            bg orange3, c orange-white
           </p>
           <p
             style={{
@@ -521,68 +584,77 @@ const Home = () => (
           </p>
           <p
             style={{
-              backgroundColor: "transparent",
-              color: "transparent"
+              backgroundColor: "var(--orange-black)",
+              color: "var(--orange1)"
             }}
             className="p-3 m-0"
           >
-            transparent
+            bg orange4, c orange1
           </p>
         </div>
         <div className="max-w-mobile">
           <p
             style={{
-              backgroundColor: "var(--red1)",
-              color: "var(--red5)"
+              backgroundColor: "var(--red-white)",
+              color: "var(--red4)"
             }}
             className="p-3 m-0"
           >
-            bg red1, c red5
+            bg red-white, c red4
+          </p>
+          <p
+            style={{
+              backgroundColor: "var(--red1)",
+              color: "var(--red-black)"
+            }}
+            className="p-3 m-0"
+          >
+            bg red1, c red-black
           </p>
           <p
             style={{
               backgroundColor: "var(--red2)",
-              color: "var(--cold-black)"
+              color: "var(--red-black)"
             }}
             className="p-3 m-0"
           >
-            bg red2, c cold-black
+            bg red2, c red-black
           </p>
           <p
             style={{
               backgroundColor: "var(--red)",
-              color: "var(--cold-white)"
+              color: "var(--red-white)"
             }}
             className="p-3 m-0"
           >
-            bg red, c cold-white
+            bg red, c red-white
           </p>
           <p
             style={{
               backgroundColor: "var(--red3)",
-              color: "var(--cold-white)"
+              color: "var(--red-white)"
             }}
             className="p-3 m-0"
           >
-            bg red3, c cold-white
+            bg red3, c red-white
           </p>
           <p
             style={{
               backgroundColor: "var(--red4)",
+              color: "var(--red-white)"
+            }}
+            className="p-3 m-0"
+          >
+            bg red4, c red-white
+          </p>
+          <p
+            style={{
+              backgroundColor: "var(--red-black)",
               color: "var(--red1)"
             }}
             className="p-3 m-0"
           >
-            bg red4, c red1
-          </p>
-          <p
-            style={{
-              backgroundColor: "transparent",
-              color: "transparent"
-            }}
-            className="p-3 m-0"
-          >
-            transparent
+            bg red-black, c red1
           </p>
         </div>
       </div>

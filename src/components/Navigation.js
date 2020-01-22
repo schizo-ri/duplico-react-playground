@@ -4,8 +4,23 @@ import { Dropdown } from "../components/Button";
 import "../styles/Navigation.css";
 import "../styles/Button.css";
 
+const THEME_SWITCH = {
+  "theme-cold": "theme-warm",
+  "theme-warm": "theme-cold"
+};
+
 const Nav = props => {
   const [fit, setFit] = useState(true);
+  // const [warmth, setWarmth] = useState('cold');
+
+  const handleWarmthSwitch = e => {
+    const theme = e.target.checked ? "theme-cold" : "theme-warm";
+    const body = document.body;
+    const classes = body.classList;
+    classes.length === 0
+      ? body.classList.add(theme)
+      : body.classList.replace(THEME_SWITCH[theme], theme);
+  };
 
   useLayoutEffect(function menuFit() {
     function calculateFit() {
@@ -21,7 +36,7 @@ const Nav = props => {
   }, []);
 
   return (
-    <nav className="navbar">
+    <nav className="navbar flex jcb aic">
       {fit ? (
         <ul className="navlist">
           <NavItems collapsed={fit} />
@@ -31,6 +46,19 @@ const Nav = props => {
           <NavItems collapsed={fit} />
         </Dropdown>
       )}
+      <div className="ml-auto">
+        <div class="switch">
+          <input
+            type="checkbox"
+            id="theme-switch"
+            class="switch-input"
+            onChange={handleWarmthSwitch}
+          />
+          <label for="theme-switch" class="switch-label c-white">
+            Warmth
+          </label>
+        </div>
+      </div>
     </nav>
   );
 };
@@ -42,7 +70,8 @@ const NAV_ITEMS = [
   ["Forms", "forms"],
   ["Navigations", "navigations"],
   ["Offscreen", "offscreen"],
-  ["Tables", "tables"]
+  ["Tables", "tables"],
+  ["Tree", "tree"]
 ];
 
 const NavItems = props => {

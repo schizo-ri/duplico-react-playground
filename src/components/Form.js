@@ -1,5 +1,6 @@
-import React from 'react'
-import '../styles/Form.css'
+import React from "react";
+import shortid from "shortid";
+import "../styles/Form.css";
 
 const ToggleTokens = ({ type, name, children, ...props }) => {
   return (
@@ -10,29 +11,75 @@ const ToggleTokens = ({ type, name, children, ...props }) => {
         </ToggleToken>
       ))}
     </div>
-  )
-}
+  );
+};
 
 const ToggleToken = props => (
-  <div className={['input-tt', props.className].join(' ')}>
-    <input id={props.id} type={props.type || 'checkbox'} name={`${props.name || props.id}`} />
+  <div className={["input-tt", props.className].join(" ")}>
+    <input
+      id={props.id}
+      type={props.type || "checkbox"}
+      name={`${props.name || props.id}`}
+    />
     <label htmlFor={`${props.id}`}>{props.children}</label>
   </div>
-)
-// spread props?
-const Input = ({ label, note, children, wrapClass, inputClass, labelClass, noteClass, ...inputProps }) => {
+);
+const Switch = ({
+  children,
+  id,
+  name,
+  switchClasses = "",
+  inputClasses = "",
+  labelClasses = "",
+  onChange = e => e
+}) => {
+  const ID = id || shortid.generate();
+  const NAME = name || id;
   return (
-    <div className={`input-wrap ${wrapClass || ''}`}>
-      {note && <span className={`input-note ${noteClass || ''}`}>{note}</span>}
-      <input className={`input ${inputClass || ''}`} type="text" {...inputProps} />
-      <label htmlFor={inputProps.name || inputProps.id} className={`input-label ${labelClass || ''}`}>
+    <div className={`switch ${switchClasses}`}>
+      <input
+        type="checkbox"
+        id={ID}
+        name={NAME}
+        className={`switch-input ${inputClasses}`}
+        onChange={onChange}
+      />
+      <label htmlFor={ID} className={`switch-label ${labelClasses}`}>
+        {children}
+      </label>
+    </div>
+  );
+};
+// spread props?
+const Input = ({
+  label,
+  note,
+  children,
+  wrapClass,
+  inputClass,
+  labelClass,
+  noteClass,
+  ...inputProps
+}) => {
+  return (
+    <div className={`input-wrap ${wrapClass || ""}`}>
+      {note && <span className={`input-note ${noteClass || ""}`}>{note}</span>}
+      <input
+        className={`input ${inputClass || ""}`}
+        type="text"
+        {...inputProps}
+      />
+      <label
+        htmlFor={inputProps.name || inputProps.id}
+        className={`input-label ${labelClass || ""}`}
+      >
         {label}
       </label>
     </div>
-  )
-}
+  );
+};
 const Select = props => {
-  const { label, note, children, ...inputProps } = { ...props }
+  const { label, note, children, ...inputProps } = { ...props };
   return (
     <div className="input-wrap">
       {note && <span className="input-note">{note}</span>}
@@ -43,7 +90,7 @@ const Select = props => {
         {label}
       </label>
     </div>
-  )
-}
+  );
+};
 
-export { ToggleToken, ToggleTokens, Input, Select }
+export { ToggleToken, ToggleTokens, Input, Select, Switch };

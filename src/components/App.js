@@ -10,6 +10,7 @@ const Forms = lazy(() => import("../pages/forms"));
 const Navigations = lazy(() => import("../pages/navigations"));
 const Offscreen = lazy(() => import("../pages/offscreen"));
 const Tables = lazy(() => import("../pages/tables"));
+const Tree = lazy(() => import("../pages/tree"));
 
 const THEME_SWITCH = {
   "theme-cold": "theme-warm",
@@ -48,6 +49,7 @@ const Authenticated = () => {
             <Route exact path="/navigations" component={Navigations} />
             <Route exact path="/offscreen" component={Offscreen} />
             <Route exact path="/tables" component={Tables} />
+            <Route exact path="/tree" component={Tree} />
             <Route render={() => <NotFound />} />
           </Switch>
         </Suspense>

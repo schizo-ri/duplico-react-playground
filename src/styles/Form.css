@@ -117,30 +117,38 @@ input[type="file"] {
   --notchSize: calc(
     calc((var(--size) * var(--line-height)) - var(--notchDistance))
   );
+  position: relative;
+  padding-left: calc(var(--width) + var(--notchDistance));
 }
 .switch-input {
   height: 1px;
   width: 1px;
   visibility: hidden;
+  position: absolute;
 }
-
 .switch-label {
-  cursor: pointer;
-  text-indent: -9999px;
+  position: relative;
+  margin-bottom: 0;
+  vertical-align: top;
+  cursor: pointer; 
+}
+.switch-label::before {
+  content: "";
+  position: absolute;
+  left: calc((var(--width) * -1) - var(--notchDistance));
   width: var(--width);
   height: calc(var(--size) * var(--line-height));
   background: linear-gradient(to bottom, var(--gray3) 0%, var(--gray) 100%);
   box-shadow: var(--box-shadow-inset-cue);
   display: block;
   border-radius: 1rem;
-  position: relative;
 }
 
-.switch-label:after {
+.switch-label::after {
   content: "";
   position: absolute;
   top: var(--gaps);
-  left: var(--gaps);
+  left: calc(calc(var(--width) * -1) - var(--gaps));
   width: var(--notchSize);
   height: var(--notchSize);
   background: radial-gradient(circle, var(--white) 50%, var(--gray1) 100%);
@@ -149,11 +157,11 @@ input[type="file"] {
   transition: 250ms ease-in-out;
 }
 
-.switch-input:checked + .switch-label {
+.switch-input:checked + .switch-label::before {
   background: linear-gradient(to bottom, var(--brand3) 0%, var(--brand) 100%);
 }
 
-.switch-input:checked + .switch-label:after {
+.switch-input:checked + .switch-label::after {
   transform: translateX(
     calc(var(--width) - var(--notchSize) - var(--notchDistance))
   );

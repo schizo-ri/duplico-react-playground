@@ -5,7 +5,7 @@
   --lightness: 58%;
   --lightness3: 40%;
   --lightness4: 24%;
-  --lightness-black: 12%;
+  --lightness-black: 15%;
 
   --warm-fixed-white: hsl(30, 2%, 98%);
   --warm-white: hsl(30, 2%, var(--lightness-white));

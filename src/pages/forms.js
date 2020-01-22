@@ -1,23 +1,39 @@
-import React, { useState } from 'react'
-import { ToggleToken, ToggleTokens, Input, Select } from '../components/Form'
-import { Button } from '../components/Button'
+import React, { useState } from "react";
+import {
+  ToggleToken,
+  ToggleTokens,
+  Input,
+  Select,
+  Switch
+} from "../components/Form";
+import { Button } from "../components/Button";
 
 const Forms = () => {
-  const [inp, setInp] = useState('')
+  const [inp, setInp] = useState("");
 
   const handleSubmit = e => {
-    e.preventDefault()
-    console.log(inp)
-  }
+    e.preventDefault();
+    console.log(inp);
+  };
 
   return (
-    <div style={{ width: '600px', padding: '0 1rem' }}>
+    <div style={{ width: "600px", padding: "0 1rem" }}>
       <h1>Forms</h1>
       <form action="" onSubmit={handleSubmit}>
         <h2>Inputs</h2>
         <h3>Standard</h3>
-        <Input id="text-input" label="Text input" placeholder="Some text" onChange={e => setInp(e.target.value)} />
-        <Input id="datalist-input" label="Datalist" list="ice-cream-flavors" placeholder="Input new or select option" />
+        <Input
+          id="text-input"
+          label="Text input"
+          placeholder="Some text"
+          onChange={e => setInp(e.target.value)}
+        />
+        <Input
+          id="datalist-input"
+          label="Datalist"
+          list="ice-cream-flavors"
+          placeholder="Input new or select option"
+        />
         <datalist id="ice-cream-flavors">
           <option value="Chocolate" />
           <option value="Coconut" />
@@ -25,7 +41,12 @@ const Forms = () => {
           <option value="Strawberry" />
           <option value="Vanilla" />
         </datalist>
-        <Input id="number-input" type="number" label="Number input" placeholder="Some number" />
+        <Input
+          id="number-input"
+          type="number"
+          label="Number input"
+          placeholder="Some number"
+        />
         <Input
           id="email-input"
           type="email"
@@ -33,10 +54,29 @@ const Forms = () => {
           placeholder="Expecting email"
           note="What is a difference between text and email input?"
         />
-        <Input id="password-input" type="password" label="Password input" placeholder="Wachit!" />
-        <Input id="date-input" type="date" label="Date input" note="Date in month/day/year format" />
-        <Input id="time-input" type="time" label="Time input" note="12-houre time format" />
-        <Input id="datetime-input" type="datetime-local" label="Datetime input" />
+        <Input
+          id="password-input"
+          type="password"
+          label="Password input"
+          placeholder="Wachit!"
+        />
+        <Input
+          id="date-input"
+          type="date"
+          label="Date input"
+          note="Date in month/day/year format"
+        />
+        <Input
+          id="time-input"
+          type="time"
+          label="Time input"
+          note="12-houre time format"
+        />
+        <Input
+          id="datetime-input"
+          type="datetime-local"
+          label="Datetime input"
+        />
         <Select id="select-input" label="Select">
           <option>Red</option>
           <option>Green</option>
@@ -57,8 +97,16 @@ const Forms = () => {
           <ToggleToken id="ttc-blue">Blue</ToggleToken>
         </div>
         <div className="flex">
-          <ToggleTokens className="flex mt-2" type="checkbox" name="maybe-simpler">
-            {[['maybe-simpler-red', 'Red'], ['maybe-simpler-green', 'Green'], ['maybe-simpler-blue', 'Blue']]}
+          <ToggleTokens
+            className="flex mt-2"
+            type="checkbox"
+            name="maybe-simpler"
+          >
+            {[
+              ["maybe-simpler-red", "Red"],
+              ["maybe-simpler-green", "Green"],
+              ["maybe-simpler-blue", "Blue"]
+            ]}
           </ToggleTokens>
         </div>
         <h3 className="mt-2">Radios</h3>
@@ -74,13 +122,14 @@ const Forms = () => {
           </ToggleToken>
         </div>
         <h3 className="mt-2">Switches</h3>
-        <div className="flex">
-          <div class="switch">
-            <input type="checkbox" id="switch" class="switch-input" />
-            <label for="switch" class="switch-label">
+        <div className="flex column">
+          <div class="switch mb-3">
+            <input type="checkbox" id="ex-form-switch" class="switch-input" />
+            <label for="ex-form-switch" class="switch-label">
               Toggle
             </label>
           </div>
+          <Switch id="switch-component">From component</Switch>
         </div>
       </section>
       <section className="my-3">
@@ -91,7 +140,11 @@ const Forms = () => {
               <em>this part of form is emphasized for some reason</em>
             </legend>
             <div className="flex column">
-              <Input id="text-input-2" label="Text input" placeholder="Some text" />
+              <Input
+                id="text-input-2"
+                label="Text input"
+                placeholder="Some text"
+              />
               <Select id="select-input-2" label="Select">
                 <option>Red</option>
                 <option>Green</option>
@@ -114,7 +167,7 @@ const Forms = () => {
         </form>
       </section>
     </div>
-  )
-}
+  );
+};
 
-export default Forms
+export default Forms;

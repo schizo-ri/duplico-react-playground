@@ -1,42 +1,120 @@
-import React, { useState } from 'react'
-import { ToggleToken } from '../components/Form'
+import React, { useEffect, useReducer, useContext } from 'react'
+import { Transition } from 'react-transition-group'
+import { Circle, Plus } from '../components/SVGs'
 import { nodes } from './tree-object'
 import '../styles/Tree.css'
 
-const NodeItem = props => (
+// Transition states
+const duration = 300
+const defaultStyle = {
+  transition: `all ${duration}ms ease`,
+}
+const transitionStyles = {
+  entering: { opacity: 1 },
+  entered: { opacity: 1 },
+  exiting: {
+    maxHeight: 0,
+    transform: 'scale(0)',
+    opacity: 0,
+    visibility: 'hidden',
+  },
+  exited: {
+    maxHeight: 0,
+    transform: 'scale(0)',
+    opacity: 0,
+    visibility: 'hidden',
+  },
+}
+// Context
+const initialState = {
+  collapsed: [306],
+  nodeTree: [],
+}
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'collapsed':
+      return { ...state, collapsed: action.payload }
+    case 'nodeTree':
+      return { ...state, nodeTree: action.payload }
+    default:
+      break
+  }
+}
+const TreeContext = React.createContext(null)
+// Tree node item component
+const NodeItem = ({ id, name, children, ...props }) => (
   <div className={['node-item', props.className].join(' ')}>
-    <input id={props.id} type="radio" name={`${props.name || props.id}`} />
-    <label htmlFor={`${props.id}`}>
-      <FolderIcon />
-      {props.children}
-    </label>
+    <input id={id} type="radio" name={name} {...props} />
+    <label htmlFor={id}>{children}</label>
   </div>
 )
-
+// draw tree based on object tree
 const Items = ({ nodes, ...props }) => {
+  const { state, dispatch } = useContext(TreeContext)
+
+  const handleCollapse = (collapse, node) => {
+    collapse
+      ? dispatch({ type: 'collapsed', payload: [...state.collapsed, node] })
+      : dispatch({
+          type: 'collapsed',
+          payload: state.collapsed.filter(n => n !== node),
+        })
+  }
+
   return nodes.reduce((list, node) => {
     if (node.children.length > 0) {
       return [
         ...list,
         <li key={node.id}>
-          <div className="flex aic">
-            {/* <input type="radio" className="btn-text" value={node.name} /> */}
-            <NodeItem id={node.id} type="radio" name="node-tree">
+          <div className="flex aic item-box">
+            <Plus
+              size="0.75rem"
+              fill="var(--gray2)"
+              init={state.collapsed.includes(node.id)}
+              clickAction={e =>
+                handleCollapse(!state.collapsed.includes(node.id), node.id)
+              }
+            />
+            <NodeItem
+              id={`node-${node.id}`}
+              className="ml-2"
+              type="radio"
+              name="node-tree"
+              defaultChecked={node.parent === null}
+            >
               {node.name}
             </NodeItem>
           </div>
-          <ul>
-            <Items nodes={node.children} />
-          </ul>
+          <Transition
+            in={!state.collapsed.includes(node.id)}
+            timeout={duration}
+            // onEnter={node => node.classList.remove('d-none')}
+            // onExit={node => node.classList.add('d-none')}
+          >
+            {state => (
+              <ul
+                style={{
+                  ...defaultStyle,
+                  ...transitionStyles[state],
+                }}
+              >
+                <Items nodes={node.children} />
+              </ul>
+            )}
+          </Transition>
         </li>,
       ]
     }
     return [
       ...list,
       <li key={node.id}>
-        <div className="flex aic">
-          {/* <input type="radio" className="btn-text" value={node.name} /> */}
-          <NodeItem id={node.id} type="radio" name="node-tree">
+        <div className="flex aic item-box">
+          <Circle
+            size="0.5rem"
+            fill="var(--gray2)"
+            additionalStyle={{ margin: '0 0.125rem' }}
+          />
+          <NodeItem id={node.id} className="ml-2" type="radio" name="node-tree">
             {node.name}
           </NodeItem>
         </div>
@@ -55,98 +133,24 @@ const buildObjectTree = (arr, parent = null) =>
   }, [])
 
 const Tree = props => {
-  return (
-    <div className="tree">
-      {
-        <ul>
-          <Items nodes={buildObjectTree(nodes, null)} />
-        </ul>
-      }
-    </div>
-  )
-}
+  // setNodeTree would be used in fetch
+  const [state, dispatch] = useReducer(reducer, initialState)
 
-function FolderIcon(props) {
+  useEffect(() => {
+    dispatch({ type: 'nodeTree', payload: buildObjectTree(nodes, null) })
+  }, [])
+
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 155.466 143.861"
-      className="node-icon"
-    >
-      <g transform="translate(-55.454 -90.87)">
-        <circle cx="89.717" cy="200.469" r="23.509" strokeWidth="13.507" />
-        <circle cx="133.188" cy="125.133" r="23.509" strokeWidth="13.507" />
-        <circle cx="176.658" cy="200.469" r="23.509" strokeWidth="13.507" />
-        <path
-          d="M115.18 141.502l-19.895 34.46M151.193 141.502l19.895 34.46"
-          strokeWidth="11.081"
-        />
-      </g>
-    </svg>
+    <TreeContext.Provider value={{ state, dispatch }}>
+      <div className="tree">
+        {
+          <ul>
+            <Items nodes={state.nodeTree} />
+          </ul>
+        }
+      </div>
+    </TreeContext.Provider>
   )
 }
 
 export default Tree
-
-{
-  /* <svg
-xmlns="http://www.w3.org/2000/svg"
-viewBox="0 0 147.467 135.861"
-className="node-icon"
->
-<g transform="translate(-59.454 -94.871)" fill="none" stroke="#000">
-  <circle cx="89.717" cy="200.469" r="23.509" strokeWidth="13.507" />
-  <circle cx="133.188" cy="125.133" r="23.509" strokeWidth="13.507" />
-  <circle cx="176.658" cy="200.469" r="23.509" strokeWidth="13.507" />
-  <path
-    d="M115.18 141.502l-19.895 34.46M151.193 141.502l19.895 34.46"
-    strokeWidth="11.081"
-  />
-</g>
-</svg> */
-}
-{
-  /* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 147.467 135.861" className="node-icon">
-<g transform="translate(-59.454 -94.871)">
-  <circle cx="92.012" cy="198.174" r="27.848" />
-  <circle cx="133.187" cy="127.429" r="27.848" />
-  <circle cx="174.363" cy="198.174" r="27.848" />
-  <path
-    d="M96.272 180.5l31.946-45.623M138.156 134.878L170.1 180.5"
-    fill="none"
-    stroke="#000"
-    strokeWidth="10.403"
-  />
-</g>
-</svg> */
-}
-{
-  /* <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 147.467 135.861"
-      className="node-icon"
-    >
-      <g transform="translate(-59.454 -94.871)">
-        <circle cx="92.012" cy="198.174" r="27.848" strokeWidth="7.421" />
-        <circle cx="133.187" cy="127.429" r="27.848" strokeWidth="7.421" />
-        <circle cx="174.363" cy="198.174" r="27.848" strokeWidth="7.421" />
-        <path d="M115.772 152.52l-17.155 17.156" strokeWidth="8.087" />
-        <path d="M167.86 169.662l-17.242-17.241" strokeWidth="8.128" />
-      </g>
-    </svg> */
-}
-
-// const buildJSXTree = (arr, parent) => {
-//   return arr.reduce((agg, e) => {
-//     if (e.parent_node == parent) {
-//       agg.concat(withChildren(e.name))
-//       agg.concat(tree(arr, e.id))
-//       agg.concat(`</ul></li>`)
-//       return agg
-//     } else {
-//       agg.concat(noChild(e.name))
-//       return agg
-//     }
-//     // return agg
-//   }, '')
-// }

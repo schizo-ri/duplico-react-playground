@@ -46,3 +46,7 @@
   stroke: var(--gray);
   fill: transparent;
 }
+
+/* .collapsed {
+  transition: height 250ms;
+} */

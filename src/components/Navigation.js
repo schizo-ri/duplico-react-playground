@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Dropdown } from '../components/Button'
 import '../styles/Navigation.css'
 import '../styles/Button.css'
+import '../styles/Form.css'
 
 const THEME_SWITCH = {
   'theme-cold': 'theme-warm',

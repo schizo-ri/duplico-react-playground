@@ -1,17 +1,37 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { Transition } from 'react-transition-group'
 
 const Ux2297 = props => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 135.467 135.467">
     <g transform="translate(0 -161.533)">
-      <circle cx="67.733" cy="229.267" r="59.184" fill="none" stroke={props.stroke} strokeWidth="8.467" />
-      <path stroke={props.stroke} strokeWidth=".149" d="M97.668 265.082l5.88-5.88-65.749-65.75-5.88 5.88z" />
-      <path stroke={props.stroke} strokeWidth=".149" d="M31.918 259.2l5.881 5.882 65.75-65.75-5.881-5.881z" />
+      <circle
+        cx="67.733"
+        cy="229.267"
+        r="59.184"
+        fill="none"
+        stroke={props.stroke}
+        strokeWidth="8.467"
+      />
+      <path
+        stroke={props.stroke}
+        strokeWidth=".149"
+        d="M97.668 265.082l5.88-5.88-65.749-65.75-5.88 5.88z"
+      />
+      <path
+        stroke={props.stroke}
+        strokeWidth=".149"
+        d="M31.918 259.2l5.881 5.882 65.75-65.75-5.881-5.881z"
+      />
     </g>
   </svg>
 )
 
 const AddCol = props => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 135.467 135.467" style={props.style}>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 135.467 135.467"
+    style={props.style}
+  >
     <g transform="translate(0 -161.533)">
       <rect
         width="111.125"
@@ -44,7 +64,14 @@ const AddCol = props => (
         stroke={props.stroke}
         strokeWidth="6.852"
       />
-      <circle cx="-229.699" cy="107.253" r="13.229" transform="rotate(-90)" stroke="#fff" strokeWidth="2.117" />
+      <circle
+        cx="-229.699"
+        cy="107.253"
+        r="13.229"
+        transform="rotate(-90)"
+        stroke="#fff"
+        strokeWidth="2.117"
+      />
       <rect
         width=".269"
         height="19.848"
@@ -71,7 +98,11 @@ const AddCol = props => (
 )
 
 const AddRow = props => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 135.467 135.467" style={props.style}>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 135.467 135.467"
+    style={props.style}
+  >
     <g transform="translate(0 -161.533)">
       <rect
         width="111.125"
@@ -101,7 +132,13 @@ const AddRow = props => (
         stroke={props.stroke}
         strokeWidth="6.852"
       />
-      <circle cx="67.733" cy="268.69" r="13.229" stroke={props.stroke} strokeWidth="2.117" />
+      <circle
+        cx="67.733"
+        cy="268.69"
+        r="13.229"
+        stroke={props.stroke}
+        strokeWidth="2.117"
+      />
       <rect
         width=".269"
         height="19.848"
@@ -147,4 +184,105 @@ function FolderIcon(props) {
   )
 }
 
-export { Ux2297, AddCol, AddRow, FolderIcon }
+function Plus({
+  size = '1rem',
+  init = true,
+  fill = 'var(--black)',
+  duration = 300,
+  clickAction = null,
+  ...props
+}) {
+  const [collapsed, setCollapsed] = useState(init)
+  const svgStyle = {
+    width: size,
+    height: size,
+  }
+  const rectStyle = {
+    transition: `all ${duration}ms ease`,
+    transformOrigin: '50% 50%',
+    fill: fill,
+  }
+  const transitionHorizontal = {
+    exiting: { transform: 'scaleY(0)' },
+    exited: { transform: 'scaleY(0)' },
+  }
+  const transitionVertical = {
+    exiting: { transform: 'rotate(90deg)' },
+    exited: { transform: 'rotate(90deg)' },
+  }
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 100 100"
+      style={svgStyle}
+      className="btn-text"
+      onClick={() => {
+        setCollapsed(!collapsed)
+        clickAction && clickAction.call(null)
+      }}
+    >
+      <Transition in={collapsed} timeout={duration}>
+        {state => (
+          <rect
+            style={{ ...rectStyle, ...transitionVertical[state] }}
+            x="37.5"
+            width="25"
+            height="100"
+            rx="10"
+            ry="10"
+          />
+        )}
+      </Transition>
+      <Transition in={collapsed} timeout={duration}>
+        {state => (
+          <rect
+            style={{ ...rectStyle, ...transitionHorizontal[state] }}
+            y="37.5"
+            width="100"
+            height="25"
+            rx="10"
+            ry="10"
+          />
+        )}
+      </Transition>
+    </svg>
+  )
+}
+
+function Circle({
+  size = '1rem',
+  fill = 'var(--black)',
+  additionalStyle = {},
+  clickAction = null,
+  ...props
+}) {
+  const svgStyle = {
+    width: size,
+    height: size,
+    ...additionalStyle,
+  }
+  const circleStyle = {
+    transformOrigin: '50% 50%',
+    fill: fill,
+  }
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 100 100"
+      style={svgStyle}
+      onClick={() => {
+        clickAction && clickAction.call(null)
+      }}
+    >
+      <circle
+        style={circleStyle}
+        cx="50"
+        cy="247"
+        r="50"
+        transform="translate(0 -197)"
+      />
+    </svg>
+  )
+}
+
+export { Ux2297, AddCol, AddRow, FolderIcon, Plus, Circle }

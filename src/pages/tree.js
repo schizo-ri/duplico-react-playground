@@ -1,94 +1,120 @@
-import React, { useState } from 'react'
+import React, { useEffect, useReducer, useContext } from 'react'
 import { Transition } from 'react-transition-group'
-import { FolderIcon } from '../components/SVGs'
-import { _arradd, _arrdel } from '../utils'
-// import { ToggleToken } from '../components/Form'
+import { Circle, Plus } from '../components/SVGs'
 import { nodes } from './tree-object'
 import '../styles/Tree.css'
 
+// Transition states
 const duration = 300
-
 const defaultStyle = {
-  transition: `all ${duration}ms ease`
+  transition: `all ${duration}ms ease`,
 }
-
 const transitionStyles = {
-  entering: { height: 'auto', opacity: 1 },
-  entered: { height: 'auto', opacity: 1 },
-  exiting: { height: 0, opacity: 0 },
-  exited: { height: 0, opacity: 0 }
+  entering: { opacity: 1 },
+  entered: { opacity: 1 },
+  exiting: {
+    maxHeight: 0,
+    transform: 'scale(0)',
+    opacity: 0,
+    visibility: 'hidden',
+  },
+  exited: {
+    maxHeight: 0,
+    transform: 'scale(0)',
+    opacity: 0,
+    visibility: 'hidden',
+  },
 }
-
-const NodeItem = props => (
+// Context
+const initialState = {
+  collapsed: [306],
+  nodeTree: [],
+}
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'collapsed':
+      return { ...state, collapsed: action.payload }
+    case 'nodeTree':
+      return { ...state, nodeTree: action.payload }
+    default:
+      break
+  }
+}
+const TreeContext = React.createContext(null)
+// Tree node item component
+const NodeItem = ({ id, name, children, ...props }) => (
   <div className={['node-item', props.className].join(' ')}>
-    <input
-      id={props.id}
-      type="radio"
-      name={`${props.name || props.id}`}
-      onChange={props.onChange || null}
-    />
-    <label htmlFor={`${props.id}`}>
-      <FolderIcon />
-      {props.children}
-    </label>
+    <input id={id} type="radio" name={name} {...props} />
+    <label htmlFor={id}>{children}</label>
   </div>
 )
-
+// draw tree based on object tree
 const Items = ({ nodes, ...props }) => {
-  const [collapsed, setCollapsed] = useState([306])
+  const { state, dispatch } = useContext(TreeContext)
 
   const handleCollapse = (collapse, node) => {
     collapse
-      ? setCollapsed([...collapsed, node])
-      : setCollapsed(collapsed.filter(n => n === node))
+      ? dispatch({ type: 'collapsed', payload: [...state.collapsed, node] })
+      : dispatch({
+          type: 'collapsed',
+          payload: state.collapsed.filter(n => n !== node),
+        })
   }
 
   return nodes.reduce((list, node) => {
     if (node.children.length > 0) {
       return [
         ...list,
-        <li key={node.id}>
-          <div className="flex aic">
-            {/* <input type="radio" className="btn-text" value={node.name} /> */}
+        <li key={node.id
+          <div className="flex aic item-box">
+            <Plus
+              size="0.75rem"
+              fill="var(--gray2)"
+              init={state.collapsed.includes(node.id)}
+              clickAction={e =>
+                handleCollapse(!state.collapsed.includes(node.id), node.id)
+              }
+            />
             <NodeItem
-              id={node.id}
+              id={`node-${node.id}`}
+              className="ml-2"
               type="radio"
               name="node-tree"
-              onChange={e =>
-                handleCollapse(!collapsed.includes(node.id), node.id)
-              }
+              defaultChecked={node.parent === null}
             >
               {node.name}
             </NodeItem>
           </div>
-          <Transition in={!collapsed.includes(node.id)} timeout={duration}>
+          <Transition
+            in={!state.collapsed.includes(node.id)}
+            timeout={duration}
+            // onEnter={node => node.classList.remove('d-none')}
+            // onExit={node => node.classList.add('d-none')}
+          >
             {state => (
               <ul
                 style={{
                   ...defaultStyle,
-                  ...transitionStyles[state]
+                  ...transitionStyles[state],
                 }}
               >
                 <Items nodes={node.children} />
               </ul>
             )}
           </Transition>
-        </li>
+        </li>,
       ]
     }
     return [
       ...list,
       <li key={node.id}>
-        <div className="flex aic">
-          {/* <input type="radio" className="btn-text" value={node.name} /> */}
-          <NodeItem
-            id={node.id}
-            type="radio"
-            name="node-tree"
-            onChange={e =>
-              handleCollapse(!collapsed.includes(node.id), node.id)
-            }
-          >
+        <div className="flex aic item-box">
+          <Circle
+            size="0.5rem"
+            fill="var(--gray2)"
+            additionalStyle={{ margin: '0 0.125rem' }}
+          />
+          <NodeItem id={node.id} className="ml-2" type="radio" name="node-tree">
             {node.name}
           </NodeItem>
         </div>
@@ -107,15 +133,23 @@ const buildObjectTree = (arr, parent = null) =>
   }, [])
 
 const Tree = props => {
-  const [nodeTree, setNodeTree] = useState(buildObjectTree(nodes, null))
+  // setNodeTree would be used in fetch
+  const [state, dispatch] = useReducer(reducer, initialState)
+
+  useEffect(() => {
+    dispatch({ type: 'nodeTree', payload: buildObjectTree(nodes, null) })
+  }, [])
+
   return (
-    <div className="tree">
-      {
-        <ul>
-          <Items nodes={nodeTree} />
-        </ul>
-      }
-    </div>
+    <TreeContext.Provider value={{ state, dispatch }}>
+      <div className="tree">
+        {
+          <ul>
+            <Items nodes={state.nodeTree} />
+          </ul>
+        }
+      </div>
+    </TreeContext.Provider>
   )
 }
 

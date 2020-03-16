@@ -1,9 +1,9 @@
-import React from "react";
-import { Button, Dropdown } from "../components/Button";
+import React from 'react'
+import { Button, Dropdown } from '../components/Button'
 
 const Buttons = () => {
   return (
-    <div style={{ padding: "0 1rem" }}>
+    <div style={{ padding: '0 1rem' }}>
       <h1>Buttons</h1>
       <section>
         <h2>Standard</h2>
@@ -82,7 +82,7 @@ const Buttons = () => {
         </div>
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default Buttons;
+export default Buttons

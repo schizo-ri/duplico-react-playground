@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer, useContext } from 'react'
 import { Transition } from 'react-transition-group'
 import { Circle, Plus } from '../components/SVGs'
-import { nodes } from './tree-object'
+import { nodes, elements } from './tree-object'
 import '../styles/Tree.css'
 
 // Transition states
@@ -29,6 +29,8 @@ const transitionStyles = {
 const initialState = {
   collapsed: [306],
   nodeTree: [],
+  // this will go to store context
+  selectedNode: null,
 }
 const reducer = (state, action) => {
   switch (action.type) {
@@ -36,6 +38,8 @@ const reducer = (state, action) => {
       return { ...state, collapsed: action.payload }
     case 'nodeTree':
       return { ...state, nodeTree: action.payload }
+    case 'selectNode':
+      return { ...state, selectedNode: action.payload }
     default:
       break
   }
@@ -48,17 +52,33 @@ const NodeItem = ({ id, name, children, ...props }) => (
     <label htmlFor={id}>{children}</label>
   </div>
 )
+// Element item component
+const ElementItem = ({ id, name, children, ...props }) => (
+  <div className={['element-item', props.className].join(' ')}>
+    <input id={id} type="radio" name={name} {...props} />
+    <label htmlFor={id}>{children}</label>
+  </div>
+)
 // draw tree based on object tree
 const Items = ({ nodes, ...props }) => {
   const { state, dispatch } = useContext(TreeContext)
 
-  const handleCollapse = (collapse, node) => {
+  const handleCollapse = (collapse, nodeId) => e => {
     collapse
-      ? dispatch({ type: 'collapsed', payload: [...state.collapsed, node] })
+      ? dispatch({ type: 'collapsed', payload: [...state.collapsed, nodeId] })
       : dispatch({
           type: 'collapsed',
-          payload: state.collapsed.filter(n => n !== node),
+          payload: state.collapsed.filter(n => n !== nodeId),
         })
+  }
+
+  const handleChange = (collapse, nodeId) => e => {
+    dispatch({ type: 'selectNode', payload: nodeId })
+    !collapse &&
+      dispatch({
+        type: 'collapsed',
+        payload: state.collapsed.filter(n => n !== nodeId),
+      })
   }
 
   return nodes.reduce((list, node) => {
@@ -71,9 +91,10 @@ const Items = ({ nodes, ...props }) => {
               size="0.75rem"
               fill="var(--gray2)"
               init={state.collapsed.includes(node.id)}
-              clickAction={e =>
-                handleCollapse(!state.collapsed.includes(node.id), node.id)
-              }
+              clickAction={handleCollapse(
+                !state.collapsed.includes(node.id),
+                node.id
+              )}
             />
             <NodeItem
               id={`node-${node.id}`}
@@ -81,6 +102,10 @@ const Items = ({ nodes, ...props }) => {
               type="radio"
               name="node-tree"
               defaultChecked={node.parent === null}
+              onChange={handleChange(
+                !state.collapsed.includes(node.id),
+                node.id
+              )}
             >
               {node.name}
             </NodeItem>
@@ -88,11 +113,10 @@ const Items = ({ nodes, ...props }) => {
           <Transition
             in={!state.collapsed.includes(node.id)}
             timeout={duration}
-            // onEnter={node => node.classList.remove('d-none')}
-            // onExit={node => node.classList.add('d-none')}
           >
             {state => (
               <ul
+                className="node-tree-branch"
                 style={{
                   ...defaultStyle,
                   ...transitionStyles[state],
@@ -114,7 +138,13 @@ const Items = ({ nodes, ...props }) => {
             fill="var(--gray2)"
             additionalStyle={{ margin: '0 0.125rem' }}
           />
-          <NodeItem id={node.id} className="ml-2" type="radio" name="node-tree">
+          <NodeItem
+            id={node.id}
+            className="ml-2"
+            type="radio"
+            name="node-tree"
+            onChange={handleChange(!state.collapsed.includes(node.id), node.id)}
+          >
             {node.name}
           </NodeItem>
         </div>
@@ -142,12 +172,37 @@ const Tree = props => {
 
   return (
     <TreeContext.Provider value={{ state, dispatch }}>
-      <div className="tree">
-        {
+      <div id="nei-grid">
+        <div className="nodes-tree">
+          {
+            <ul>
+              <Items nodes={state.nodeTree} />
+            </ul>
+          }
+        </div>
+        <div className="elements-list">
           <ul>
-            <Items nodes={state.nodeTree} />
+            {elements
+              .filter(e => e.node_id === state.selectedNode)
+              .map((e, idx) => (
+                <li key={e.id}>
+                  <ElementItem
+                    id={`element-${e.id}`}
+                    className="ml-2"
+                    type="radio"
+                    name="element-list"
+                    defaultChecked={idx === 0}
+                  >
+                    {e.name}
+                  </ElementItem>
+                </li>
+              ))}
           </ul>
-        }
+        </div>
+        <div className="select-info">
+          {state.selectedNode &&
+            JSON.stringify(nodes.filter(n => n.id === state.selectedNode))}
+        </div>
       </div>
     </TreeContext.Provider>
   )

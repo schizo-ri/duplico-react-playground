@@ -1,23 +1,23 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 import {
   ToggleToken,
   ToggleTokens,
   Input,
   Select,
-  Switch
-} from "../components/Form";
-import { Button } from "../components/Button";
+  Switch,
+} from '../components/Form'
+import { Button } from '../components/Button'
 
 const Forms = () => {
-  const [inp, setInp] = useState("");
+  const [inp, setInp] = useState('')
 
   const handleSubmit = e => {
-    e.preventDefault();
-    console.log(inp);
-  };
+    e.preventDefault()
+    console.log(inp)
+  }
 
   return (
-    <div style={{ width: "600px", padding: "0 1rem" }}>
+    <div style={{ width: '600px', padding: '0 1rem' }}>
       <h1>Forms</h1>
       <form action="" onSubmit={handleSubmit}>
         <h2>Inputs</h2>
@@ -103,9 +103,9 @@ const Forms = () => {
             name="maybe-simpler"
           >
             {[
-              ["maybe-simpler-red", "Red"],
-              ["maybe-simpler-green", "Green"],
-              ["maybe-simpler-blue", "Blue"]
+              ['maybe-simpler-red', 'Red'],
+              ['maybe-simpler-green', 'Green'],
+              ['maybe-simpler-blue', 'Blue'],
             ]}
           </ToggleTokens>
         </div>
@@ -123,9 +123,13 @@ const Forms = () => {
         </div>
         <h3 className="mt-2">Switches</h3>
         <div className="flex column">
-          <div class="switch mb-3">
-            <input type="checkbox" id="ex-form-switch" class="switch-input" />
-            <label for="ex-form-switch" class="switch-label">
+          <div className="switch mb-3">
+            <input
+              type="checkbox"
+              id="ex-form-switch"
+              className="switch-input"
+            />
+            <label htmlFor="ex-form-switch" className="switch-label">
               Toggle
             </label>
           </div>
@@ -167,7 +171,7 @@ const Forms = () => {
         </form>
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default Forms;
+export default Forms

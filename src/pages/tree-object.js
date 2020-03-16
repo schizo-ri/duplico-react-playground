@@ -48,4 +48,51 @@ const nodes = [
   },
 ]
 
-export { nodes }
+const elements = [
+  {
+    id: 300,
+    node_id: 306,
+    shared: false,
+    uuid: 'de042a82-6e57-40cd-ad8a-159e31a1360f',
+    name: '+RO.BAZ1',
+    code: '+RO.BAZ1',
+    category: 'Ormari',
+    model: 'Schrack',
+    manufacturer: null,
+  },
+  {
+    id: 301,
+    node_id: 306,
+    shared: false,
+    uuid: 'de042a82-6e57-40cd-ad8a-159e31a1360f',
+    name: '+RO.BAZ2',
+    code: '+RO.BAZ2',
+    category: 'Ormari',
+    model: 'Schrack',
+    manufacturer: null,
+  },
+  {
+    id: 302,
+    node_id: 307,
+    shared: false,
+    uuid: 'de042a82-6e57-40cd-ad8a-159e31a1360f',
+    name: '+DAF.BAA',
+    code: '+DAF.BAA',
+    category: 'Ormari',
+    model: 'Schrack',
+    manufacturer: null,
+  },
+  {
+    id: 303,
+    node_id: 307,
+    shared: false,
+    uuid: 'de042a82-6e57-40cd-ad8a-159e31a1360f',
+    name: '+DAF.BAE',
+    code: '+DAF.BAE',
+    category: 'Ormari',
+    model: 'Schrack',
+    manufacturer: null,
+  },
+]
+
+export { nodes, elements }

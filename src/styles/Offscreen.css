@@ -1,0 +1,12 @@
+@media only screen and (max-width: 519px) {
+  .dialog-body {
+    border-radius: 0;
+  }
+}
+@media only screen and (min-width: 520px) {
+  .dialog-body {
+    margin: var(--gap);
+    width: 24rem;
+    border-radius: var(--radius);
+  }
+}

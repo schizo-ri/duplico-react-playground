@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useLayoutEffect } from 'react'
 import { Transition } from 'react-transition-group'
 
 const Ux2297 = props => (
@@ -196,6 +196,7 @@ function Plus({
   const svgStyle = {
     width: size,
     height: size,
+    flexShrink: 0,
   }
   const rectStyle = {
     transition: `all ${duration}ms ease`,
@@ -210,15 +211,20 @@ function Plus({
     exiting: { transform: 'rotate(90deg)' },
     exited: { transform: 'rotate(90deg)' },
   }
+
+  useLayoutEffect(() => {
+    setCollapsed(init)
+  }, [init])
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 100 100"
       style={svgStyle}
       className="btn-text"
-      onClick={() => {
-        setCollapsed(!collapsed)
-        clickAction && clickAction.call(null)
+      onClick={e => {
+        // setCollapsed(!collapsed)
+        clickAction && clickAction.call(null, e)
       }}
     >
       <Transition in={collapsed} timeout={duration}>
@@ -259,6 +265,7 @@ function Circle({
   const svgStyle = {
     width: size,
     height: size,
+    flexShrink: 0,
     ...additionalStyle,
   }
   const circleStyle = {

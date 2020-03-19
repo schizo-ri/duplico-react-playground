@@ -85,7 +85,7 @@ const Items = ({ nodes, ...props }) => {
     if (node.children.length > 0) {
       return [
         ...list,
-        <li key={node.id}>
+        <li key={node.id
           <div className="flex aic item-box">
             <Plus
               size="0.75rem"
@@ -148,7 +148,7 @@ const Items = ({ nodes, ...props }) => {
             {node.name}
           </NodeItem>
         </div>
-      </li>,
+      </li>
     ]
   }, [])
 }

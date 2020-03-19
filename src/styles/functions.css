@@ -163,6 +163,9 @@
 .basis-half {
   flex: 1 1 calc(var(--width-mobile) / 2);
 }
+.overflow-hidden {
+  overflow: hidden;
+}
 .hidden {
   visibility: hidden;
 }

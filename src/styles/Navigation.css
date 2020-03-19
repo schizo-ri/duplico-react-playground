@@ -1,7 +1,8 @@
 .navbar {
   position: sticky;
   top: 0;
-  background: linear-gradient(to bottom, var(--brand) 0%, var(--brand3) 100%);
+  /* background: linear-gradient(to bottom, var(--brand) 0%, var(--brand3) 100%); */
+  background-color: var(--brand3);
   font-size: inherit;
   z-index: 1000;
   height: min-content;
@@ -82,7 +83,7 @@
   margin-right: var(--gap);
 }
 .steppers::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 50%;
   border: 0;

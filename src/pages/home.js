@@ -15,17 +15,99 @@ const Home = () => (
       goal for this pages. I don't even like general solutions for grids and
       responsivness, they are never enough. Just KISS people!
     </p>
-    <div className="shadow-lg bg-white mb-3 rounded p-2 mw-mobile">
-      <h3>Things to do</h3>
-      <ul>
-        <li>a11Y</li>
-        <li>Trim unused CSS and add more utility classes</li>
-        <li>Integrated Input warnings (like notes)</li>
-        <li>Elements inside Inputs like 'show password'</li>
-        <li>Switches alongside toggles maybe</li>
-        <li>Light/dark theme detect and switch</li>
-      </ul>
-    </div>
+    <section
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fill, var(--width-mobile))',
+        gridGap: 'var(--gap)',
+        alignItems: 'start',
+      }}
+    >
+      <div className="shadow-lg bg-white mb-3 mr-3 rounded p-3 mw-mobile">
+        <h3>Things to do</h3>
+        <ul className="ul">
+          <li>a11Y</li>
+          <li>
+            Add missing elements. Look for other collections like Bootstrap or
+            Bulma...
+          </li>
+          <li>
+            Trim unused CSS and add more utility classes. Also general
+            systematisation
+            <ul className="ul">
+              <li>Revamp navigaiton with anchors</li>
+            </ul>
+          </li>
+          <li>Integrated Input warnings (like notes)</li>
+          <li>Elements inside Inputs like 'show password'</li>
+        </ul>
+      </div>
+      <div className="shadow-lg bg-white mb-3 mr-3 rounded p-3 mw-mobile">
+        <h3>Typography</h3>
+        <ul className="ul">
+          <li>
+            this list seems too indented. It already has bullets so there is no
+            need to do it so obvious
+          </li>
+          <li>showcase more elements</li>
+        </ul>
+      </div>
+      <div className="shadow-lg bg-white mb-3 mr-3 rounded p-3 mw-mobile">
+        <h3>Buttons</h3>
+        <ul className="ul">
+          <li>unite with forms, they are related</li>
+          <li>button groups</li>
+          <li>button icons (see in bookmarks for ideas)</li>
+          <li>floating buttons</li>
+          <li>floating buttons + exand with dropdown (speed dial)</li>
+        </ul>
+      </div>
+      <div className="shadow-lg bg-white mb-3 mr-3 rounded p-3 mw-mobile">
+        <h3>Forms</h3>
+        <ul className="ul">
+          <li>integrated Input warnings (like notes)</li>
+          <li>elements inside Inputs like 'show password'</li>
+          <li>radio toggle shown as group to act like toggle buttons</li>
+        </ul>
+      </div>
+      <div className="shadow-lg bg-white mb-3 mr-3 rounded p-3 mw-mobile">
+        <h3>Navigation</h3>
+        <ul className="ul">
+          <li>revisit menu collapse</li>
+          <li>anchor navigation</li>
+          <li>revamp current navigaiton with anchors</li>
+          <li>revisit tabs. consider not touching DOM. consider animationa</li>
+          <li>stepper sliding animation with transitions</li>
+          <li>stepper, steps with success and error/warning indicators</li>
+        </ul>
+      </div>
+      <div className="shadow-lg bg-white mb-3 mr-3 rounded p-3 mw-mobile">
+        <h3>Tree view</h3>
+        <ul className="ul">
+          <li>revisit style</li>
+        </ul>
+      </div>
+      <div className="shadow-lg bg-white mb-3 mr-3 rounded p-3 mw-mobile">
+        <h3>Cards</h3>
+        <ul className="ul">
+          <li>simplified cards, don't overdo it</li>
+          <li>
+            break to components
+            <ul className="ul">
+              <li>simple card, padding and shadow, nothing else</li>
+              <li>card picture component: position top, left, right</li>
+              <li>card title: emphasize with diffrent background color</li>
+              <li>
+                card footer: emphasize with diffrent background color and
+                expecting action buttons
+              </li>
+            </ul>
+          </li>
+          <li>stepper, steps with success and error/warning indicators</li>
+          <li>profile pic component</li>
+        </ul>
+      </div>
+    </section>
     <h3>Cards</h3>
     <div
       style={{
@@ -86,7 +168,7 @@ const Home = () => (
         </div>
       </div>
       <div className="shadow-lg bg-white mb-3">
-        <header className="flex aic bg-light rounded-top">
+        <header className="flex aic p-2 rounded-top">
           <ProfilePicUpload pic={false} id="user-1" />
           <h3 className="ml-3">Person Left</h3>
           <Button addClass="btn-empty ml-auto menu-dots" />

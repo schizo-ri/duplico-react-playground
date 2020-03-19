@@ -25,7 +25,7 @@ const Home = () => (
     >
       <div className="shadow-lg bg-white mb-3 mr-3 rounded p-3 mw-mobile">
         <h3>Things to do</h3>
-        <ul>
+        <ul className="ul">
           <li>a11Y</li>
           <li>
             Add missing elements. Look for other collections like Bootstrap or
@@ -34,7 +34,7 @@ const Home = () => (
           <li>
             Trim unused CSS and add more utility classes. Also general
             systematisation
-            <ul>
+            <ul className="ul">
               <li>Revamp navigaiton with anchors</li>
             </ul>
           </li>
@@ -44,7 +44,7 @@ const Home = () => (
       </div>
       <div className="shadow-lg bg-white mb-3 mr-3 rounded p-3 mw-mobile">
         <h3>Typography</h3>
-        <ul>
+        <ul className="ul">
           <li>
             this list seems too indented. It already has bullets so there is no
             need to do it so obvious
@@ -54,7 +54,7 @@ const Home = () => (
       </div>
       <div className="shadow-lg bg-white mb-3 mr-3 rounded p-3 mw-mobile">
         <h3>Buttons</h3>
-        <ul>
+        <ul className="ul">
           <li>unite with forms, they are related</li>
           <li>button groups</li>
           <li>button icons (see in bookmarks for ideas)</li>
@@ -64,7 +64,7 @@ const Home = () => (
       </div>
       <div className="shadow-lg bg-white mb-3 mr-3 rounded p-3 mw-mobile">
         <h3>Forms</h3>
-        <ul>
+        <ul className="ul">
           <li>integrated Input warnings (like notes)</li>
           <li>elements inside Inputs like 'show password'</li>
           <li>radio toggle shown as group to act like toggle buttons</li>
@@ -72,7 +72,7 @@ const Home = () => (
       </div>
       <div className="shadow-lg bg-white mb-3 mr-3 rounded p-3 mw-mobile">
         <h3>Navigation</h3>
-        <ul>
+        <ul className="ul">
           <li>revisit menu collapse</li>
           <li>anchor navigation</li>
           <li>revamp current navigaiton with anchors</li>
@@ -83,17 +83,17 @@ const Home = () => (
       </div>
       <div className="shadow-lg bg-white mb-3 mr-3 rounded p-3 mw-mobile">
         <h3>Tree view</h3>
-        <ul>
+        <ul className="ul">
           <li>revisit style</li>
         </ul>
       </div>
       <div className="shadow-lg bg-white mb-3 mr-3 rounded p-3 mw-mobile">
         <h3>Cards</h3>
-        <ul>
+        <ul className="ul">
           <li>simplified cards, don't overdo it</li>
           <li>
             break to components
-            <ul>
+            <ul className="ul">
               <li>simple card, padding and shadow, nothing else</li>
               <li>card picture component: position top, left, right</li>
               <li>card title: emphasize with diffrent background color</li>

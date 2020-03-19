@@ -4,7 +4,7 @@
   --lightness2: 82%;
   --lightness: 58%;
   --lightness3: 40%;
-  --lightness4: 24%;
+  --lightness4: 25%;
   --lightness-black: 15%;
 
   --transperent-highlight: hsla(0, 100%, 100%, 0.025);
@@ -527,35 +527,6 @@ body {
   /* overflow-y: auto; */
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0;
-  font-weight: var(--weight-normal);
-}
-
-h1 {
-  font-size: calc(var(--size) * 2.5);
-}
-h2 {
-  font-size: calc(var(--size) * 2);
-}
-h3 {
-  font-size: calc(var(--size) * 1.5);
-}
-h4 {
-  font-size: calc(var(--size) * 1.25);
-}
-h5 {
-  font-size: calc(var(--size) * 1);
-}
-h6 {
-  font-size: calc(var(--size) * 0.75);
-}
-
 select {
   appearance: none;
   -webkit-appearance: none;
@@ -677,7 +648,8 @@ input[type='date']::-webkit-clear-button {
     var(--gray1)
   );
 }
-
+/* -------------------------------------- */
+/* TABLES */
 .table {
   width: 100%;
 }
@@ -709,32 +681,8 @@ input[type='date']::-webkit-clear-button {
   max-width: min-content;
 }
 
-.field {
-  border: none;
-  border-left: 5px solid var(--gray1);
-  padding: 0 0.5rem;
-  margin: 1rem 0;
-}
-.field legend {
-  margin-left: -0.8rem;
-  margin-bottom: 0.5rem;
-}
-
-/* .profile-rounded-big {
-  width: 12rem;
-  height: 12rem;
-  border-radius: 50%;
-  border: 0.25rem dashed var(--blue-pale);
-  flex-shrink: 0;
-} */
-/* don't mark it as list if it ain't a list */
-.list-unstyled {
-  list-style: none;
-  margin-block-start: 0;
-  margin-inline-start: 0;
-  padding: 0;
-  margin: 0;
-}
+/* -------------------------------------- */
+/* PROFILE PIC AND CROPING */
 .crop {
   position: relative;
   overflow: hidden;
@@ -763,6 +711,9 @@ input[type='date']::-webkit-clear-button {
   font-size: 2rem;
   margin: 0.5rem;
 }
+
+/* -------------------------------------- */
+/* ANIMATIONS */
 .pop-in {
   animation: animate-pop-in ease-in 200ms;
   animation-iteration-count: 1;

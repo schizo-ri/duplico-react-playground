@@ -168,25 +168,13 @@ input[type='file'] {
   );
 }
 
-/* .react-datetime-picker,
-.react-date-picker {
-  display: block !important;
+.field {
+  border: none;
+  border-left: 5px solid var(--gray1);
+  padding: 0 0.5rem;
+  margin: 1rem 0;
 }
-.react-datetime-picker__wrapper,
-.react-date-picker__wrapper {
-  border: 0 !important;
+.field legend {
+  margin-left: -0.8rem;
+  margin-bottom: 0.5rem;
 }
-.react-datetime-picker input,
-.react-date-picker input {
-  border: 0;
-  outline: 0;
-  box-shadow: none;
-}
-
-.react-datetime-picker input:focus,
-.react-date-picker input:focus,
-.react-datetime-picker input:active,
-.react-date-picker input:active {
-  outline: 0;
-  box-shadow: none;
-} */

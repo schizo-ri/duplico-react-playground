@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react'
 import { Button } from '../components/Button'
 import Stepper from '../components/Tabs'
+import { AnchorsNav } from '../components/AnchorsNav'
 import '../styles/Form.css'
 
 const Navigations = () => {
@@ -46,6 +47,11 @@ const Navigations = () => {
           <p>Page 4</p>
         </Stepper>
         <hr className="hr1" />
+        <h2>Anchors</h2>
+        <AnchorsNav>
+          <h1 id="hea1">heading 1</h1>
+          <h2 id="hea2">heading 2</h2>
+        </AnchorsNav>
       </section>
     </div>
   )

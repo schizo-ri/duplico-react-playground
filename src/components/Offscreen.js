@@ -82,7 +82,7 @@ const alertStyle = {
   alert: {
     width: '100%',
     position: 'relative',
-    boxShadow: 'var(--box-shadow-lg)',
+    boxShadow: 'var(--shadow-bottom)',
     transform: 'translateY(-10vh)',
     opacity: 0,
     transition: `all ${alertAnimationDuration}ms ease-in-out`,
@@ -90,22 +90,22 @@ const alertStyle = {
   info: {
     color: 'var(--cold-fixed-white)',
     // background: 'linear-gradient(to bottom, var(--cyan3) 0%, var(--cyan) 100%)',
-    backgroundColor: 'var(--cyan3)',
+    backgroundColor: 'var(--cyan)',
   },
   warning: {
     color: 'var(--warm-fixed-white)',
     // background: 'linear-gradient(to bottom, var(--yellow3) 0%, var(--yellow) 100%)',
-    backgroundColor: 'var(--yellow3)',
+    backgroundColor: 'var(--yellow)',
   },
   error: {
     color: 'var(--warm-fixed-white)',
     // background: 'linear-gradient(to bottom, var(--red) 0%, var(--red3) 100%)',
-    backgroundColor: 'var(--red3)',
+    backgroundColor: 'var(--red)',
   },
   success: {
     color: 'var(--cold-fixed-white)',
     // background: 'linear-gradient(to bottom, var(--teal3) 0%, var(--teal) 100%)',
-    backgroundColor: 'var(--teal3)',
+    backgroundColor: 'var(--teal)',
   },
   msg: {
     padding: '1rem',
@@ -220,7 +220,7 @@ const dialogStyle = {
   outline: 0,
   opacity: 1,
   transform: 'translateY(-50vh)',
-  boxShadow: 'var(--box-shadow-lg)',
+  boxShadow: 'var(--shadow-lg)',
   // borderRadius: 'var(--radius)',
   // width: '100vw',
   willChange: 'transform, opacity',
@@ -327,11 +327,11 @@ const asideStyle = {
   },
   left: {
     transform: 'translateX(-25rem)',
-    boxShadow: 'var(--box-shadow-right)',
+    boxShadow: 'var(--shadow-right)',
   },
   right: {
     transform: 'translateX(calc(100vw + 25rem))',
-    boxShadow: 'var(--box-shadow-left)',
+    boxShadow: 'var(--shadow-left)',
   },
 }
 const asideStyleTransitions = {

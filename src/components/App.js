@@ -26,7 +26,7 @@ const App = () => {
 };
 
 const Authenticated = () => {
-  const [theme, setTheme] = useState("theme-warm");
+  const [theme] = useState("theme-warm");
 
   useEffect(() => {
     const body = document.getElementsByTagName("body")[0];

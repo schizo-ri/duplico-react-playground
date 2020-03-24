@@ -247,6 +247,15 @@ const Home = () => (
           </p>
           <p
             style={{
+              backgroundColor: 'var(--cold-gray3)',
+              color: 'var(--cold-black)',
+            }}
+            className="p-3 m-0"
+          >
+            bg cold-gray3, c cold-black
+          </p>
+          <p
+            style={{
               backgroundColor: 'var(--cold-gray)',
               color: 'var(--cold-black)',
             }}
@@ -256,21 +265,30 @@ const Home = () => (
           </p>
           <p
             style={{
-              backgroundColor: 'var(--cold-gray3)',
-              color: 'var(--cold-white)',
-            }}
-            className="p-3 m-0"
-          >
-            bg cold-gray3, c cold-white
-          </p>
-          <p
-            style={{
               backgroundColor: 'var(--cold-gray4)',
               color: 'var(--cold-white)',
             }}
             className="p-3 m-0"
           >
             bg cold-gray4, c cold-white
+          </p>
+          <p
+            style={{
+              backgroundColor: 'var(--cold-gray5)',
+              color: 'var(--cold-white)',
+            }}
+            className="p-3 m-0"
+          >
+            bg cold-gray5, c cold-white
+          </p>
+          <p
+            style={{
+              backgroundColor: 'var(--cold-gray6)',
+              color: 'var(--cold-white)',
+            }}
+            className="p-3 m-0"
+          >
+            bg cold-gray6, c cold-white
           </p>
           <p
             style={{
@@ -312,6 +330,15 @@ const Home = () => (
           </p>
           <p
             style={{
+              backgroundColor: 'var(--warm-gray3)',
+              color: 'var(--warm-black)',
+            }}
+            className="p-3 m-0"
+          >
+            bg warm-gray3, c warm-black
+          </p>
+          <p
+            style={{
               backgroundColor: 'var(--warm-gray)',
               color: 'var(--warm-black)',
             }}
@@ -321,21 +348,30 @@ const Home = () => (
           </p>
           <p
             style={{
-              backgroundColor: 'var(--warm-gray3)',
-              color: 'var(--warm-white)',
-            }}
-            className="p-3 m-0"
-          >
-            bg warm-gray3, c warm-white
-          </p>
-          <p
-            style={{
               backgroundColor: 'var(--warm-gray4)',
               color: 'var(--warm-white)',
             }}
             className="p-3 m-0"
           >
             bg warm-gray4, c warm-white
+          </p>
+          <p
+            style={{
+              backgroundColor: 'var(--warm-gray5)',
+              color: 'var(--warm-white)',
+            }}
+            className="p-3 m-0"
+          >
+            bg warm-gray5, c warm-white
+          </p>
+          <p
+            style={{
+              backgroundColor: 'var(--warm-gray6)',
+              color: 'var(--warm-white)',
+            }}
+            className="p-3 m-0"
+          >
+            bg warm-gray6, c warm-white
           </p>
           <p
             style={{
@@ -377,15 +413,6 @@ const Home = () => (
           </p>
           <p
             style={{
-              backgroundColor: 'var(--blue)',
-              color: 'var(--blue-white)',
-            }}
-            className="p-3 m-0"
-          >
-            bg blue, c blue-white
-          </p>
-          <p
-            style={{
               backgroundColor: 'var(--blue3)',
               color: 'var(--blue-white)',
             }}
@@ -395,12 +422,39 @@ const Home = () => (
           </p>
           <p
             style={{
+              backgroundColor: 'var(--blue)',
+              color: 'var(--blue-white)',
+            }}
+            className="p-3 m-0"
+          >
+            bg blue, c blue-white
+          </p>
+          <p
+            style={{
               backgroundColor: 'var(--blue4)',
               color: 'var(--blue-white)',
             }}
             className="p-3 m-0"
           >
             bg blue4, c blue-white
+          </p>
+          <p
+            style={{
+              backgroundColor: 'var(--blue5)',
+              color: 'var(--blue-white)',
+            }}
+            className="p-3 m-0"
+          >
+            bg blue5, c blue-white
+          </p>
+          <p
+            style={{
+              backgroundColor: 'var(--blue6)',
+              color: 'var(--blue-white)',
+            }}
+            className="p-3 m-0"
+          >
+            bg blue6, c blue-white
           </p>
           <p
             style={{
@@ -442,15 +496,6 @@ const Home = () => (
           </p>
           <p
             style={{
-              backgroundColor: 'var(--cyan)',
-              color: 'var(--cyan-white)',
-            }}
-            className="p-3 m-0"
-          >
-            bg cyan, c cyan-white
-          </p>
-          <p
-            style={{
               backgroundColor: 'var(--cyan3)',
               color: 'var(--cyan-white)',
             }}
@@ -460,12 +505,39 @@ const Home = () => (
           </p>
           <p
             style={{
+              backgroundColor: 'var(--cyan)',
+              color: 'var(--cyan-white)',
+            }}
+            className="p-3 m-0"
+          >
+            bg cyan, c cyan-white
+          </p>
+          <p
+            style={{
               backgroundColor: 'var(--cyan4)',
               color: 'var(--cyan-white)',
             }}
             className="p-3 m-0"
           >
             bg cyan4, c cyan-white
+          </p>
+          <p
+            style={{
+              backgroundColor: 'var(--cyan5)',
+              color: 'var(--cyan-white)',
+            }}
+            className="p-3 m-0"
+          >
+            bg cyan5, c cyan-white
+          </p>
+          <p
+            style={{
+              backgroundColor: 'var(--cyan6)',
+              color: 'var(--cyan-white)',
+            }}
+            className="p-3 m-0"
+          >
+            bg cyan6, c cyan-white
           </p>
           <p
             style={{
@@ -507,6 +579,15 @@ const Home = () => (
           </p>
           <p
             style={{
+              backgroundColor: 'var(--teal3)',
+              color: 'var(--teal-black)',
+            }}
+            className="p-3 m-0"
+          >
+            bg teal3, c teal-black
+          </p>
+          <p
+            style={{
               backgroundColor: 'var(--teal)',
               color: 'var(--teal-white)',
             }}
@@ -516,21 +597,30 @@ const Home = () => (
           </p>
           <p
             style={{
-              backgroundColor: 'var(--teal3)',
-              color: 'var(--teal-white)',
-            }}
-            className="p-3 m-0"
-          >
-            bg teal3, c teal-white
-          </p>
-          <p
-            style={{
               backgroundColor: 'var(--teal4)',
               color: 'var(--teal1)',
             }}
             className="p-3 m-0"
           >
             bg teal4, c teal1
+          </p>
+          <p
+            style={{
+              backgroundColor: 'var(--teal5)',
+              color: 'var(--teal1)',
+            }}
+            className="p-3 m-0"
+          >
+            bg teal5, c teal1
+          </p>
+          <p
+            style={{
+              backgroundColor: 'var(--teal6)',
+              color: 'var(--teal1)',
+            }}
+            className="p-3 m-0"
+          >
+            bg teal6, c teal1
           </p>
           <p
             style={{
@@ -572,6 +662,15 @@ const Home = () => (
           </p>
           <p
             style={{
+              backgroundColor: 'var(--yellow3)',
+              color: 'var(--yellow-black)',
+            }}
+            className="p-3 m-0"
+          >
+            bg yellow3, c yellow-black
+          </p>
+          <p
+            style={{
               backgroundColor: 'var(--yellow)',
               color: 'var(--yellow-white)',
             }}
@@ -581,21 +680,30 @@ const Home = () => (
           </p>
           <p
             style={{
-              backgroundColor: 'var(--yellow3)',
-              color: 'var(--yellow-white)',
-            }}
-            className="p-3 m-0"
-          >
-            bg yellow3, c yellow-white
-          </p>
-          <p
-            style={{
               backgroundColor: 'var(--yellow4)',
               color: 'var(--yellow-white)',
             }}
             className="p-3 m-0"
           >
             bg yellow4, c yellow-white
+          </p>
+          <p
+            style={{
+              backgroundColor: 'var(--yellow5)',
+              color: 'var(--yellow-white)',
+            }}
+            className="p-3 m-0"
+          >
+            bg yellow5, c yellow-white
+          </p>
+          <p
+            style={{
+              backgroundColor: 'var(--yellow6)',
+              color: 'var(--yellow-white)',
+            }}
+            className="p-3 m-0"
+          >
+            bg yellow6, c yellow-white
           </p>
           <p
             style={{
@@ -637,15 +745,6 @@ const Home = () => (
           </p>
           <p
             style={{
-              backgroundColor: 'var(--orange)',
-              color: 'var(--orange-white)',
-            }}
-            className="p-3 m-0"
-          >
-            bg orange, c orange-white
-          </p>
-          <p
-            style={{
               backgroundColor: 'var(--orange3)',
               color: 'var(--orange-white)',
             }}
@@ -655,12 +754,39 @@ const Home = () => (
           </p>
           <p
             style={{
+              backgroundColor: 'var(--orange)',
+              color: 'var(--orange-white)',
+            }}
+            className="p-3 m-0"
+          >
+            bg orange, c orange-white
+          </p>
+          <p
+            style={{
               backgroundColor: 'var(--orange4)',
               color: 'var(--orange1)',
             }}
             className="p-3 m-0"
           >
             bg orange4, c orange1
+          </p>
+          <p
+            style={{
+              backgroundColor: 'var(--orange5)',
+              color: 'var(--orange1)',
+            }}
+            className="p-3 m-0"
+          >
+            bg orange5, c orange1
+          </p>
+          <p
+            style={{
+              backgroundColor: 'var(--orange6)',
+              color: 'var(--orange1)',
+            }}
+            className="p-3 m-0"
+          >
+            bg orange6, c orange1
           </p>
           <p
             style={{
@@ -702,15 +828,6 @@ const Home = () => (
           </p>
           <p
             style={{
-              backgroundColor: 'var(--red)',
-              color: 'var(--red-white)',
-            }}
-            className="p-3 m-0"
-          >
-            bg red, c red-white
-          </p>
-          <p
-            style={{
               backgroundColor: 'var(--red3)',
               color: 'var(--red-white)',
             }}
@@ -720,12 +837,39 @@ const Home = () => (
           </p>
           <p
             style={{
+              backgroundColor: 'var(--red)',
+              color: 'var(--red-white)',
+            }}
+            className="p-3 m-0"
+          >
+            bg red, c red-white
+          </p>
+          <p
+            style={{
               backgroundColor: 'var(--red4)',
               color: 'var(--red-white)',
             }}
             className="p-3 m-0"
           >
             bg red4, c red-white
+          </p>
+          <p
+            style={{
+              backgroundColor: 'var(--red5)',
+              color: 'var(--red-white)',
+            }}
+            className="p-3 m-0"
+          >
+            bg red5, c red-white
+          </p>
+          <p
+            style={{
+              backgroundColor: 'var(--red6)',
+              color: 'var(--red-white)',
+            }}
+            className="p-3 m-0"
+          >
+            bg red6, c red-white
           </p>
           <p
             style={{

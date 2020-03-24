@@ -35,13 +35,13 @@
   color: var(--fixed-white);
 }
 .shadow-sm {
-  box-shadow: var(--box-shadow-sm);
+  box-shadow: var(--shadow-sm);
 }
 .shadow {
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--shadow);
 }
 .shadow-lg {
-  box-shadow: var(--box-shadow-lg);
+  box-shadow: var(--shadow-lg);
 }
 .c-red {
   color: var(--red);

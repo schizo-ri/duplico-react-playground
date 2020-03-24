@@ -1,11 +1,11 @@
 import React, { useEffect, useReducer, useContext } from 'react'
 import shortid from 'shortid'
 import { formCollection, dumbArrayCompare, cloneDeep, _arradd, _arrdel, _arrrep } from '../utils'
-import { DialogContext, closeDialog } from '../components/Dialog'
+// import { DialogContext, closeDialog } from '../components/Dialog'
 import { Input } from '../components/Form'
 import { Button, Dropdown } from '../components/Button'
 import { ContextMenuContext } from '../components/ContextMenu'
-import { AlertContext } from '../components/Alert'
+// import { AlertContext } from '../components/Alert'
 
 // dodati i opciju da se sakrije odredjena kolumna, recimo id
 // - zapravo bi u slucaju da ne postoji id mi mogli umetati nase keyeve na poziciju 0
@@ -65,8 +65,8 @@ const reducer = (state, action) => {
 
 const DataTable = ({ data, editable, savecb }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
-  const Dialog = useContext(DialogContext)
-  const Alert = useContext(AlertContext)
+  // const Dialog = useContext(DialogContext)
+  // const Alert = useContext(AlertContext)
   const ContextMenu = useContext(ContextMenuContext)
 
   useEffect(() => {
@@ -159,10 +159,10 @@ const DataTable = ({ data, editable, savecb }) => {
   const handleDeleteRow = idx => e => {
     // don't allow deleting last row. we could allow this but than should add table global actions
     if (state.data.length === 1) {
-      Alert.dispatch({
-        type: 'show',
-        payload: { msg: <p>You can't delete last row. Please modify values if you wish so.</p>, type: 'info' },
-      })
+      // Alert.dispatch({
+      //   type: 'show',
+      //   payload: { msg: <p>You can't delete last row. Please modify values if you wish so.</p>, type: 'info' },
+      // })
       return
     }
     // save current state for undo
@@ -176,10 +176,10 @@ const DataTable = ({ data, editable, savecb }) => {
   const handleDeleteCol = idx => e => {
     // don't allow deleting last column. we could allow this but than should add table global actions
     if (state.head.length === 1) {
-      Alert.dispatch({
-        type: 'show',
-        payload: { msg: <p>You can't delete last column. Please modify it's title if you wish so.</p>, type: 'info' },
-      })
+      // Alert.dispatch({
+      //   type: 'show',
+      //   payload: { msg: <p>You can't delete last column. Please modify it's title if you wish so.</p>, type: 'info' },
+      // })
       return
     }
     // save current state for undo
@@ -273,23 +273,23 @@ const DataTable = ({ data, editable, savecb }) => {
     dispatch({ type: 'data', payload: sorted })
   }
   // on commiting title change form in dialog
-  const handeTitleChange = idx => e => {
+  const handleTitleChange = idx => e => {
     e.preventDefault()
     // value to change to
     const { column } = formCollection(e.target)
     // have to have some value
     if (!column) {
-      Alert.dispatch({ type: 'show', payload: { msg: <p>Please enter some name</p>, type: 'warning' } })
+      // Alert.dispatch({ type: 'show', payload: { msg: <p>Please enter some name</p>, type: 'warning' } })
       return
     }
     // commit replaced
     dispatch({ type: 'head', payload: _arrrep(state.head, idx, column) })
     // close dialog
-    closeDialog(Dialog)
+    // closeDialog(Dialog)
   }
   // just show dialog with form
   const handleRenameHeaderDialog = idx => e => {
-    Dialog.dispatch({ type: 'show', payload: <RenameHeaderDialog onSubmit={handeTitleChange(idx)} /> })
+    // Dialog.dispatch({ type: 'show', payload: <RenameHeaderDialog onSubmit={handeTitleChange(idx)} /> })
   }
   // context menu for header
   const handleHeaderMenu = idx => e => {

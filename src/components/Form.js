@@ -78,10 +78,9 @@ const Input = ({
     </div>
   );
 };
-const Select = props => {
-  const { label, note, children, ...inputProps } = { ...props };
+const Select = ({ label, note, wrap = '', inline, children, ...inputProps }) => {
   return (
-    <div className="input-wrap">
+    <div className={`${inline ? "input-wrap-inline" : 'input-wrap'} ${wrap}`}>
       {note && <span className="input-note">{note}</span>}
       <select className="input" {...inputProps}>
         {children}

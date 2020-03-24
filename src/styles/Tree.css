@@ -64,7 +64,7 @@
   overflow-y: auto;
   background-color: var(--transperent-highlight);
   border-radius: var(--radius);
-  box-shadow: var(--box-shadow-lg);
+  box-shadow: var(--shadow-lg);
   padding: var(--gap) var(--gap) var(--gap) 0;
 }
 .nodes-tree ul {
@@ -95,13 +95,13 @@
   padding: 0.25rem 0.75rem;
   background-color: var(--gray1);
   border-radius: var(--radius);
-  box-shadow: var(--box-shadow-sm);
+  box-shadow: var(--shadow-sm);
 }
 .node-item input:checked + label,
 .element-item input:checked + label {
   color: var(--fixed-white);
   background-color: var(--brand);
-  box-shadow: var(--box-shadow-inset-cue);
+  box-shadow: var(--shadow-inset-cue);
 }
 .element-item input:checked + label {
   background-color: var(--cyan);

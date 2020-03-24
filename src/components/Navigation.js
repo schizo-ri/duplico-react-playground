@@ -1,64 +1,69 @@
 import React, { useState, useLayoutEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { Select } from "../components/Form";
 import { Dropdown } from '../components/Button'
 import '../styles/Navigation.css'
 import '../styles/Button.css'
 import '../styles/Form.css'
 
-const THEME_SWITCH = {
-  'theme-cold': 'theme-warm',
-  'theme-warm': 'theme-cold',
-}
-
 const Nav = props => {
   const [fit, setFit] = useState(true)
-  // const [warmth, setWarmth] = useState('cold');
+  const [warmth, setWarmth] = useState(localStorage.getItem('warmth') || 'warm');
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || window.matchMedia('(prefers-color-scheme: dark)') || 'light');
 
   const handleWarmthSwitch = e => {
-    const theme = e.target.checked ? 'theme-cold' : 'theme-warm'
-    const body = document.body
-    const classes = body.classList
-    classes.length === 0
-      ? body.classList.add(theme)
-      : body.classList.replace(THEME_SWITCH[theme], theme)
+    setWarmth(e.target.value)
+    document.documentElement.dataset.warmth = e.target.value
+    localStorage.setItem('warmth', e.target.value)
+  }
+
+  const handleThemeSwitch = e => {
+    setTheme(e.target.value)
+    document.documentElement.dataset.theme = e.target.value
+    localStorage.setItem('theme', e.target.value)
   }
 
   useLayoutEffect(function menuFit() {
     function calculateFit() {
       // 100 is an estimation, there should be a better way
+      // useCallback may be the one: https://reactjs.org/docs/hooks-faq.html#how-can-i-measure-a-dom-node
+      // wrap whole component inside Aside if it doesn't fit?
       NAV_ITEMS.length * 100 >= window.innerWidth ? setFit(false) : setFit(true)
       return
     }
     calculateFit()
+    document.documentElement.dataset.warmth = warmth
+    document.documentElement.dataset.theme = theme
     window.addEventListener('resize', calculateFit)
     return () => window.removeEventListener('resize', calculateFit)
   }, [])
 
   return (
-    <nav className="navbar flex jcb aic">
-      {fit ? (
-        <ul className="navlist">
-          <NavItems collapsed={fit} />
-        </ul>
-      ) : (
-        <Dropdown id="nav-collapse" className="btn-empty fix-white" text="Menu">
-          <NavItems collapsed={fit} />
-        </Dropdown>
-      )}
-      <div className="ml-auto">
-        <div className="switch">
-          <input
-            type="checkbox"
-            id="theme-switch"
-            className="switch-input"
-            onChange={handleWarmthSwitch}
-          />
-          <label htmlFor="theme-switch" className="switch-label c-white">
-            Warmth
-          </label>
+    <>
+      <nav className="navbar flex jcb aic">
+        {fit ? (
+          <ul className="navlist">
+            <NavItems collapsed={fit} />
+          </ul>
+        ) : (
+          <Dropdown id="nav-collapse" className="btn-empty fix-white" text="Menu">
+            <NavItems collapsed={fit} />
+          </Dropdown>
+        )}
+      </nav>
+      <div className="row bg-teal">
+        <div className="row ml-auto p-2">
+          <Select id="select-theme" label="Theme" wrap="mb-0" inline="inline" onChange={handleThemeSwitch} value={theme}>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </Select>
+          <Select id="select-warmth" label="Warmth" wrap="mb-0" inline="inline" onChange={handleWarmthSwitch} value={warmth}>
+            <option value="warm">Warm</option>
+            <option value="cold">Cold</option>
+          </Select>
         </div>
       </div>
-    </nav>
+    </>
   )
 }
 

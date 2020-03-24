@@ -1,12 +1,12 @@
-import React from 'react'
-import { Card } from '../components/Card'
-import '../styles/Typography.css'
+import React from "react";
+import { Card, CardBody, CardTitle, CardFooter } from "../components/Card";
+import "../styles/Typography.css";
 
 const Typography = () => {
   return (
-    <div style={{ padding: '0 1rem' }}>
-      <h1>Typography, also a {'<h1>'} element</h1>
-      <h2>Headings, also a {'<h2>'} element</h2>
+    <div style={{ padding: "0 1rem" }}>
+      <h1>Typography, also a {"<h1>"} element</h1>
+      <h2>Headings, also a {"<h2>"} element</h2>
       <h3>3rd level headings</h3>
       <h4>4th level headings</h4>
       <h5>5th level headings</h5>
@@ -24,62 +24,76 @@ const Typography = () => {
       <h2>Lists</h2>
       <section
         style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, var(--width-mobile))',
-          gridGap: 'var(--gap)',
-          alignItems: 'start',
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fill, var(--width-mobile))",
+          gridGap: "var(--gap)",
+          alignItems: "start"
         }}
       >
         <Card>
-          <h3>Unordered list</h3>
-          <ul className="ul">
-            <li>Red</li>
-            <li>Green</li>
-            <li>Blue</li>
-            <li>Alpha</li>
-          </ul>
+          <CardTitle>
+            <h3 className="m-0">Unordered list</h3>
+          </CardTitle>
+          <CardBody>
+            <ul className="ul">
+              <li>Red</li>
+              <li>Green</li>
+              <li>Blue</li>
+              <li>Alpha</li>
+            </ul>
+          </CardBody>
         </Card>
         <Card>
-          <h3>Ordered list</h3>
-          <ol className="ol">
-            <li>Red</li>
-            <li>Green</li>
-            <li>Blue</li>
-            <li>Alpha</li>
-          </ol>
+          <CardTitle>
+            <h3 className="m-0">Ordered list</h3>
+          </CardTitle>
+          <CardBody>
+            <ol className="ol">
+              <li>Red</li>
+              <li>Green</li>
+              <li>Blue</li>
+              <li>Alpha</li>
+            </ol>
+          </CardBody>
         </Card>
         <Card>
-          <h3>Unstyled list</h3>
-          <p>
-            <small>
-              Is there any meaningful use case for this? BTW this is a{' '}
-              {'<small>'} text
-            </small>
-          </p>
-          <ul className="unlist">
-            <li>Red</li>
-            <li>Green</li>
-            <li>Blue</li>
-            <li>Alpha</li>
-          </ul>
+          <CardTitle>
+            <h3 className="m-0">Unstyled list</h3>
+          </CardTitle>
+          <CardBody>
+            <p>
+              <small>
+                Is there any meaningful use case for this? BTW this is a{" "}
+                {"<small>"} text
+              </small>
+            </p>
+            <ul className="unlist">
+              <li>Red</li>
+              <li>Green</li>
+              <li>Blue</li>
+              <li>Alpha</li>
+            </ul>
+          </CardBody>
         </Card>
         <Card>
-          <h3>Definition list</h3>
-          <dl className="dl">
-            <dt>1. title</dt>
-            <dd>description of a first</dd>
-            <dt>second</dt>
-            <dd>this one has</dd>
-            <dd>two descriptions</dd>
-            <dt>third one</dt>
-            <dd>but everything should be the same</dd>
-            <dt>and the last</dt>
-            <dd>but not least</dd>
-          </dl>
+          <CardBody>
+            <h3>Definition list</h3>
+            <dl className="dl">
+              <dt>1. title</dt>
+              <dd>description of a first</dd>
+              <dt>second</dt>
+              <dd>this one has</dd>
+              <dd>two descriptions</dd>
+              <dt>third one</dt>
+              <dd>but everything should be the same</dd>
+              <dt>and the last</dt>
+              <dd>but not least</dd>
+            </dl>
+          </CardBody>
         </Card>
       </section>
     </div>
-  )
-}
+  );
+};
 
-export default Typography
+export default Typography;

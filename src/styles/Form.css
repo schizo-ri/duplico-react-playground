@@ -1,55 +1,54 @@
 .input {
   position: relative;
   border: 0;
-  border-radius: 0;
-  width: 100%;
+  border-radius: var(--radius);
   text-overflow: ellipsis;
-  padding: 0 0.5rem;
+  padding: 0.25rem 0.5rem;
   color: var(--black);
   background-color: var(--gray1);
-  border-bottom: 2px solid var(--gray2);
-  border-bottom-left-radius: var(--radius);
-  border-bottom-right-radius: var(--radius);
+  box-shadow: var(--shadow-softer);
+  border-bottom: 2px solid var(--gray);
+  margin: 0 0.5rem;
+  transition: all 0.15s ease-in-out;
 }
-
+select.input {
+  padding-right: 1rem;
+}
 .input-empty {
   min-width: 0;
   border-bottom: 2px solid transparent;
 }
-
-.invalid * {
-  color: var(--red4) !important;
+.invalid {
+  color: var(--red6) !important;
   background-color: var(--red1) !important;
   border-color: var(--red) !important;
 }
-
-.valid * {
+.valid {
   animation-name: animate-valid;
   animation-duration: 0.5s;
   animation-timing-function: ease-in-out;
 }
-
 @keyframes animate-valid {
   0%,
   100% {
   }
   50% {
-    color: var(--tea4);
+    color: var(--tea6);
     background-color: var(--teal1);
     border-color: var(--teal);
   }
 }
-
 .input::placeholder {
   color: var(--gray4);
-  font-size: var(--small);
+  font-size: var(--smaller);
 }
 .input:focus {
   border: 0;
   outline: 0;
-  box-shadow: none;
+  background-color: var(--white);
+  box-shadow: var(--shadow-soft);
   border-bottom: 2px solid var(--brand);
-  transition: border 0.25s;
+  transform: scale(1.025);
 }
 .input:focus + .input-label {
   color: var(--brand);
@@ -58,21 +57,25 @@
 .input-wrap {
   display: flex;
   flex-direction: column-reverse;
-  /* opacity: 0.75; */
-  border-radius: var(--radius);
   margin-bottom: 0.5rem;
-  /* box-shadow: var(--box-shadow-softer); */
+}
+.input-wrap-inline {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  margin-bottom: 0.5rem;
 }
 .input-label {
-  background-color: var(--gray1);
-  border-radius: var(--radius) var(--radius) 0 0;
-  padding: 0 0.25rem 0 0.25rem;
+  text-transform: uppercase;
+  font-weight: var(--weight-600);
+  font-size: var(--smaller);
+  padding: 0.25rem 0.5rem;
   margin: 0;
 }
 .input-note {
-  font-size: 0.8rem;
-  color: var(--gray4);
-  padding: 0.25rem;
+  font-size: var(--smaller);
+  color: var(--gray);
+  padding: 0.25rem 0.5rem;
   font-style: oblique;
 }
 .input-tt:not(:last-child) {
@@ -87,10 +90,12 @@
 .input-tt label {
   cursor: pointer;
   padding: 0.25rem 0.75rem;
-  /* background-color: var(--cold); */
-  background: linear-gradient(to bottom, var(--gray1) 0%, var(--white) 100%);
-  box-shadow: var(--box-shadow-sm);
+  background: linear-gradient(to bottom, var(--white), var(--gray1));
+  box-shadow: var(--shadow-sm);
   border-radius: 1rem;
+}
+[data-theme="dark"] .input-tt label {
+  background: linear-gradient(to bottom, var(--gray1), var(--white));
 }
 .input-tt label::before {
   content: '\2715';
@@ -99,9 +104,11 @@
 }
 .input-tt input:checked + label {
   color: var(--fixed-white);
-  /* background-color: var(--blue); */
+  background: linear-gradient(to bottom, var(--brand4) 0%, var(--brand) 100%);
+  box-shadow: var(--shadow-inset-cue);
+}
+[data-theme="dark"] .input-tt input:checked + label {
   background: linear-gradient(to bottom, var(--brand3) 0%, var(--brand) 100%);
-  box-shadow: var(--box-shadow-inset-cue);
 }
 .input-tt input:checked + label::before {
   content: '\2713';
@@ -139,12 +146,14 @@ input[type='file'] {
   left: calc((var(--width) * -1) - var(--notchDistance));
   width: var(--width);
   height: calc(var(--size) * var(--line-height));
-  background: linear-gradient(to bottom, var(--gray3) 0%, var(--gray) 100%);
-  box-shadow: var(--box-shadow-inset-cue);
+  background: linear-gradient(to bottom, var(--gray4) 0%, var(--gray) 100%);
+  box-shadow: var(--shadow-inset-cue);
   display: block;
   border-radius: 1rem;
 }
-
+[data-theme="dark"]  .switch-label::before {
+  background: linear-gradient(to bottom, var(--gray3) 0%, var(--gray) 100%);
+}
 .switch-label::after {
   content: '';
   position: absolute;
@@ -153,12 +162,14 @@ input[type='file'] {
   width: var(--notchSize);
   height: var(--notchSize);
   background: radial-gradient(circle, var(--white) 50%, var(--gray1) 100%);
-  box-shadow: var(--box-shadow-sm);
+  box-shadow: var(--shadow-sm);
   border-radius: 50%;
   transition: 250ms ease-in-out;
 }
-
 .switch-input:checked + .switch-label::before {
+  background: linear-gradient(to bottom, var(--brand4) 0%, var(--brand) 100%);
+}
+[data-theme="dark"] .switch-input:checked + .switch-label::before {
   background: linear-gradient(to bottom, var(--brand3) 0%, var(--brand) 100%);
 }
 

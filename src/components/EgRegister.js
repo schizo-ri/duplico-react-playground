@@ -97,7 +97,7 @@ function RegistrationForm(props) {
             {Object.values(state.msg).map(
               m =>
                 m && (
-                  <p key={btoa(m)} className="c-yellow">
+                  <p key={btoa(m)} className="yellow">
                     {m}
                   </p>
                 )
@@ -166,7 +166,7 @@ function FormUsername() {
         required={true}
         onChange={handleChange('name')}
         onBlur={checkEmpty('name')}
-        wrapClass={state.invalid.name}
+        inputClass={state.invalid.name}
       />
       <Input
         id="user.phone"
@@ -183,7 +183,7 @@ function FormUsername() {
         required={true}
         onChange={handleChange('email')}
         onBlur={checkEmail}
-        wrapClass={state.invalid.email}
+        inputClass={state.invalid.email}
       />
       <Input
         id="user.password"
@@ -193,10 +193,10 @@ function FormUsername() {
         required={true}
         onChange={handleChange('password')}
         onBlur={checkPassword}
-        wrapClass={state.invalid.password}
+        inputClass={state.invalid.password}
         note={
           <>
-            <button type="button" className="btn-text info" onClick={e => dispatch({ type: 'reveal' })}>
+            <button type="button" className="btn-text info" tabIndex="-1" onClick={e => dispatch({ type: 'reveal' })}>
               Reveal
             </button>
             <span>

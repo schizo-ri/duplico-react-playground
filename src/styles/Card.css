@@ -1,0 +1,25 @@
+.card {
+  box-shadow: var(--shadow-lg);
+  background-color: transparent;
+  border-radius: var(--radius);
+}
+[data-theme="dark"] .card {
+  box-shadow: none;
+  background-color: var(--gray1);
+}
+.card-body {
+  padding: var(--spacer3x);
+}
+.card-title, .card-footer {
+  background-color: var(--gray1);
+  padding: var(--spacer3x);
+}
+[data-theme="dark"] .card-title, .card-footer {
+  background-color: var(--gray2);
+}
+.card-title {
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+.card-footer {
+  border-radius: 0 0 var(--radius) var(--radius);
+}

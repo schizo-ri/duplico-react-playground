@@ -49,8 +49,28 @@ const Navigations = () => {
         <hr className="hr1" />
         <h2>Anchors</h2>
         <AnchorsNav>
-          <h1 id="hea1">heading 1</h1>
-          <h2 id="hea2">heading 2</h2>
+          <h1 id="h1ead1-1">h1ead1-1</h1>
+          <p>missing intersection observer to mark active</p>
+          <h1 id="h1ead2-1">h1ead2-1</h1>
+          <p>restrictions that apply:</p>
+          <h2 id="h2ead2-2">h2ead2-2</h2>
+          <p>it will only analyze first child</p>
+          <h3 id="h3ead2-3">h3ead2-3</h3>
+          <p>this can be changed in the future so that user can provide child level to check for</p>
+          <h1 id="h1ead3-1">h1ead3-1</h1>
+          <p>how it works?</p>
+          <h2 id="h2ead3-2">h2ead3-2</h2>
+          <p>you wrap your content inside a component</p>
+          <h2 id="h2ead3-3">h2ead3-3</h2>
+          <p>component will look for headings, create nav element with anchors to those headings</p>
+          <h2 id="h2ead3-4">h2ead3-4</h2>
+          <p>headings will be indented according to it's tag so it will appear tree-like</p>
+          <h3 id="h3ead3-5">h3ead3-5</h3>
+          <p>this nav will appear left or right. left is default</p>
+          <h4 id="h4ead3-6">h4ead3-6</h4>
+          <p>it will be described further when finished</p>
+          <h3 id="h3ead3-7">h3ead3-7</h3>
+          <h2 id="h2ead3-8">h2ead3-8</h2>
         </AnchorsNav>
       </section>
     </div>

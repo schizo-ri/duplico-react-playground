@@ -137,3 +137,27 @@
   color: var(--white);
   background-color: var(--brand);
 }
+
+.anchor-wrap {
+  display: grid;
+  grid-template-columns: min-content auto;
+}
+.anchor-nav {
+  /* background-color: var(--gray1); */
+  padding: var(--spacer3x);
+  }
+.anchor-nav ul {
+  position: sticky;
+  top: 4rem;
+}
+.anchor {
+  color: var(--gray4);
+  white-space: nowrap;
+}
+.anchor-active {
+  color: var(--gray6);
+  /* font-weight: var(--weight-500); */
+}
+.anchored-content {
+  background-color: teal;
+}

@@ -8,7 +8,7 @@
   --lightness5: 25%;
   --lightness6: 20%;
   --lightness-black: 15%;
-  --transperent-highlight: hsla(0, 100%, 100%, 0.025);
+  --transparent-highlight: hsla(0, 100%, 100%, 0.025);
 
   --op100: 1;
   --op090: .9;
@@ -161,6 +161,7 @@
   --shadow: 1px 2px 4px 0px var(--backdrop-soft);
   --shadow-softer: 1px 2px 4px -1px var(--backdrop-softer);
   --shadow-lg: 2px 4px 10px -2px var(--backdrop-softer);
+  --shadow-inset-lg: inset 0 0 10px -2px var(--backdrop-softer);
 
   --shadow-inset-cue: inset 0px 1px 3px -1px var(--backdrop-soft);
 
@@ -558,13 +559,19 @@ body {
   font-weight: var(--weight-400);
   line-height: var(--line-height);
   background-color: var(--white);
+  background: linear-gradient(-80deg, #4a195b 20%, #b52986 0, #b52986 40%, #fd648d 0, #fd648d 60%, #faa776 0, #faa776 80%, #ead388 0);
+  background: repeating-linear-gradient(to bottom,
+    var(--gray1) /* can't skip this, repeating gradient won't work */,
+    var(--gray1) 1px,
+    var(--white) 0,
+    var(--white) 9px /* can't skip this either, tells where gradient repetition starts */);
 }
 
 #root {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: min-content auto;
-  /* min-height: 100vh; */
+  grid-template-rows: min-content min-content 1fr;
+  min-height: 100vh;
   /* max-height: 100vh; */
   /* overflow-y: hidden; */
 }
@@ -1168,6 +1175,9 @@ input[type="date"]::-webkit-clear-button {
 }
 .hidden {
   visibility: hidden;
+}
+.realtive {
+  position: relative;
 }
 .d-none {
   display: none;

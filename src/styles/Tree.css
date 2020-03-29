@@ -1,80 +1,45 @@
 #nei-grid {
   display: grid;
   grid-template-areas:
-    'nodes'
-    'elements'
-    'info';
+    'nodes' 'info';
+  grid-template-rows: min-content 1fr;
   grid-gap: var(--gap);
   padding: var(--gap);
-}
-.scale-away {
-  max-height: 0;
-  transform: scale(0);
-  opacity: 0;
-  visibility: hidden;
+  min-height: 100%;
 }
 .nodes-tree {
   grid-area: 'nodes';
+  height: min-content;
+  /* overflow: auto; */
 }
-.elements-list {
-  grid-area: 'elements';
+.collapse-body {
+  position: absolute;
+  left: var(--gap);
+  right: var(--gap);
+  margin: 0 auto;
 }
 .select-info {
   grid-area: 'info';
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 960px) {
   #nei-grid {
-    grid-template-columns: 60% auto;
-    grid-template-rows: 1fr 1fr;
-  }
-  .nodes-tree {
-    grid-column: 1 / span 1;
-    grid-row: 1 / span 1;
-  }
-  .elements-list {
-    grid-column: 2 / span 1;
-    grid-row: 1 / span 1;
-  }
-  .select-info {
-    grid-column: 1 / span 2;
-    grid-row: 2 / span 1;
-  }
-}
-@media only screen and (min-width: 1160px) {
-  #nei-grid {
-    grid-template-columns: 25% 15% auto;
+    grid-template-columns: 25% auto;
     grid-template-rows: 1fr;
   }
-  .nodes-tree {
-    grid-column: 1 / span 1;
-    grid-row: 1 / span 1;
+  .collapse-body {
+    position: relative;
+    left: initial;
+    right: initial;
+    margin: initial;
   }
-  .elements-list {
-    grid-column: 2 / span 1;
-    grid-row: 1 / span 1;
-  }
-  .select-info {
-    grid-column: 3 / span 1;
-    grid-row: 1 / span 1;
+  [data-toggle="nodes-tree"] {
+    visibility: hidden;
+    display: none;
   }
 }
-.nodes-tree,
-.elements-list,
+/* .nodes-tree, */
 .select-info {
   overflow-y: auto;
-  background-color: var(--transperent-highlight);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-lg);
-  padding: var(--gap) var(--gap) var(--gap) 0;
-}
-.nodes-tree ul {
-  list-style: none;
-  padding-left: 0;
-  margin-left: 1.5rem;
-}
-.elements-list ul {
-  list-style: none;
-  padding-left: 0.5rem;
 }
 .node-item,
 .element-item {
@@ -93,28 +58,14 @@
 .element-item label {
   cursor: pointer;
   padding: 0.25rem 0.75rem;
-  background-color: var(--gray1);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
+  color: var(--black);
 }
 .node-item input:checked + label,
 .element-item input:checked + label {
-  color: var(--fixed-white);
-  background-color: var(--brand);
-  box-shadow: var(--shadow-inset-cue);
+  color: var(--brand);
+  font-weight: var(--weight-600);
+  background-color: var(--transparent-highlight);
 }
 .element-item input:checked + label {
   background-color: var(--cyan);
 }
-/* .node-item input:checked + label > svg * {
-  stroke: var(--brand);
-} */
-/* .node-icon {
-  width: var(--size);
-  height: var(--size);
-  margin-right: 0.5rem;
-} */
-/* .node-icon * {
-  stroke: var(--gray);
-  fill: transparent;
-} */

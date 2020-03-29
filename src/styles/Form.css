@@ -46,7 +46,7 @@ select.input {
   border: 0;
   outline: 0;
   background-color: var(--white);
-  box-shadow: var(--shadow-soft);
+  box-shadow: var(--shadow-lg);
   border-bottom: 2px solid var(--brand);
   transform: scale(1.025);
 }
@@ -66,7 +66,7 @@ select.input {
   margin-bottom: 0.5rem;
 }
 .input-label {
-  text-transform: uppercase;
+  /* text-transform: lowercase; */
   font-weight: var(--weight-600);
   font-size: var(--smaller);
   padding: 0.25rem 0.5rem;

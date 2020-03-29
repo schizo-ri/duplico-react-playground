@@ -1,6 +1,6 @@
 .card {
   box-shadow: var(--shadow-lg);
-  background-color: transparent;
+  background-color: var(--white);
   border-radius: var(--radius);
 }
 [data-theme="dark"] .card {

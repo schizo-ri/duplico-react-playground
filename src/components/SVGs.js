@@ -164,12 +164,17 @@ const AddRow = props => (
   </svg>
 )
 
-function FolderIcon(props) {
+function FolderIcon({
+  size = '1rem',
+  fill = 'var(--black)',
+  ...props
+}) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 155.466 143.861"
       className="node-icon"
+      style={{ width: size, height: size, stroke: fill }}
     >
       <g transform="translate(-55.454 -90.87)">
         <circle cx="89.717" cy="200.469" r="23.509" strokeWidth="13.507" />

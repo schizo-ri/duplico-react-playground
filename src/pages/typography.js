@@ -1,12 +1,11 @@
-import React from "react";
-import { Card, CardBody, CardTitle, CardFooter } from "../components/Card";
-import "../styles/Typography.css";
+import React from 'react'
+import { Card, CardBody, CardTitle, CardFooter } from '../components/Card'
 
 const Typography = () => {
   return (
-    <div style={{ padding: "0 1rem" }}>
-      <h1>Typography, also a {"<h1>"} element</h1>
-      <h2>Headings, also a {"<h2>"} element</h2>
+    <div style={{ padding: '0 1rem' }}>
+      <h1>Typography, also a {'<h1>'} element</h1>
+      <h2>Headings, also a {'<h2>'} element</h2>
       <h3>3rd level headings</h3>
       <h4>4th level headings</h4>
       <h5>5th level headings</h5>
@@ -24,12 +23,11 @@ const Typography = () => {
       <h2>Lists</h2>
       <section
         style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, var(--width-mobile))",
-          gridGap: "var(--gap)",
-          alignItems: "start"
-        }}
-      >
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, var(--width-mobile))',
+          gridGap: 'var(--gap)',
+          alignItems: 'start',
+        }}>
         <Card>
           <CardTitle>
             <h3 className="m-0">Unordered list</h3>
@@ -63,8 +61,8 @@ const Typography = () => {
           <CardBody>
             <p>
               <small>
-                Is there any meaningful use case for this? BTW this is a{" "}
-                {"<small>"} text
+                Is there any meaningful use case for this? BTW this is a{' '}
+                {'<small>'} text
               </small>
             </p>
             <ul className="unlist">
@@ -92,8 +90,18 @@ const Typography = () => {
           </CardBody>
         </Card>
       </section>
+      <div className="mb-5">
+        <header>SkvFM</header>
+        <audio
+          id="radio"
+          controls
+          src="http://skvazici-stream.ddns.net:9093/stream"
+          type="audio/ogg">
+          Here should be an audio player
+        </audio>
+      </div>
     </div>
-  );
-};
+  )
+}
 
-export default Typography;
+export default Typography

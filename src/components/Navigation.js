@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from 'react'
+import React, { useState, useLayoutEffect, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Select } from "../components/Form";
 import { Dropdown } from '../components/Button'
@@ -36,7 +36,7 @@ const Nav = props => {
     document.documentElement.dataset.theme = theme
     window.addEventListener('resize', calculateFit)
     return () => window.removeEventListener('resize', calculateFit)
-  }, [])
+  }, [warmth, theme])
 
   return (
     <>
@@ -46,12 +46,12 @@ const Nav = props => {
             <NavItems collapsed={fit} />
           </ul>
         ) : (
-          <Dropdown id="nav-collapse" className="btn-empty fix-white" text="Menu">
+          <Dropdown id="nav-collapse" className="btn-empty" text="Menu">
             <NavItems collapsed={fit} />
           </Dropdown>
         )}
       </nav>
-      <div className="row bg-teal">
+      <div className="row bg-teal" style={{ boxShadow: 'var(--shadow-inset-lg)' }}>
         <div className="row ml-auto p-2">
           <Select id="select-theme" label="Theme" wrap="mb-0" inline="inline" onChange={handleThemeSwitch} value={theme}>
             <option value="light">Light</option>
@@ -79,11 +79,25 @@ const NAV_ITEMS = [
 ]
 
 const NavItems = props => {
-  const linkClass = props.collapsed ? 'btn-empty fix-white' : 'btn-empty'
+  const [active, setActive] = useState(null)
+  // const linkClass = props.collapsed ? 'btn-empty' : 'btn-empty'
+
+  useEffect(() => {
+    const curr = NAV_ITEMS.reduce((res, [label, path]) => {
+      if (window.location.pathname.substr(1).includes(path)) {
+        return label
+      }
+      return res
+    }, 'Home')
+    if (curr) {
+      setActive(curr)
+    }
+    return
+  }, [])
 
   return NAV_ITEMS.map(([label, route]) => (
     <li key={label} className="nav-item">
-      <Link className={linkClass} to={route}>
+      <Link className={`btn-empty${label === active ? ' brand' : ''}`} to={route} onClick={() => setActive(label)}>
         {label}
       </Link>
     </li>

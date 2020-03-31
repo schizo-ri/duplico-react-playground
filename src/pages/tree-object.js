@@ -17,7 +17,10 @@ const nodes = [
     shared: false,
     name:
       '2027_Elektroinstalacije_niskonaponski razvod EL-TO_HEP proizvodnja_Zagreb',
+    nice_name: '2027 Elektroinstalacije, EL-TO_HEP',
     location: 'Prime',
+    description:
+      '2027_Elektroinstalacije_niskonaponski razvod EL-TO_HEP proizvodnja_Zagreb',
     category: 'Building',
     disabled: 1,
     users: '[2]',

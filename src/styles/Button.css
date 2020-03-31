@@ -28,6 +28,7 @@
   background-color: transparent;
   cursor: pointer;
   font-weight: var(--weight-400);
+  text-align: left;
 }
 .btn {
   box-shadow: var(--shadow-sm);

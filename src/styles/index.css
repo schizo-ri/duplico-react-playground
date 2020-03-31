@@ -129,7 +129,7 @@
 
   --backdrop: hsla(0, 0%, 0%, 0.6);
   --backdrop-soft: hsla(0, 0%, 0%, 0.4);
-  --backdrop-softer: hsla(0, 0%, 0%, 0.125);
+  --backdrop-softer: hsla(0, 0%, 0%, 0.15);
 
   --radius: .25rem;
 
@@ -690,10 +690,14 @@ input[type="date"]::-webkit-clear-button {
 }
 .hr-raninbow {
   border: 0;
-  height: 1px;
+  height: 2px;
   background-image: linear-gradient(
     to right,
-    #5461c8 12.5%,
+    hsla(233, 51%, 56%, 0.1) 2.5%,
+    hsla(233, 51%, 56%, 0.25),
+    hsla(233, 51%, 56%, 0.5) 7.5%,
+    hsla(233, 51%, 56%, 0.75),
+    hsla(233, 51%, 56%, 1) 12.5%,
     #c724b1,
     #c724b1 25%,
     #e4002b,
@@ -706,7 +710,7 @@ input[type="date"]::-webkit-clear-button {
     #97d700 75%,
     #00ab84,
     #00ab84 87.5%,
-    #00a3e0
+    hsla(196, 100%, 44%, 0.1)
   );
 }
 /* -------------------------------------- */
@@ -1032,6 +1036,9 @@ input[type="date"]::-webkit-clear-button {
 .muted {
   color: var(--gray3);
 }
+.brand {
+  color: var(--brand);
+}
 .bd-dark {
   border: 1px solid var(--gray4);
 }
@@ -1091,6 +1098,18 @@ input[type="date"]::-webkit-clear-button {
 }
 .double {
   font-size: 2rem;
+}
+.small {
+  font-size: var(--small);
+}
+.smaller {
+  font-size: var(--smaller);
+}
+.uppercase {
+  text-transform: uppercase;
+}
+.lowercase {
+  text-transform: lowercase;
 }
 .weight-300 {
   font-weight: var(--weight-300);
@@ -1172,6 +1191,9 @@ input[type="date"]::-webkit-clear-button {
 }
 .overflowY-auto {
   overflow-y: auto;
+}
+.overflow-visible {
+  overflow: visible;
 }
 .hidden {
   visibility: hidden;

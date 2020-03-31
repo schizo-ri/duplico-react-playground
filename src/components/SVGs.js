@@ -228,11 +228,10 @@ function Plus({
       style={svgStyle}
       className="btn-text"
       onClick={e => {
-        // setCollapsed(!collapsed)
         clickAction && clickAction.call(null, e)
       }}
     >
-      <Transition in={collapsed} timeout={duration}>
+      <Transition in={!collapsed} timeout={duration}>
         {state => (
           <rect
             style={{ ...rectStyle, ...transitionVertical[state] }}
@@ -244,7 +243,7 @@ function Plus({
           />
         )}
       </Transition>
-      <Transition in={collapsed} timeout={duration}>
+      <Transition in={!collapsed} timeout={duration}>
         {state => (
           <rect
             style={{ ...rectStyle, ...transitionHorizontal[state] }}

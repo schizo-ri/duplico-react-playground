@@ -38,9 +38,9 @@
   }
 }
 /* .nodes-tree, */
-.select-info {
+/* .select-info {
   overflow-y: auto;
-}
+} */
 .node-item,
 .element-item {
   position: relative;

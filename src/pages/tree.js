@@ -346,6 +346,10 @@ const Tree = props => {
   return (
     <TreeContext.Provider value={{ state, dispatch }}>
       <div id="nei-grid">
+        <div>
+          <div id="node-tree-toolbar" className="row mb-2">
+            <button type="button" className="btn brand ml-auto">+ add project</button>
+          </div>
         <div className="nodes-tree rounded shadow-lg bg-white relative">
           <div className="rounded p-2 row jcb aic overflow-hidden">
             <Input
@@ -427,12 +431,13 @@ const Tree = props => {
             }}
           </Transition>
         </div>
+        </div>
         <div className="select-info">
           {state.selectedNode && (
             <>
               <section>
                 <h3 className="mt-3 mx-3 mb-0">Project Info</h3>
-                <hr className="hr-raninbow" />
+                <hr className="hr-rainbow" />
                 <NodeInfo
                   node={nodes.filter(n => n.id === state.selectedNode)[0]}
                 />
@@ -446,7 +451,7 @@ const Tree = props => {
                     </button>
                   </div>
                 </div>
-                <hr className="hr-raninbow" />
+                <hr className="hr-rainbow" />
                 <div>
                   {elements.filter(e => e.node_id === state.selectedNode)
                     .length === 0 ? (

@@ -1,5 +1,6 @@
 import React, { Suspense, lazy } from 'react'
 import { FSLoading } from '../components/FullScreen'
+import { DataGrid } from '../components/DataGrid'
 // import DataTable from '../components/DataTable'
 const DataTable = lazy(() => import('../components/DataTable'))
 
@@ -22,7 +23,11 @@ const Tables = () => {
 
   return (
     <Suspense fallback={<FSLoading />}>
-      <DataTable data={data} editable={true} savecb={handleCollect} />
+      <section className="p-3">
+        <DataTable data={data} editable={true} savecb={handleCollect} />
+        <hr className="my-4 hr-rainbow" />
+        <DataGrid />
+      </section>
     </Suspense>
   )
 }

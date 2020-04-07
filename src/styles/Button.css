@@ -45,8 +45,8 @@
   transform: translate3d(-300%, 0, 0) rotate(35deg);
 }
 .btn:hover::before {
-  transition: transform 0.5s ease-in-out;
-  transform: translate3d(800%, 0, 0) rotate(35deg);
+  transition: transform 500ms ease-in-out;
+  transform: translate3d(600%, 0, 0) rotate(35deg);
 }
 .btn.brand {
   background-color: var(--brand);

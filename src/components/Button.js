@@ -77,7 +77,7 @@ const Dropdown = props => {
       >
         {props.text || ''}
       </button>
-      {show.visible && <div className="backdrop" onClick={handleBackdropClose} />}
+      {show.visible && <div className="event-backdrop" onClick={handleBackdropClose} />}
       <div
         ref={childrenContainer}
         className={listClass}

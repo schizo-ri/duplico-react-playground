@@ -191,6 +191,7 @@
   margin: 0;
   width: max-content;
   background-color: var(--white);
+  border-radius: var(--radius);
   z-index: 1010;
   box-shadow: var(--shadow-lg);
   will-change: transform;

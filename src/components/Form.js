@@ -2,11 +2,11 @@ import React from "react";
 import shortid from "shortid";
 import "../styles/Form.css";
 
-const ToggleTokens = ({ type, name, children, ...props }) => {
+const ToggleTokens = ({ children, wrapClass, ...props }) => {
   return (
-    <div {...props}>
+    <div className={wrapClass}>
       {children.map(c => (
-        <ToggleToken key={c[0]} id={c[0]} name={name} type={type}>
+        <ToggleToken key={c[0]} id={c[0]} {...props}>
           {c[1]}
         </ToggleToken>
       ))}
@@ -20,6 +20,8 @@ const ToggleToken = props => (
       id={props.id}
       type={props.type || "checkbox"}
       name={`${props.name || props.id}`}
+      defaultChecked={props.defaultChecked || null}
+      onChange={props.onChange}
     />
     <label htmlFor={`${props.id}`}>{props.children}</label>
   </div>
@@ -78,11 +80,11 @@ const Input = ({
     </div>
   );
 };
-const Select = ({ label, note, wrap = '', inline, children, ...inputProps }) => {
+const Select = ({ label, note, wrap = '', inline, value, children, ...inputProps }) => {
   return (
     <div className={`${inline ? "input-wrap-inline" : 'input-wrap'} ${wrap}`}>
       {note && <span className="input-note">{note}</span>}
-      <select className="input" {...inputProps}>
+      <select className="input" defaultValue={value} {...inputProps}>
         {children}
       </select>
       <label htmlFor={inputProps.name || inputProps.id} className="input-label">

@@ -26,7 +26,7 @@ const Tables = () => {
       <section className="p-3">
         <DataTable data={data} editable={true} savecb={handleCollect} />
         <hr className="my-4 hr-rainbow" />
-        <DataGrid />
+        <DataGrid mode="builder" />
       </section>
     </Suspense>
   )

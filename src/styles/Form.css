@@ -50,6 +50,9 @@ select.input {
   border-bottom: 2px solid var(--brand);
   transform: scale(1.025);
 }
+select.input:focus {
+  transform: none;
+}
 .input:focus + .input-label {
   color: var(--brand);
   transition: color 0.25s;
@@ -186,6 +189,6 @@ input[type='file'] {
   margin: 1rem 0;
 }
 .field legend {
-  margin-left: -0.8rem;
+  /* margin-left: -0.8rem; */
   margin-bottom: 0.5rem;
 }

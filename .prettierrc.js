@@ -1,11 +1,10 @@
 // .prettierrc.js
 module.exports = {
   printWidth: 80,
-  parser: "babylon",
   tabWidth: 2,
   singleQuote: true,
   trailingComma: 'es5',
-  jsxBracketSameLine: true,
+  jsxBracketSameLine: false,
   semi: false,
   arrowParens: 'avoid',
 }
